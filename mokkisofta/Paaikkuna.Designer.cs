@@ -65,6 +65,7 @@
             this.btnPalvelut.TabIndex = 1;
             this.btnPalvelut.Text = "Palvelut";
             this.btnPalvelut.UseVisualStyleBackColor = true;
+            this.btnPalvelut.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // btnVaraukset
             // 

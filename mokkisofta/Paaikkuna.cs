@@ -34,7 +34,8 @@ namespace mokkisofta
             }
             else if (btn == btnPalvelut)
             {
-
+                Palvelut p = new Palvelut();
+                p.ShowDialog();
             }
             else if (btn == btnVaraukset)
             {

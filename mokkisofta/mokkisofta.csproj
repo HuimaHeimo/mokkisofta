@@ -52,6 +52,12 @@
     <Compile Include="Paaikkuna2.Designer.cs">
       <DependentUpon>Paaikkuna2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Palvelut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Palvelut.Designer.cs">
+      <DependentUpon>Palvelut.cs</DependentUpon>
+    </Compile>
     <Compile Include="Toimipisteet.cs">
       <SubType>Form</SubType>
     </Compile>
