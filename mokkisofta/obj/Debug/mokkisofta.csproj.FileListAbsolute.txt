@@ -8,4 +8,5 @@ C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma
 C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.CoreCompileInputs.cache
 C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.exe
 C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.pdb
-C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Form1.resources
+C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Paaikkuna2.resources
+C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Toimipisteet.resources

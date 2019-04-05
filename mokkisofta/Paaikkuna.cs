@@ -17,9 +17,41 @@ namespace mokkisofta
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Tämä click event hoitaa päävalikon painikkeiden toiminnan.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mainMenu_Click(object sender, EventArgs e)
         {
+            // Luodaan sender toiminnon tarkastusta varten.
+            Button btn = (Button)sender;
 
+            if (btn == btnTpisteet)
+            {
+                Toimipisteet tp = new Toimipisteet();
+                tp.ShowDialog();
+            }
+            else if (btn == btnPalvelut)
+            {
+
+            }
+            else if (btn == btnVaraukset)
+            {
+
+            }
+            else if (btn == btnAsiakkaat)
+            {
+
+            }
+            else if (btn == btnLaskut)
+            {
+
+            }
+            else if (btn == btnRaportit)
+            {
+
+            }
         }
     }
 }
