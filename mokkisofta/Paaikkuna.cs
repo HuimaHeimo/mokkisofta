@@ -17,6 +17,9 @@ namespace mokkisofta
             InitializeComponent();
         }
 
+        private void mainMenu_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }

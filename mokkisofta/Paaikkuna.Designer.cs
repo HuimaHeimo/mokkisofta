@@ -37,8 +37,8 @@
             this.btnRaportit = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.poistuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tietojaOhjelmastaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStrip1.SuspendLayout();
@@ -54,6 +54,7 @@
             this.btnTpisteet.TabIndex = 0;
             this.btnTpisteet.Text = "Toimipisteet";
             this.btnTpisteet.UseVisualStyleBackColor = true;
+            this.btnTpisteet.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // btnPalvelut
             // 
@@ -124,6 +125,12 @@
             this.tiedostoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.tiedostoToolStripMenuItem.Text = "Tiedosto";
             // 
+            // poistuToolStripMenuItem
+            // 
+            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
+            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.poistuToolStripMenuItem.Text = "Poistu";
+            // 
             // ohjeToolStripMenuItem
             // 
             this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -132,16 +139,10 @@
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
             // 
-            // poistuToolStripMenuItem
-            // 
-            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
-            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.poistuToolStripMenuItem.Text = "Poistu";
-            // 
             // tietojaOhjelmastaToolStripMenuItem
             // 
             this.tietojaOhjelmastaToolStripMenuItem.Name = "tietojaOhjelmastaToolStripMenuItem";
-            this.tietojaOhjelmastaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tietojaOhjelmastaToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.tietojaOhjelmastaToolStripMenuItem.Text = "Tietoja ohjelmasta";
             // 
             // pictureBox1
