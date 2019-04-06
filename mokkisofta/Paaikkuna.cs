@@ -27,6 +27,7 @@ namespace mokkisofta
             // Luodaan sender toiminnon tarkastusta varten.
             Button btn = (Button)sender;
 
+            // Ehtolauseet hoitavat oikean valikkopainikkeen tunnistamisen
             if (btn == btnTpisteet)
             {
                 Toimipisteet tp = new Toimipisteet();
