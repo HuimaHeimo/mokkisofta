@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tietoa.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tietoa.Designer.cs">
+      <DependentUpon>Tietoa.cs</DependentUpon>
+    </Compile>
     <Compile Include="Raportit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Tietoa.resx">
+      <DependentUpon>Tietoa.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Raportit.resx">
       <DependentUpon>Raportit.cs</DependentUpon>
     </EmbeddedResource>
