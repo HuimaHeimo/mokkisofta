@@ -58,6 +58,12 @@ namespace mokkisofta
                 Raportit ra = new Raportit();
                 ra.ShowDialog();
             }
+
+        }
+
+        private void MmmsPoistu_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
