@@ -62,6 +62,7 @@ namespace mokkisofta
 
         }
 
+        // Funktio hoitaa pääikkunan yläpalkin toiminnan
         private void MmmsPoistu_Click(object sender, EventArgs e)
         {
             Application.Exit();
