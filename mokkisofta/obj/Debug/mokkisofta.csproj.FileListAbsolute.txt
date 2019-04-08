@@ -10,3 +10,19 @@ C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma
 C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.pdb
 C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Paaikkuna2.resources
 C:\Users\Tare\OneDrive - Savonia-ammattikorkeakoulu\Ohjelmistotuotanto 1\Ohjelma\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Toimipisteet.resources
+D:\AMK\mokkisofta\mokkisofta\bin\Debug\mokkisofta.exe.config
+D:\AMK\mokkisofta\mokkisofta\bin\Debug\mokkisofta.exe
+D:\AMK\mokkisofta\mokkisofta\bin\Debug\mokkisofta.pdb
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csprojAssemblyReference.cache
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Raportit.resources
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Palvelut.resources
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Asiakkaat.resources
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Laskut.resources
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Varaukset.resources
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Toimipisteet.resources
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Paaikkuna.resources
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Properties.Resources.resources
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.GenerateResource.cache
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.CoreCompileInputs.cache
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.exe
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.pdb

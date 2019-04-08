@@ -76,6 +76,7 @@
             this.btnVaraukset.TabIndex = 2;
             this.btnVaraukset.Text = "Varaukset";
             this.btnVaraukset.UseVisualStyleBackColor = true;
+            this.btnVaraukset.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // btnAsiakkaat
             // 
@@ -86,6 +87,7 @@
             this.btnAsiakkaat.TabIndex = 3;
             this.btnAsiakkaat.Text = "Asiakkaat";
             this.btnAsiakkaat.UseVisualStyleBackColor = true;
+            this.btnAsiakkaat.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // btnLaskut
             // 
@@ -96,6 +98,7 @@
             this.btnLaskut.TabIndex = 4;
             this.btnLaskut.Text = "Laskut";
             this.btnLaskut.UseVisualStyleBackColor = true;
+            this.btnLaskut.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // btnRaportit
             // 
@@ -106,6 +109,7 @@
             this.btnRaportit.TabIndex = 5;
             this.btnRaportit.Text = "Raportit";
             this.btnRaportit.UseVisualStyleBackColor = true;
+            this.btnRaportit.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // menuStrip1
             // 

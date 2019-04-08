@@ -40,19 +40,23 @@ namespace mokkisofta
             }
             else if (btn == btnVaraukset)
             {
-
+                Varaukset va = new Varaukset();
+                va.ShowDialog();
             }
             else if (btn == btnAsiakkaat)
             {
-
+                Asiakkaat a = new Asiakkaat();
+                a.ShowDialog();
             }
             else if (btn == btnLaskut)
             {
-
+                Laskut la = new Laskut();
+                la.ShowDialog();
             }
             else if (btn == btnRaportit)
             {
-
+                Raportit ra = new Raportit();
+                ra.ShowDialog();
             }
         }
     }

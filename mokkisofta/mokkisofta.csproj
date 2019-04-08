@@ -46,17 +46,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Paaikkuna2.cs">
+    <Compile Include="Raportit.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Paaikkuna2.Designer.cs">
-      <DependentUpon>Paaikkuna2.cs</DependentUpon>
+    <Compile Include="Raportit.Designer.cs">
+      <DependentUpon>Raportit.cs</DependentUpon>
     </Compile>
     <Compile Include="Palvelut.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Palvelut.Designer.cs">
       <DependentUpon>Palvelut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Asiakkaat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Asiakkaat.Designer.cs">
+      <DependentUpon>Asiakkaat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Laskut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Laskut.Designer.cs">
+      <DependentUpon>Laskut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Varaukset.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Varaukset.Designer.cs">
+      <DependentUpon>Varaukset.cs</DependentUpon>
     </Compile>
     <Compile Include="Toimipisteet.cs">
       <SubType>Form</SubType>
@@ -72,8 +90,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Paaikkuna2.resx">
-      <DependentUpon>Paaikkuna2.cs</DependentUpon>
+    <EmbeddedResource Include="Raportit.resx">
+      <DependentUpon>Raportit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Palvelut.resx">
+      <DependentUpon>Palvelut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Asiakkaat.resx">
+      <DependentUpon>Asiakkaat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Laskut.resx">
+      <DependentUpon>Laskut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Varaukset.resx">
+      <DependentUpon>Varaukset.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Toimipisteet.resx">
       <DependentUpon>Toimipisteet.cs</DependentUpon>
