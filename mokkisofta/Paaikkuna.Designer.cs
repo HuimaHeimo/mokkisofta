@@ -133,7 +133,7 @@
             // MmmsPoistu
             // 
             this.MmmsPoistu.Name = "MmmsPoistu";
-            this.MmmsPoistu.Size = new System.Drawing.Size(180, 22);
+            this.MmmsPoistu.Size = new System.Drawing.Size(107, 22);
             this.MmmsPoistu.Text = "Poistu";
             this.MmmsPoistu.Click += new System.EventHandler(this.MmmsPoistu_Click);
             // 
