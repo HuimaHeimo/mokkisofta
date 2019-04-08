@@ -12,7 +12,7 @@ namespace mokkisofta
 {
     public partial class Toimipisteet : Form
     {
-        public Toimipisteet()
+        public Toimipisteet2019()
         {
             InitializeComponent();
         }
