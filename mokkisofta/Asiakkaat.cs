@@ -16,5 +16,17 @@ namespace mokkisofta
         {
             InitializeComponent();
         }
+
+        private void Asiakkaat_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'asiakaatDataSet.Asiakas' table. You can move, or remove it, as needed.
+            this.asiakasTableAdapter.Fill(this.asiakaatDataSet.Asiakas);
+
+        }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
