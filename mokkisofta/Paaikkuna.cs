@@ -27,6 +27,7 @@ namespace mokkisofta
             // Luodaan sender toiminnon tarkastusta varten.
             Button btn = (Button)sender;
 
+            // Ehtolauseet hoitavat oikean valikkopainikkeen tunnistamisen
             if (btn == btnTpisteet)
             {
                 Toimipisteet tp = new Toimipisteet();
@@ -39,20 +40,32 @@ namespace mokkisofta
             }
             else if (btn == btnVaraukset)
             {
-
+                Varaukset va = new Varaukset();
+                va.ShowDialog();
             }
             else if (btn == btnAsiakkaat)
             {
-
+                Asiakkaat a = new Asiakkaat();
+                a.ShowDialog();
             }
             else if (btn == btnLaskut)
             {
-
+                Laskut la = new Laskut();
+                la.ShowDialog();
             }
             else if (btn == btnRaportit)
             {
-
+                Raportit ra = new Raportit();
+                ra.ShowDialog();
             }
+            
+
+        }
+
+        // Funktio hoitaa pääikkunan yläpalkin toiminnan
+        private void MmmsPoistu_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

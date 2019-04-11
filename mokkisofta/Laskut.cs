@@ -10,13 +10,11 @@ using System.Windows.Forms;
 
 namespace mokkisofta
 {
-    public partial class Paaikkuna2 : Form
+    public partial class Laskut : Form
     {
-        public Paaikkuna2()
+        public Laskut()
         {
             InitializeComponent();
         }
-
-
     }
 }

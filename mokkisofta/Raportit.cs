@@ -7,15 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-// test
+
 namespace mokkisofta
 {
-    public partial class Toimipisteet : Form
+    public partial class Raportit : Form
     {
-        public Toimipisteet()
+        public Raportit()
         {
             InitializeComponent();
         }
-
     }
 }

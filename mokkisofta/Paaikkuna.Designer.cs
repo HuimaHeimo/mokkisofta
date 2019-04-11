@@ -35,13 +35,13 @@
             this.btnAsiakkaat = new System.Windows.Forms.Button();
             this.btnLaskut = new System.Windows.Forms.Button();
             this.btnRaportit = new System.Windows.Forms.Button();
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.MmStrip = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.poistuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MmmsPoistu = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tietojaOhjelmastaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.menuStrip1.SuspendLayout();
+            this.MmStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -76,6 +76,7 @@
             this.btnVaraukset.TabIndex = 2;
             this.btnVaraukset.Text = "Varaukset";
             this.btnVaraukset.UseVisualStyleBackColor = true;
+            this.btnVaraukset.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // btnAsiakkaat
             // 
@@ -86,6 +87,7 @@
             this.btnAsiakkaat.TabIndex = 3;
             this.btnAsiakkaat.Text = "Asiakkaat";
             this.btnAsiakkaat.UseVisualStyleBackColor = true;
+            this.btnAsiakkaat.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // btnLaskut
             // 
@@ -96,6 +98,7 @@
             this.btnLaskut.TabIndex = 4;
             this.btnLaskut.Text = "Laskut";
             this.btnLaskut.UseVisualStyleBackColor = true;
+            this.btnLaskut.Click += new System.EventHandler(this.mainMenu_Click);
             // 
             // btnRaportit
             // 
@@ -106,31 +109,33 @@
             this.btnRaportit.TabIndex = 5;
             this.btnRaportit.Text = "Raportit";
             this.btnRaportit.UseVisualStyleBackColor = true;
+            this.btnRaportit.Click += new System.EventHandler(this.mainMenu_Click);
             // 
-            // menuStrip1
+            // MmStrip
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MmStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tiedostoToolStripMenuItem,
             this.ohjeToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(681, 24);
-            this.menuStrip1.TabIndex = 6;
-            this.menuStrip1.Text = "menuStrip1";
+            this.MmStrip.Location = new System.Drawing.Point(0, 0);
+            this.MmStrip.Name = "MmStrip";
+            this.MmStrip.Size = new System.Drawing.Size(681, 24);
+            this.MmStrip.TabIndex = 6;
+            this.MmStrip.Text = "menuStrip1";
             // 
             // tiedostoToolStripMenuItem
             // 
             this.tiedostoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.poistuToolStripMenuItem});
+            this.MmmsPoistu});
             this.tiedostoToolStripMenuItem.Name = "tiedostoToolStripMenuItem";
             this.tiedostoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.tiedostoToolStripMenuItem.Text = "Tiedosto";
             // 
-            // poistuToolStripMenuItem
+            // MmmsPoistu
             // 
-            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
-            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
-            this.poistuToolStripMenuItem.Text = "Poistu";
+            this.MmmsPoistu.Name = "MmmsPoistu";
+            this.MmmsPoistu.Size = new System.Drawing.Size(107, 22);
+            this.MmmsPoistu.Text = "Poistu";
+            this.MmmsPoistu.Click += new System.EventHandler(this.MmmsPoistu_Click);
             // 
             // ohjeToolStripMenuItem
             // 
@@ -171,12 +176,12 @@
             this.Controls.Add(this.btnVaraukset);
             this.Controls.Add(this.btnPalvelut);
             this.Controls.Add(this.btnTpisteet);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.Controls.Add(this.MmStrip);
+            this.MainMenuStrip = this.MmStrip;
             this.Name = "Paaikkuna";
             this.Text = "Päävalikko";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
+            this.MmStrip.ResumeLayout(false);
+            this.MmStrip.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -191,9 +196,9 @@
         private System.Windows.Forms.Button btnAsiakkaat;
         private System.Windows.Forms.Button btnLaskut;
         private System.Windows.Forms.Button btnRaportit;
-        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.MenuStrip MmStrip;
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem poistuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem MmmsPoistu;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tietojaOhjelmastaToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
