@@ -26,3 +26,4 @@ D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.GenerateResource.cache
 D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.CoreCompileInputs.cache
 D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.exe
 D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.pdb
+D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Tietoa.resources

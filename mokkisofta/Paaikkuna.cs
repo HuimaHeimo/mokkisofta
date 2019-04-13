@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,7 +16,22 @@ namespace mokkisofta
         public Paaikkuna()
         {
             InitializeComponent();
+            txbPvPalvelin.Text = "localhost\\SQLEXPRESS";
+            txbPvTietokanta.Text = "vp";
+            btnAsiakkaat.Enabled = false;
+            btnLaskut.Enabled = false;
+            btnPalvelut.Enabled = false;
+            btnRaportit.Enabled = false;
+            btnTpisteet.Enabled = false;
+            btnVaraukset.Enabled = false;
+            
         }
+
+        // Luodaan muuttujat tietokantayhteyttä varten.
+        string dataBase = null;
+        string server;
+        string dataBaseName;
+        string user;
 
         /// <summary>
         /// Tämä click event hoitaa päävalikon painikkeiden toiminnan.
@@ -30,7 +46,7 @@ namespace mokkisofta
             // Ehtolauseet hoitavat oikean valikkopainikkeen tunnistamisen
             if (btn == btnTpisteet)
             {
-                Toimipisteet tp = new Toimipisteet();
+                Toimipisteet tp = new Toimipisteet(dataBase, server, dataBaseName, user);
                 tp.ShowDialog();
             }
             else if (btn == btnPalvelut)
@@ -58,6 +74,23 @@ namespace mokkisofta
                 Raportit ra = new Raportit();
                 ra.ShowDialog();
             }
+            else if (btn == btnPvYhdista)
+            {
+                // Lisätään muuttujiin tietokantayhteyttä varten tarvittavat tiedot.
+                server = txbPvPalvelin.Text;
+                dataBaseName = txbPvTietokanta.Text;
+                user = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+                Sqlconnection.Connect(dataBase, server, dataBaseName, user);
+
+
+                btnAsiakkaat.Enabled = true;
+                btnLaskut.Enabled = true;
+                btnPalvelut.Enabled = true;
+                btnRaportit.Enabled = true;
+                btnTpisteet.Enabled = true;
+                btnVaraukset.Enabled = true;
+
+            }
             
 
         }
@@ -67,5 +100,7 @@ namespace mokkisofta
         {
             Application.Exit();
         }
+
+
     }
 }

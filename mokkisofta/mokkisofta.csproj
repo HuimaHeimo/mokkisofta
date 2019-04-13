@@ -51,6 +51,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AsiakaatDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Sqlconnection.cs" />
     <Compile Include="Tietoa.cs">
       <SubType>Form</SubType>
     </Compile>

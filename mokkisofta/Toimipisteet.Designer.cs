@@ -31,7 +31,7 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DgwToimipisteet = new System.Windows.Forms.DataGridView();
             this.txbTpNumero = new System.Windows.Forms.TextBox();
             this.txbTpNimi = new System.Windows.Forms.TextBox();
             this.txbTpOsoite = new System.Windows.Forms.TextBox();
@@ -52,7 +52,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tslTpstatuslabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgwToimipisteet)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -79,13 +79,13 @@
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
             // 
-            // dataGridView1
+            // DgwToimipisteet
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(32, 45);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(738, 330);
-            this.dataGridView1.TabIndex = 2;
+            this.DgwToimipisteet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgwToimipisteet.Location = new System.Drawing.Point(32, 45);
+            this.DgwToimipisteet.Name = "DgwToimipisteet";
+            this.DgwToimipisteet.Size = new System.Drawing.Size(738, 330);
+            this.DgwToimipisteet.TabIndex = 2;
             // 
             // txbTpNumero
             // 
@@ -264,14 +264,15 @@
             this.Controls.Add(this.txbTpOsoite);
             this.Controls.Add(this.txbTpNimi);
             this.Controls.Add(this.txbTpNumero);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DgwToimipisteet);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Toimipisteet";
             this.Text = "Toimipisteet";
+            this.Load += new System.EventHandler(this.Toimipisteet_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgwToimipisteet)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -283,7 +284,7 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DgwToimipisteet;
         private System.Windows.Forms.TextBox txbTpNumero;
         private System.Windows.Forms.TextBox txbTpNimi;
         private System.Windows.Forms.TextBox txbTpOsoite;

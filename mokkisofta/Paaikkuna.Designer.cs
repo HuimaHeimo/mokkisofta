@@ -41,6 +41,11 @@
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tietojaOhjelmastaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txbPvTietokanta = new System.Windows.Forms.TextBox();
+            this.lblPvTietokanta = new System.Windows.Forms.Label();
+            this.btnPvYhdista = new System.Windows.Forms.Button();
+            this.lblPvPalvelin = new System.Windows.Forms.Label();
+            this.txbPvPalvelin = new System.Windows.Forms.TextBox();
             this.MmStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -163,12 +168,59 @@
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
+            // txbPvTietokanta
+            // 
+            this.txbPvTietokanta.Location = new System.Drawing.Point(441, 27);
+            this.txbPvTietokanta.Name = "txbPvTietokanta";
+            this.txbPvTietokanta.Size = new System.Drawing.Size(124, 20);
+            this.txbPvTietokanta.TabIndex = 9;
+            // 
+            // lblPvTietokanta
+            // 
+            this.lblPvTietokanta.AutoSize = true;
+            this.lblPvTietokanta.Location = new System.Drawing.Point(377, 30);
+            this.lblPvTietokanta.Name = "lblPvTietokanta";
+            this.lblPvTietokanta.Size = new System.Drawing.Size(58, 13);
+            this.lblPvTietokanta.TabIndex = 10;
+            this.lblPvTietokanta.Text = "Tietokanta";
+            // 
+            // btnPvYhdista
+            // 
+            this.btnPvYhdista.Location = new System.Drawing.Point(578, 25);
+            this.btnPvYhdista.Name = "btnPvYhdista";
+            this.btnPvYhdista.Size = new System.Drawing.Size(91, 23);
+            this.btnPvYhdista.TabIndex = 12;
+            this.btnPvYhdista.Text = "Yhdistä";
+            this.btnPvYhdista.UseVisualStyleBackColor = true;
+            this.btnPvYhdista.Click += new System.EventHandler(this.mainMenu_Click);
+            // 
+            // lblPvPalvelin
+            // 
+            this.lblPvPalvelin.AutoSize = true;
+            this.lblPvPalvelin.Location = new System.Drawing.Point(173, 30);
+            this.lblPvPalvelin.Name = "lblPvPalvelin";
+            this.lblPvPalvelin.Size = new System.Drawing.Size(44, 13);
+            this.lblPvPalvelin.TabIndex = 11;
+            this.lblPvPalvelin.Text = "Palvelin";
+            // 
+            // txbPvPalvelin
+            // 
+            this.txbPvPalvelin.Location = new System.Drawing.Point(223, 27);
+            this.txbPvPalvelin.Name = "txbPvPalvelin";
+            this.txbPvPalvelin.Size = new System.Drawing.Size(139, 20);
+            this.txbPvPalvelin.TabIndex = 8;
+            // 
             // Paaikkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DimGray;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(681, 509);
+            this.Controls.Add(this.btnPvYhdista);
+            this.Controls.Add(this.lblPvPalvelin);
+            this.Controls.Add(this.lblPvTietokanta);
+            this.Controls.Add(this.txbPvTietokanta);
+            this.Controls.Add(this.txbPvPalvelin);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnRaportit);
             this.Controls.Add(this.btnLaskut);
@@ -202,6 +254,11 @@
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tietojaOhjelmastaToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox txbPvTietokanta;
+        private System.Windows.Forms.Label lblPvTietokanta;
+        private System.Windows.Forms.Button btnPvYhdista;
+        private System.Windows.Forms.Label lblPvPalvelin;
+        private System.Windows.Forms.TextBox txbPvPalvelin;
     }
 }
 
