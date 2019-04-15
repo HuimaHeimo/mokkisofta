@@ -17,6 +17,9 @@ namespace mokkisofta
         {
             InitializeComponent();
 
+            // Määritetään datagridview niin, että koko rivi tulee aina valituksi.
+            DgwToimipisteet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             // Yhdistetään kantaan ja lisätään Toimipiste-taulu dataGridViewiin.
             user = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
             SqlConnection sql;
@@ -32,19 +35,35 @@ namespace mokkisofta
             sql.Close();
         }
 
-
+        // Luodaan dataset ja sqldataAdapter tietokantayhteyttä varten.
         DataSet ds = new DataSet();
         SqlDataAdapter da;
 
-        private void Connect()
+        
+
+        private void BtnTpLisaa_Click(object sender, EventArgs e)
         {
+            string tpNimi = txbTpNimi.Text;
+            string tpOsoite = txbTpOsoite.Text;
+            string pToimiPaikka = txbTpPtoimipaikka.Text;
+            string postiNro = txbTpPostinumero.Text;
+            string sPosti = txbTpSposti.Text;
+            string puhNro = txbTpNumero.Text;
+            // Yhdistetään kantaan ja lisätään Toimipiste-taulu dataGridViewiin.
+            user = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
+            SqlConnection sql;
+            database = @"Data Source=" + server + ";Initial Catalog=" + dbname + ";User ID=sa;Password=Kissa123!";
 
+            sql = new SqlConnection(database);
+            sql.Open();
+            da = new SqlDataAdapter("INSERT INTO Toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES" + "(" + tpNimi + ", " + txbTpOsoite + ", " + postiNro + ", " + sPosti + ", " + puhNro + ")", sql);
+            da.Fill(ds, "Toimipiste");
+            DgwToimipisteet.DataSource = ds;
+            DgwToimipisteet.DataMember = "Toimipiste";
+
+            sql.Close();
         }
-
-        private void Toimipisteet_Load(object sender, EventArgs e)
-        {
-
-        }
+    }
     }
 
 

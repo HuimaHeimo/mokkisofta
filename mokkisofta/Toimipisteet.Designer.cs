@@ -48,7 +48,7 @@
             this.btnTpPoista = new System.Windows.Forms.Button();
             this.txbTpPuhnro = new System.Windows.Forms.TextBox();
             this.lblTpPuhnro = new System.Windows.Forms.Label();
-            this.btnTpLisää = new System.Windows.Forms.Button();
+            this.btnTpLisaa = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tslTpstatuslabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStrip1.SuspendLayout();
@@ -217,14 +217,14 @@
             this.lblTpPuhnro.TabIndex = 18;
             this.lblTpPuhnro.Text = "Puhelinnumero";
             // 
-            // btnTpLisää
+            // btnTpLisaa
             // 
-            this.btnTpLisää.Location = new System.Drawing.Point(671, 402);
-            this.btnTpLisää.Name = "btnTpLisää";
-            this.btnTpLisää.Size = new System.Drawing.Size(99, 41);
-            this.btnTpLisää.TabIndex = 19;
-            this.btnTpLisää.Text = "Lisää";
-            this.btnTpLisää.UseVisualStyleBackColor = true;
+            this.btnTpLisaa.Location = new System.Drawing.Point(671, 402);
+            this.btnTpLisaa.Name = "btnTpLisaa";
+            this.btnTpLisaa.Size = new System.Drawing.Size(99, 41);
+            this.btnTpLisaa.TabIndex = 19;
+            this.btnTpLisaa.Text = "Lisää";
+            this.btnTpLisaa.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
@@ -247,7 +247,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 522);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btnTpLisää);
+            this.Controls.Add(this.btnTpLisaa);
             this.Controls.Add(this.lblTpPuhnro);
             this.Controls.Add(this.txbTpPuhnro);
             this.Controls.Add(this.btnTpPoista);
@@ -269,7 +269,6 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Toimipisteet";
             this.Text = "Toimipisteet";
-            this.Load += new System.EventHandler(this.Toimipisteet_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgwToimipisteet)).EndInit();
@@ -301,7 +300,7 @@
         private System.Windows.Forms.Button btnTpPoista;
         private System.Windows.Forms.TextBox txbTpPuhnro;
         private System.Windows.Forms.Label lblTpPuhnro;
-        private System.Windows.Forms.Button btnTpLisää;
+        private System.Windows.Forms.Button btnTpLisaa;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tslTpstatuslabel1;
     }
