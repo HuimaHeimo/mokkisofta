@@ -18,20 +18,19 @@ namespace mokkisofta
             InitializeComponent();
             txbPvPalvelin.Text = "localhost\\SQLEXPRESS";
             txbPvTietokanta.Text = "vp";
+            /*
             btnAsiakkaat.Enabled = false;
             btnLaskut.Enabled = false;
             btnPalvelut.Enabled = false;
             btnRaportit.Enabled = false;
             btnTpisteet.Enabled = false;
             btnVaraukset.Enabled = false;
+            */
             
         }
 
-        // Luodaan muuttujat tietokantayhteyttä varten.
-        string dataBase = null;
-        string server;
-        string dataBaseName;
-        string user;
+
+        string connection = @"Data Source=localhost\\SQLEXPRESS"";Initial Catalog=vp;User ID=sa;Password=Kissa123!";
 
         /// <summary>
         /// Tämä click event hoitaa päävalikon painikkeiden toiminnan.
@@ -46,7 +45,7 @@ namespace mokkisofta
             // Ehtolauseet hoitavat oikean valikkopainikkeen tunnistamisen
             if (btn == btnTpisteet)
             {
-                Toimipisteet tp = new Toimipisteet(dataBase, server, dataBaseName, user);
+                Toimipisteet tp = new Toimipisteet();
                 tp.ShowDialog();
             }
             else if (btn == btnPalvelut)
@@ -76,12 +75,22 @@ namespace mokkisofta
             }
             else if (btn == btnPvYhdista)
             {
+
+                // Luodaan muuttujat tietokantayhteyttä varten.
+                string server = null;
+                string dataBaseName;
+                string user;
+
                 // Lisätään muuttujiin tietokantayhteyttä varten tarvittavat tiedot.
                 server = txbPvPalvelin.Text;
                 dataBaseName = txbPvTietokanta.Text;
                 user = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-                Sqlconnection.Connect(dataBase, server, dataBaseName, user);
 
+                string connection = @"Data Source=" + server + ";Initial Catalog=" + dataBaseName + ";User ID=sa;Password=Kissa123!";
+
+                Sql S = new Sql();
+
+                S.SetConnectionString(connection);
 
                 btnAsiakkaat.Enabled = true;
                 btnLaskut.Enabled = true;

@@ -13,10 +13,17 @@ namespace mokkisofta
 {
     public partial class Toimipisteet : Form
     {
-        public Toimipisteet(string database, string server, string dbname, string user)
+        public Toimipisteet()
         {
             InitializeComponent();
 
+            Sql S = new Sql();
+
+            S.Connect();
+            DgwToimipisteet.DataSource = S.ShowInGridView("Select toimipiste_id as Id, nimi as Nimi, lahiosoite as Osoite, postitoimipaikka as paikkakunta, postinro as Postinumero, email as Sähköposti, puhelinnro as Puhelin from Toimipiste");
+            S.Close();
+
+            /*
             // Määritetään datagridview niin, että koko rivi tulee aina valituksi.
             DgwToimipisteet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
@@ -33,14 +40,13 @@ namespace mokkisofta
             DgwToimipisteet.DataMember = "Toimipiste";
                 
             sql.Close();
+            */
         }
-
-        // Luodaan dataset ja sqldataAdapter tietokantayhteyttä varten.
-        DataSet ds = new DataSet();
-        SqlDataAdapter da;
 
         
 
+        
+        /*
         private void BtnTpLisaa_Click(object sender, EventArgs e)
         {
             string tpNimi = txbTpNimi.Text;
@@ -62,11 +68,11 @@ namespace mokkisofta
             DgwToimipisteet.DataMember = "Toimipiste";
 
             sql.Close();
-        }
+        }*/
     }
     }
 
 
-}
+
 
 

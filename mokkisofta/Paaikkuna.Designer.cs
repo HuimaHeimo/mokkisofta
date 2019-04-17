@@ -46,6 +46,10 @@
             this.btnPvYhdista = new System.Windows.Forms.Button();
             this.lblPvPalvelin = new System.Windows.Forms.Label();
             this.txbPvPalvelin = new System.Windows.Forms.TextBox();
+            this.lblTunnus = new System.Windows.Forms.Label();
+            this.lblSalasana = new System.Windows.Forms.Label();
+            this.txbPvSalasana = new System.Windows.Forms.TextBox();
+            this.txbPvTunnus = new System.Windows.Forms.TextBox();
             this.MmStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -53,7 +57,7 @@
             // btnTpisteet
             // 
             this.btnTpisteet.Font = new System.Drawing.Font("Copperplate Gothic Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTpisteet.Location = new System.Drawing.Point(12, 64);
+            this.btnTpisteet.Location = new System.Drawing.Point(12, 71);
             this.btnTpisteet.Name = "btnTpisteet";
             this.btnTpisteet.Size = new System.Drawing.Size(167, 60);
             this.btnTpisteet.TabIndex = 0;
@@ -64,7 +68,7 @@
             // btnPalvelut
             // 
             this.btnPalvelut.Font = new System.Drawing.Font("Copperplate Gothic Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPalvelut.Location = new System.Drawing.Point(12, 130);
+            this.btnPalvelut.Location = new System.Drawing.Point(12, 137);
             this.btnPalvelut.Name = "btnPalvelut";
             this.btnPalvelut.Size = new System.Drawing.Size(167, 60);
             this.btnPalvelut.TabIndex = 1;
@@ -75,7 +79,7 @@
             // btnVaraukset
             // 
             this.btnVaraukset.Font = new System.Drawing.Font("Copperplate Gothic Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVaraukset.Location = new System.Drawing.Point(12, 196);
+            this.btnVaraukset.Location = new System.Drawing.Point(12, 203);
             this.btnVaraukset.Name = "btnVaraukset";
             this.btnVaraukset.Size = new System.Drawing.Size(167, 60);
             this.btnVaraukset.TabIndex = 2;
@@ -86,7 +90,7 @@
             // btnAsiakkaat
             // 
             this.btnAsiakkaat.Font = new System.Drawing.Font("Copperplate Gothic Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAsiakkaat.Location = new System.Drawing.Point(12, 262);
+            this.btnAsiakkaat.Location = new System.Drawing.Point(12, 269);
             this.btnAsiakkaat.Name = "btnAsiakkaat";
             this.btnAsiakkaat.Size = new System.Drawing.Size(167, 60);
             this.btnAsiakkaat.TabIndex = 3;
@@ -97,7 +101,7 @@
             // btnLaskut
             // 
             this.btnLaskut.Font = new System.Drawing.Font("Copperplate Gothic Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLaskut.Location = new System.Drawing.Point(12, 328);
+            this.btnLaskut.Location = new System.Drawing.Point(12, 335);
             this.btnLaskut.Name = "btnLaskut";
             this.btnLaskut.Size = new System.Drawing.Size(167, 60);
             this.btnLaskut.TabIndex = 4;
@@ -108,7 +112,7 @@
             // btnRaportit
             // 
             this.btnRaportit.Font = new System.Drawing.Font("Copperplate Gothic Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRaportit.Location = new System.Drawing.Point(12, 394);
+            this.btnRaportit.Location = new System.Drawing.Point(12, 401);
             this.btnRaportit.Name = "btnRaportit";
             this.btnRaportit.Size = new System.Drawing.Size(167, 60);
             this.btnRaportit.TabIndex = 5;
@@ -161,7 +165,7 @@
             this.pictureBox1.ImageLocation = "https://d1zpvjny0s6omk.cloudfront.net/media/cache/61/2c/612cc1b4a1876c3db01283ed3" +
     "f52116b.jpg";
             this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(185, 64);
+            this.pictureBox1.Location = new System.Drawing.Point(185, 86);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(484, 390);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -210,12 +214,48 @@
             this.txbPvPalvelin.Size = new System.Drawing.Size(139, 20);
             this.txbPvPalvelin.TabIndex = 8;
             // 
+            // lblTunnus
+            // 
+            this.lblTunnus.AutoSize = true;
+            this.lblTunnus.Location = new System.Drawing.Point(173, 56);
+            this.lblTunnus.Name = "lblTunnus";
+            this.lblTunnus.Size = new System.Drawing.Size(43, 13);
+            this.lblTunnus.TabIndex = 16;
+            this.lblTunnus.Text = "Tunnus";
+            // 
+            // lblSalasana
+            // 
+            this.lblSalasana.AutoSize = true;
+            this.lblSalasana.Location = new System.Drawing.Point(377, 56);
+            this.lblSalasana.Name = "lblSalasana";
+            this.lblSalasana.Size = new System.Drawing.Size(51, 13);
+            this.lblSalasana.TabIndex = 15;
+            this.lblSalasana.Text = "Salasana";
+            // 
+            // txbPvSalasana
+            // 
+            this.txbPvSalasana.Location = new System.Drawing.Point(441, 53);
+            this.txbPvSalasana.Name = "txbPvSalasana";
+            this.txbPvSalasana.Size = new System.Drawing.Size(124, 20);
+            this.txbPvSalasana.TabIndex = 14;
+            // 
+            // txbPvTunnus
+            // 
+            this.txbPvTunnus.Location = new System.Drawing.Point(223, 53);
+            this.txbPvTunnus.Name = "txbPvTunnus";
+            this.txbPvTunnus.Size = new System.Drawing.Size(139, 20);
+            this.txbPvTunnus.TabIndex = 13;
+            // 
             // Paaikkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(681, 509);
+            this.Controls.Add(this.lblTunnus);
+            this.Controls.Add(this.lblSalasana);
+            this.Controls.Add(this.txbPvSalasana);
+            this.Controls.Add(this.txbPvTunnus);
             this.Controls.Add(this.btnPvYhdista);
             this.Controls.Add(this.lblPvPalvelin);
             this.Controls.Add(this.lblPvTietokanta);
@@ -259,6 +299,10 @@
         private System.Windows.Forms.Button btnPvYhdista;
         private System.Windows.Forms.Label lblPvPalvelin;
         private System.Windows.Forms.TextBox txbPvPalvelin;
+        private System.Windows.Forms.Label lblTunnus;
+        private System.Windows.Forms.Label lblSalasana;
+        private System.Windows.Forms.TextBox txbPvSalasana;
+        private System.Windows.Forms.TextBox txbPvTunnus;
     }
 }
 
