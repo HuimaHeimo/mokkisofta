@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-// test
 namespace mokkisofta
 {
     public partial class Toimipisteet : Form
@@ -43,9 +42,27 @@ namespace mokkisofta
             */
         }
 
-        
+        private void BtnTpLisaa_Click(object sender, EventArgs e)
+        {
+            Sql S = new Sql();
 
-        
+            S.Connect();
+
+            string tpNimi = txbTpNimi.Text;
+            string tpOsoite = txbTpOsoite.Text;
+            string tpPtoimipaikka = txbTpPtoimipaikka.Text;
+            string tpPostinro = txbTpPostinumero.Text;
+            string tpSposti = txbTpSposti.Text;
+            string tpPuhnro = txbTpPuhnro.Text;
+
+            string tpLisays = $"INSERT INTO Toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES ('{tpNimi}', '{tpOsoite}', '{tpPtoimipaikka}', '{tpPostinro}', '{tpSposti}', '{tpPuhnro}')";
+            
+            S.Query(tpLisays);
+            DgwToimipisteet.DataSource = S.ShowInGridView("Select toimipiste_id as Id, nimi as Nimi, lahiosoite as Osoite, postitoimipaikka as paikkakunta, postinro as Postinumero, email as Sähköposti, puhelinnro as Puhelin from Toimipiste");
+            S.Close();
+        }
+
+
         /*
         private void BtnTpLisaa_Click(object sender, EventArgs e)
         {

@@ -225,6 +225,7 @@
             this.btnTpLisaa.TabIndex = 19;
             this.btnTpLisaa.Text = "Lisää";
             this.btnTpLisaa.UseVisualStyleBackColor = true;
+            this.btnTpLisaa.Click += new System.EventHandler(this.BtnTpLisaa_Click);
             // 
             // statusStrip1
             // 
