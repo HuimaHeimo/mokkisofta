@@ -32,13 +32,11 @@
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.DgwToimipisteet = new System.Windows.Forms.DataGridView();
-            this.txbTpNumero = new System.Windows.Forms.TextBox();
             this.txbTpNimi = new System.Windows.Forms.TextBox();
             this.txbTpOsoite = new System.Windows.Forms.TextBox();
             this.txbTpPtoimipaikka = new System.Windows.Forms.TextBox();
             this.txbTpPostinumero = new System.Windows.Forms.TextBox();
             this.txbTpSposti = new System.Windows.Forms.TextBox();
-            this.lblTpNumero = new System.Windows.Forms.Label();
             this.lblTpNimi = new System.Windows.Forms.Label();
             this.lblTpOsoite = new System.Windows.Forms.Label();
             this.lblTpPtoimipaikka = new System.Windows.Forms.Label();
@@ -87,23 +85,16 @@
             this.DgwToimipisteet.Size = new System.Drawing.Size(738, 330);
             this.DgwToimipisteet.TabIndex = 2;
             // 
-            // txbTpNumero
-            // 
-            this.txbTpNumero.Location = new System.Drawing.Point(93, 402);
-            this.txbTpNumero.Name = "txbTpNumero";
-            this.txbTpNumero.Size = new System.Drawing.Size(58, 20);
-            this.txbTpNumero.TabIndex = 3;
-            // 
             // txbTpNimi
             // 
-            this.txbTpNimi.Location = new System.Drawing.Point(93, 438);
+            this.txbTpNimi.Location = new System.Drawing.Point(89, 402);
             this.txbTpNimi.Name = "txbTpNimi";
             this.txbTpNimi.Size = new System.Drawing.Size(130, 20);
             this.txbTpNimi.TabIndex = 4;
             // 
             // txbTpOsoite
             // 
-            this.txbTpOsoite.Location = new System.Drawing.Point(93, 473);
+            this.txbTpOsoite.Location = new System.Drawing.Point(89, 437);
             this.txbTpOsoite.Name = "txbTpOsoite";
             this.txbTpOsoite.Size = new System.Drawing.Size(130, 20);
             this.txbTpOsoite.TabIndex = 5;
@@ -121,6 +112,7 @@
             this.txbTpPostinumero.Name = "txbTpPostinumero";
             this.txbTpPostinumero.Size = new System.Drawing.Size(77, 20);
             this.txbTpPostinumero.TabIndex = 7;
+            this.txbTpPostinumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbTpPostinumero_KeyPress);
             // 
             // txbTpSposti
             // 
@@ -129,19 +121,10 @@
             this.txbTpSposti.Size = new System.Drawing.Size(130, 20);
             this.txbTpSposti.TabIndex = 8;
             // 
-            // lblTpNumero
-            // 
-            this.lblTpNumero.AutoSize = true;
-            this.lblTpNumero.Location = new System.Drawing.Point(43, 402);
-            this.lblTpNumero.Name = "lblTpNumero";
-            this.lblTpNumero.Size = new System.Drawing.Size(44, 13);
-            this.lblTpNumero.TabIndex = 9;
-            this.lblTpNumero.Text = "Numero";
-            // 
             // lblTpNimi
             // 
             this.lblTpNimi.AutoSize = true;
-            this.lblTpNimi.Location = new System.Drawing.Point(43, 438);
+            this.lblTpNimi.Location = new System.Drawing.Point(39, 402);
             this.lblTpNimi.Name = "lblTpNimi";
             this.lblTpNimi.Size = new System.Drawing.Size(27, 13);
             this.lblTpNimi.TabIndex = 10;
@@ -150,7 +133,7 @@
             // lblTpOsoite
             // 
             this.lblTpOsoite.AutoSize = true;
-            this.lblTpOsoite.Location = new System.Drawing.Point(43, 473);
+            this.lblTpOsoite.Location = new System.Drawing.Point(39, 437);
             this.lblTpOsoite.Name = "lblTpOsoite";
             this.lblTpOsoite.Size = new System.Drawing.Size(37, 13);
             this.lblTpOsoite.TabIndex = 11;
@@ -200,6 +183,7 @@
             this.btnTpPoista.TabIndex = 16;
             this.btnTpPoista.Text = "Poista";
             this.btnTpPoista.UseVisualStyleBackColor = true;
+            this.btnTpPoista.Click += new System.EventHandler(this.BtnTpPoista_Click);
             // 
             // txbTpPuhnro
             // 
@@ -207,6 +191,7 @@
             this.txbTpPuhnro.Name = "txbTpPuhnro";
             this.txbTpPuhnro.Size = new System.Drawing.Size(130, 20);
             this.txbTpPuhnro.TabIndex = 17;
+            this.txbTpPuhnro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbTpPuhnro_KeyPress);
             // 
             // lblTpPuhnro
             // 
@@ -225,6 +210,7 @@
             this.btnTpLisaa.TabIndex = 19;
             this.btnTpLisaa.Text = "Lisää";
             this.btnTpLisaa.UseVisualStyleBackColor = true;
+            this.btnTpLisaa.Click += new System.EventHandler(this.BtnTpLisaa_Click);
             // 
             // statusStrip1
             // 
@@ -257,13 +243,11 @@
             this.Controls.Add(this.lblTpPtoimipaikka);
             this.Controls.Add(this.lblTpOsoite);
             this.Controls.Add(this.lblTpNimi);
-            this.Controls.Add(this.lblTpNumero);
             this.Controls.Add(this.txbTpSposti);
             this.Controls.Add(this.txbTpPostinumero);
             this.Controls.Add(this.txbTpPtoimipaikka);
             this.Controls.Add(this.txbTpOsoite);
             this.Controls.Add(this.txbTpNimi);
-            this.Controls.Add(this.txbTpNumero);
             this.Controls.Add(this.DgwToimipisteet);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
@@ -284,13 +268,11 @@
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.DataGridView DgwToimipisteet;
-        private System.Windows.Forms.TextBox txbTpNumero;
         private System.Windows.Forms.TextBox txbTpNimi;
         private System.Windows.Forms.TextBox txbTpOsoite;
         private System.Windows.Forms.TextBox txbTpPtoimipaikka;
         private System.Windows.Forms.TextBox txbTpPostinumero;
         private System.Windows.Forms.TextBox txbTpSposti;
-        private System.Windows.Forms.Label lblTpNumero;
         private System.Windows.Forms.Label lblTpNimi;
         private System.Windows.Forms.Label lblTpOsoite;
         private System.Windows.Forms.Label lblTpPtoimipaikka;
