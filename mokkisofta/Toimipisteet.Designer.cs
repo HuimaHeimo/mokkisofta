@@ -121,6 +121,7 @@
             this.txbTpPostinumero.Name = "txbTpPostinumero";
             this.txbTpPostinumero.Size = new System.Drawing.Size(77, 20);
             this.txbTpPostinumero.TabIndex = 7;
+            this.txbTpPostinumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbTpPostinumero_KeyPress);
             // 
             // txbTpSposti
             // 
@@ -200,6 +201,7 @@
             this.btnTpPoista.TabIndex = 16;
             this.btnTpPoista.Text = "Poista";
             this.btnTpPoista.UseVisualStyleBackColor = true;
+            this.btnTpPoista.Click += new System.EventHandler(this.BtnTpPoista_Click);
             // 
             // txbTpPuhnro
             // 
@@ -207,6 +209,7 @@
             this.txbTpPuhnro.Name = "txbTpPuhnro";
             this.txbTpPuhnro.Size = new System.Drawing.Size(130, 20);
             this.txbTpPuhnro.TabIndex = 17;
+            this.txbTpPuhnro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbTpPuhnro_KeyPress);
             // 
             // lblTpPuhnro
             // 

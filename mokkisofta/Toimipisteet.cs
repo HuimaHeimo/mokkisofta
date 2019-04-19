@@ -11,15 +11,14 @@ using System.Data.SqlClient;
 namespace mokkisofta
 {
     public partial class Toimipisteet : Form
-    {
+    { 
+        Sql S = new Sql();
         public Toimipisteet()
         {
             InitializeComponent();
 
-            Sql S = new Sql();
-
             S.Connect();
-            DgwToimipisteet.DataSource = S.ShowInGridView("Select toimipiste_id as Id, nimi as Nimi, lahiosoite as Osoite, postitoimipaikka as paikkakunta, postinro as Postinumero, email as Sähköposti, puhelinnro as Puhelin from Toimipiste");
+            DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
             S.Close();
 
             /*
@@ -44,8 +43,6 @@ namespace mokkisofta
 
         private void BtnTpLisaa_Click(object sender, EventArgs e)
         {
-            Sql S = new Sql();
-
             S.Connect();
 
             string tpNimi = txbTpNimi.Text;
@@ -58,9 +55,43 @@ namespace mokkisofta
             string tpLisays = $"INSERT INTO Toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES ('{tpNimi}', '{tpOsoite}', '{tpPtoimipaikka}', '{tpPostinro}', '{tpSposti}', '{tpPuhnro}')";
             
             S.Query(tpLisays);
-            DgwToimipisteet.DataSource = S.ShowInGridView("Select toimipiste_id as Id, nimi as Nimi, lahiosoite as Osoite, postitoimipaikka as paikkakunta, postinro as Postinumero, email as Sähköposti, puhelinnro as Puhelin from Toimipiste");
+            DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
             S.Close();
         }
+
+        private void BtnTpPoista_Click(object sender, EventArgs e)
+        {
+ 
+            S.Connect();
+            if (DgwToimipisteet.CurrentCell != null)
+            {
+                int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
+                string valittuRivi = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
+                string tpPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuRivi}'";
+
+                S.Query(tpPoisto);
+                DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
+                S.Close();
+            }
+        }
+
+        private void TxbTpPuhnro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void TxbTpPostinumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
 
 
         /*
