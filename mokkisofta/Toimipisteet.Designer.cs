@@ -84,6 +84,7 @@
             this.DgwToimipisteet.Name = "DgwToimipisteet";
             this.DgwToimipisteet.Size = new System.Drawing.Size(738, 330);
             this.DgwToimipisteet.TabIndex = 2;
+            this.DgwToimipisteet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgwToimipisteet_CellContentClick);
             // 
             // txbTpNimi
             // 

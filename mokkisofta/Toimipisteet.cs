@@ -98,6 +98,11 @@ namespace mokkisofta
             }
         }
 
+        private void DgwToimipisteet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
 
 
         /*
