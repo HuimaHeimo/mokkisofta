@@ -51,17 +51,23 @@ namespace mokkisofta
             string tpPostinro = txbTpPostinumero.Text;
             string tpSposti = txbTpSposti.Text;
             string tpPuhnro = txbTpPuhnro.Text;
+            if (this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
+            {
+                MessageBox.Show("Syötä tiedot kaikkiin tekstikenttiin!");
+            }
+            else
+            {
+                string tpLisays = $"INSERT INTO Toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES ('{tpNimi}', '{tpOsoite}', '{tpPtoimipaikka}', '{tpPostinro}', '{tpSposti}', '{tpPuhnro}')";
 
-            string tpLisays = $"INSERT INTO Toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES ('{tpNimi}', '{tpOsoite}', '{tpPtoimipaikka}', '{tpPostinro}', '{tpSposti}', '{tpPuhnro}')";
-            
-            S.Query(tpLisays);
-            DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
+                S.Query(tpLisays);
+                DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
+                
+            }
             S.Close();
         }
 
         private void BtnTpPoista_Click(object sender, EventArgs e)
         {
- 
             S.Connect();
             if (DgwToimipisteet.CurrentCell != null)
             {
