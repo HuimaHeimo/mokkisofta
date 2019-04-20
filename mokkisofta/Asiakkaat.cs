@@ -13,12 +13,18 @@ namespace mokkisofta
     public partial class Asiakkaat : Form
     {
         Sql sql = new Sql();
+        private bool btnLisaaPainettu = false;
+        private bool btnMuokkaaPainettu = false;
         public Asiakkaat()
         {
             InitializeComponent();
             sql.Connect();
             dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
             sql.Close();
+
+            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false); // Ohjelman käynnistyessä tekstikenttiin ei voi syöttää tietoa.
+            btnTpTallenna.Enabled = false;
+            btnTpPeruuta.Enabled = false;
 
         }
 
@@ -32,27 +38,15 @@ namespace mokkisofta
 
         }
 
-        private void BtnAsLisää_Click(object sender, EventArgs e)
+        private void BtnAsLisaa_Click(object sender, EventArgs e)
         {
+            lisaysTila();
 
-            sql.Connect();
-            string asEtunimi = txbAsEtunimi.Text;
-            string asSukunimi = txbAsSukunimi.Text;
-            string asOsoite = txbAsOsoite.Text;
-            string asPNro = txbAsPostinumero.Text;
-            string asPtoimipaikka = txbAsPtoimipaikka.Text;
-            string asSPosti = txbAsSposti.Text;
-            string asPuhNro = txbAsPuhnro.Text;
-
-            string asLisays = $"INSERT INTO Asiakas (etunimi, sukunimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES ('{asEtunimi}', '{asSukunimi}', '{asOsoite}' , '{asPtoimipaikka}', '{asPNro}', '{asSPosti}', '{asPuhNro}')";
-            sql.Query(asLisays);
-            dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
-
-            sql.Close();
         }
 
         private void BtnAsPoista_Click(object sender, EventArgs e)
         {
+            
             sql.Connect();
             DialogResult kysely = MessageBox.Show("Haluatko varmasti poistaa valitun rivin?", "Poistetaanko?", MessageBoxButtons.OKCancel);
             if (kysely == DialogResult.OK)
@@ -72,32 +66,120 @@ namespace mokkisofta
             {
 
             }
+            
                      
         }
 
         private void BtnAsMuokkaa_Click(object sender, EventArgs e)
         {
-
+            muokkausTila();
         }
 
         private void DgwAsiakkaat_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
 
-            sql.Connect();
+        }
+        private void perusTila()
+        {
+            // Tämän ajettaessa kaikki tekstikentät nollataan. Lisää, Muokkaa, ja Poista painikkeet käytössä.
+            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Text = string.Empty);
+            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false);
+            btnLisaaPainettu = false;
+            btnMuokkaaPainettu = false;
+            btnAsLisaa.Enabled = true;
+            btnAsMuokkaa.Enabled = true;
+            btnAsPoista.Enabled = true;
+            btnTpTallenna.Enabled = false; ;
+            btnTpPeruuta.Enabled = false; ;
+            lblId.Text = "-";
+        }
+        private void lisaysTila()
+        {
+            // Siirrytään painamalla lisää nappia. Tekstikenttiin pystyy syöttämään tietoa. Vain Tallenna ja Peruuta painikkeet ovat käytössä.
+            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
+            btnLisaaPainettu = true;
+            btnAsLisaa.Enabled = false;
+            btnAsMuokkaa.Enabled = false;
+            btnAsPoista.Enabled = false;
+            btnTpTallenna.Enabled = true;
+            btnTpPeruuta.Enabled = true;
+            lblId.Text = "-";
+        }
+        private void muokkausTila()
+        {
+            // Sama kuin lisaysTila() , erona btnMuokkaaPainettu <-> btnLisaaPainettu totuusarvot.
+            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
+            btnLisaaPainettu = false;
+            btnMuokkaaPainettu = true;
+            btnAsLisaa.Enabled = false;
+            btnAsMuokkaa.Enabled = false;
+            btnAsPoista.Enabled = false;
+            btnTpTallenna.Enabled = true;
+            btnTpPeruuta.Enabled = true;
+            //Lisätään valitun rivin tiedot tekstikenntiin
             int rowIndex = dgwAsiakkaat.CurrentCell.RowIndex;
-            string asEtunimi = dgwAsiakkaat.Rows[rowIndex].Cells["Etunimi"].Value.ToString();
-            string asSukunimi = dgwAsiakkaat.Rows[rowIndex].Cells["Sukunimi"].Value.ToString();
-            string asOsoite = dgwAsiakkaat.Rows[rowIndex].Cells["Lähiosoite"].Value.ToString();
-            string asPNro = dgwAsiakkaat.Rows[rowIndex].Cells["Paikkakunta"].Value.ToString();
-            string asPtoimipaikka = dgwAsiakkaat.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
-            string asSPosti = dgwAsiakkaat.Rows[rowIndex].Cells["Sähköposti"].Value.ToString();
-            string asPuhNro = dgwAsiakkaat.Rows[rowIndex].Cells["Puhelin"].Value.ToString();
-            string valittuId = dgwAsiakkaat.Rows[rowIndex].Cells["Id"].Value.ToString();
-            string asMuokkaus = $"UPDATE Asiakas SET etunimi = '{asEtunimi}', sukunimi = '{asSukunimi}', lahiosoite = '{asOsoite}', postitoimipaikka = '{asPtoimipaikka}', postinro = '{asPNro}', email = '{asSPosti}', puhelinnro = '{asPuhNro}' WHERE asiakas_id = {valittuId}";
+            lblId.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Id"].Value.ToString();
+            txbAsEtunimi.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Etunimi"].Value.ToString();
+            txbAsSukunimi.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Sukunimi"].Value.ToString();
+            txbAsOsoite.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Lähiosoite"].Value.ToString();
+            txbAsPtoimipaikka.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Paikkakunta"].Value.ToString();
+            txbAsPostinumero.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
+            txbAsSposti.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Sähköposti"].Value.ToString();
+            txbAsPuhnro.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Puhelin"].Value.ToString();
+            dgwAsiakkaat.Enabled = false;
+        }
 
-            sql.Query(asMuokkaus);
-            dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
-            sql.Close();
+        private void BtnTpPeruuta_Click(object sender, EventArgs e)
+        {
+            perusTila();
+            dgwAsiakkaat.Enabled = true;
+        }
+
+        private void BtnTpTallenna_Click(object sender, EventArgs e)
+        {
+            sql.Connect();
+            if (btnLisaaPainettu == true)
+            {
+                string asEtunimi = txbAsEtunimi.Text;
+                string asSukunimi = txbAsSukunimi.Text;
+                string asOsoite = txbAsOsoite.Text;
+                string asPtoimipaikka = txbAsPtoimipaikka.Text;
+                string asPostinro = txbAsPtoimipaikka.Text;
+                string asSposti = txbAsSposti.Text;
+                string asPuhnro = txbAsPuhnro.Text;
+                if (this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
+                {
+                    MessageBox.Show("Syötä tiedot kaikkiin tekstikenttiin!");
+                }
+                else
+                {
+                    string asLisays = $"INSERT INTO Asiakas (etunimi , sukunimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES ('{asEtunimi}', '{asSukunimi}','{asOsoite}', '{asPtoimipaikka}', '{asPostinro}', '{asSposti}', '{asPuhnro}')";
+
+                    sql.Query(asLisays);
+                    dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
+                    perusTila();
+                }
+            }
+            else if (btnMuokkaaPainettu == true)
+            {
+                // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
+                int rowIndex = dgwAsiakkaat.CurrentCell.RowIndex;
+                string asEtunimi = txbAsEtunimi.Text;
+                string asSukunimi = txbAsSukunimi.Text;
+                string asOsoite = txbAsOsoite.Text;
+                string asPtoimipaikka = txbAsPtoimipaikka.Text;
+                string asPostinro = txbAsPtoimipaikka.Text;
+                string asSposti = txbAsSposti.Text;
+                string asPuhnro = txbAsPuhnro.Text;
+                string valittuId = lblId.Text;
+                string asMuokkaus = $"UPDATE Asiakas SET etunimi = '{asEtunimi}', sukunimi = '{asSukunimi}', lahiosoite = '{asOsoite}', postitoimipaikka = '{asPtoimipaikka}', postinro = '{asPostinro}', email = '{asSposti}', puhelinnro = '{asPuhnro}' WHERE asiakas_id = {valittuId}";
+
+                sql.Query(asMuokkaus);
+                dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
+                sql.Close();
+                dgwAsiakkaat.Enabled = true;
+                perusTila();
+            }
         }
     }
 }

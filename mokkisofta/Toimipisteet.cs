@@ -175,6 +175,11 @@ namespace mokkisofta
             btnTpPeruuta.Enabled = true;
         }
 
+        private void DgwToimipisteet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
 
 
 
