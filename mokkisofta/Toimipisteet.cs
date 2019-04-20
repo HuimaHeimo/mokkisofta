@@ -141,7 +141,6 @@ namespace mokkisofta
                 S.Query(tpMuokkaus);
                 DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
 
-                DgwToimipisteet.Enabled = true;
                 perusTila();
             }
 
