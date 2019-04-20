@@ -49,6 +49,8 @@
             this.btnTpLisaa = new System.Windows.Forms.Button();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.tslTpstatuslabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnTpTallenna = new System.Windows.Forms.Button();
+            this.btnTpPeruuta = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgwToimipisteet)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -61,7 +63,7 @@
             this.ohjeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(801, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(875, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -82,9 +84,8 @@
             this.DgwToimipisteet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgwToimipisteet.Location = new System.Drawing.Point(32, 45);
             this.DgwToimipisteet.Name = "DgwToimipisteet";
-            this.DgwToimipisteet.Size = new System.Drawing.Size(738, 330);
+            this.DgwToimipisteet.Size = new System.Drawing.Size(788, 331);
             this.DgwToimipisteet.TabIndex = 2;
-            this.DgwToimipisteet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgwToimipisteet_CellContentClick);
             // 
             // txbTpNimi
             // 
@@ -169,7 +170,7 @@
             // 
             // btnTpMuokkaa
             // 
-            this.btnTpMuokkaa.Location = new System.Drawing.Point(566, 451);
+            this.btnTpMuokkaa.Location = new System.Drawing.Point(645, 451);
             this.btnTpMuokkaa.Name = "btnTpMuokkaa";
             this.btnTpMuokkaa.Size = new System.Drawing.Size(99, 41);
             this.btnTpMuokkaa.TabIndex = 15;
@@ -178,7 +179,7 @@
             // 
             // btnTpPoista
             // 
-            this.btnTpPoista.Location = new System.Drawing.Point(671, 451);
+            this.btnTpPoista.Location = new System.Drawing.Point(750, 451);
             this.btnTpPoista.Name = "btnTpPoista";
             this.btnTpPoista.Size = new System.Drawing.Size(99, 41);
             this.btnTpPoista.TabIndex = 16;
@@ -205,7 +206,7 @@
             // 
             // btnTpLisaa
             // 
-            this.btnTpLisaa.Location = new System.Drawing.Point(671, 402);
+            this.btnTpLisaa.Location = new System.Drawing.Point(750, 402);
             this.btnTpLisaa.Name = "btnTpLisaa";
             this.btnTpLisaa.Size = new System.Drawing.Size(99, 41);
             this.btnTpLisaa.TabIndex = 19;
@@ -217,9 +218,9 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslTpstatuslabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 500);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 561);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(801, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(875, 22);
             this.statusStrip1.TabIndex = 20;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -228,11 +229,33 @@
             this.tslTpstatuslabel1.Name = "tslTpstatuslabel1";
             this.tslTpstatuslabel1.Size = new System.Drawing.Size(0, 17);
             // 
+            // btnTpTallenna
+            // 
+            this.btnTpTallenna.Location = new System.Drawing.Point(750, 498);
+            this.btnTpTallenna.Name = "btnTpTallenna";
+            this.btnTpTallenna.Size = new System.Drawing.Size(99, 41);
+            this.btnTpTallenna.TabIndex = 21;
+            this.btnTpTallenna.Text = "Tallenna";
+            this.btnTpTallenna.UseVisualStyleBackColor = true;
+            this.btnTpTallenna.Click += new System.EventHandler(this.BtnTpTallenna_Click);
+            // 
+            // btnTpPeruuta
+            // 
+            this.btnTpPeruuta.Location = new System.Drawing.Point(645, 498);
+            this.btnTpPeruuta.Name = "btnTpPeruuta";
+            this.btnTpPeruuta.Size = new System.Drawing.Size(99, 41);
+            this.btnTpPeruuta.TabIndex = 22;
+            this.btnTpPeruuta.Text = "Peruuta";
+            this.btnTpPeruuta.UseVisualStyleBackColor = true;
+            this.btnTpPeruuta.Click += new System.EventHandler(this.BtnTpPeruuta_Click);
+            // 
             // Toimipisteet
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 522);
+            this.ClientSize = new System.Drawing.Size(875, 583);
+            this.Controls.Add(this.btnTpPeruuta);
+            this.Controls.Add(this.btnTpTallenna);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnTpLisaa);
             this.Controls.Add(this.lblTpPuhnro);
@@ -286,5 +309,7 @@
         private System.Windows.Forms.Button btnTpLisaa;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel tslTpstatuslabel1;
+        private System.Windows.Forms.Button btnTpTallenna;
+        private System.Windows.Forms.Button btnTpPeruuta;
     }
 }
