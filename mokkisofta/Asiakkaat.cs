@@ -28,16 +28,6 @@ namespace mokkisofta
 
         }
 
-        private void Asiakkaat_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void BtnAsLisaa_Click(object sender, EventArgs e)
         {
             lisaysTila();
@@ -65,9 +55,7 @@ namespace mokkisofta
             if (kysely == DialogResult.Cancel)
             {
 
-            }
-            
-                     
+            }                     
         }
 
         private void BtnAsMuokkaa_Click(object sender, EventArgs e)
@@ -75,10 +63,6 @@ namespace mokkisofta
             muokkausTila();
         }
 
-        private void DgwAsiakkaat_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
         private void perusTila()
         {
             // Tämän ajettaessa kaikki tekstikentät nollataan. Lisää, Muokkaa, ja Poista painikkeet käytössä.
@@ -147,6 +131,11 @@ namespace mokkisofta
                 string asPostinro = txbAsPtoimipaikka.Text;
                 string asSposti = txbAsSposti.Text;
                 string asPuhnro = txbAsPuhnro.Text;
+                if(txbAsSposti.Text.Length == 0) //Mahdollisuus jättää sähköposti tyhjäksi ja lisätään viivat
+                {
+                    txbAsSposti.Text = "--";
+                    asSposti = "--";
+                }
                 if (this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
                 {
                     MessageBox.Show("Syötä tiedot kaikkiin tekstikenttiin!");
@@ -168,17 +157,30 @@ namespace mokkisofta
                 string asSukunimi = txbAsSukunimi.Text;
                 string asOsoite = txbAsOsoite.Text;
                 string asPtoimipaikka = txbAsPtoimipaikka.Text;
-                string asPostinro = txbAsPtoimipaikka.Text;
+                string asPostinro = txbAsPostinumero.Text;
                 string asSposti = txbAsSposti.Text;
                 string asPuhnro = txbAsPuhnro.Text;
                 string valittuId = lblId.Text;
-                string asMuokkaus = $"UPDATE Asiakas SET etunimi = '{asEtunimi}', sukunimi = '{asSukunimi}', lahiosoite = '{asOsoite}', postitoimipaikka = '{asPtoimipaikka}', postinro = '{asPostinro}', email = '{asSposti}', puhelinnro = '{asPuhnro}' WHERE asiakas_id = {valittuId}";
+                if (txbAsSposti.Text.Length == 0) //Mahdollisuus jättää sähköposti tyhjäksi ja lisätään viivat
+                {
+                    txbAsSposti.Text = "--";
+                    asSposti = "--";
+                }
+                if (this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
+                {
+                    MessageBox.Show("Syötä tiedot kaikkiin tekstikenttiin!");
+                }
+                else
+                {
+                    string asMuokkaus = $"UPDATE Asiakas SET etunimi = '{asEtunimi}', sukunimi = '{asSukunimi}', lahiosoite = '{asOsoite}', postitoimipaikka = '{asPtoimipaikka}', postinro = '{asPostinro}', email = '{asSposti}', puhelinnro = '{asPuhnro}' WHERE asiakas_id = {valittuId}";
 
-                sql.Query(asMuokkaus);
-                dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
-                sql.Close();
-                dgwAsiakkaat.Enabled = true;
-                perusTila();
+                    sql.Query(asMuokkaus);
+                    dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
+                    sql.Close();
+                    dgwAsiakkaat.Enabled = true;
+                    perusTila();
+                }
+
             }
         }
     }
