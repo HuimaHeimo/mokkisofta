@@ -120,9 +120,11 @@
             // txbAsPuhnro
             // 
             this.txbAsPuhnro.Location = new System.Drawing.Point(348, 526);
+            this.txbAsPuhnro.MaxLength = 15;
             this.txbAsPuhnro.Name = "txbAsPuhnro";
             this.txbAsPuhnro.Size = new System.Drawing.Size(130, 20);
             this.txbAsPuhnro.TabIndex = 36;
+            this.txbAsPuhnro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbAsPuhnro_KeyPress);
             // 
             // btnAsPoista
             // 
@@ -201,6 +203,7 @@
             // txbAsSposti
             // 
             this.txbAsSposti.Location = new System.Drawing.Point(118, 522);
+            this.txbAsSposti.MaxLength = 50;
             this.txbAsSposti.Name = "txbAsSposti";
             this.txbAsSposti.Size = new System.Drawing.Size(130, 20);
             this.txbAsSposti.TabIndex = 27;
@@ -208,13 +211,16 @@
             // txbAsPostinumero
             // 
             this.txbAsPostinumero.Location = new System.Drawing.Point(348, 487);
+            this.txbAsPostinumero.MaxLength = 5;
             this.txbAsPostinumero.Name = "txbAsPostinumero";
             this.txbAsPostinumero.Size = new System.Drawing.Size(77, 20);
             this.txbAsPostinumero.TabIndex = 26;
+            this.txbAsPostinumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbAsPostinumero_KeyPress);
             // 
             // txbAsPtoimipaikka
             // 
             this.txbAsPtoimipaikka.Location = new System.Drawing.Point(348, 450);
+            this.txbAsPtoimipaikka.MaxLength = 30;
             this.txbAsPtoimipaikka.Name = "txbAsPtoimipaikka";
             this.txbAsPtoimipaikka.Size = new System.Drawing.Size(130, 20);
             this.txbAsPtoimipaikka.TabIndex = 25;
@@ -222,6 +228,7 @@
             // txbAsOsoite
             // 
             this.txbAsOsoite.Location = new System.Drawing.Point(348, 414);
+            this.txbAsOsoite.MaxLength = 40;
             this.txbAsOsoite.Name = "txbAsOsoite";
             this.txbAsOsoite.Size = new System.Drawing.Size(130, 20);
             this.txbAsOsoite.TabIndex = 24;
@@ -229,6 +236,7 @@
             // txbAsEtunimi
             // 
             this.txbAsEtunimi.Location = new System.Drawing.Point(118, 447);
+            this.txbAsEtunimi.MaxLength = 20;
             this.txbAsEtunimi.Name = "txbAsEtunimi";
             this.txbAsEtunimi.Size = new System.Drawing.Size(130, 20);
             this.txbAsEtunimi.TabIndex = 23;
@@ -257,6 +265,7 @@
             // txbAsSukunimi
             // 
             this.txbAsSukunimi.Location = new System.Drawing.Point(118, 487);
+            this.txbAsSukunimi.MaxLength = 40;
             this.txbAsSukunimi.Name = "txbAsSukunimi";
             this.txbAsSukunimi.Size = new System.Drawing.Size(130, 20);
             this.txbAsSukunimi.TabIndex = 40;

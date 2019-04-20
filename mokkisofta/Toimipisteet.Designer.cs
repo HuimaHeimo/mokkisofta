@@ -91,6 +91,7 @@
             // txbTpNimi
             // 
             this.txbTpNimi.Location = new System.Drawing.Point(89, 402);
+            this.txbTpNimi.MaxLength = 40;
             this.txbTpNimi.Name = "txbTpNimi";
             this.txbTpNimi.Size = new System.Drawing.Size(130, 20);
             this.txbTpNimi.TabIndex = 4;
@@ -98,6 +99,7 @@
             // txbTpOsoite
             // 
             this.txbTpOsoite.Location = new System.Drawing.Point(89, 437);
+            this.txbTpOsoite.MaxLength = 40;
             this.txbTpOsoite.Name = "txbTpOsoite";
             this.txbTpOsoite.Size = new System.Drawing.Size(130, 20);
             this.txbTpOsoite.TabIndex = 5;
@@ -105,6 +107,7 @@
             // txbTpPtoimipaikka
             // 
             this.txbTpPtoimipaikka.Location = new System.Drawing.Point(326, 438);
+            this.txbTpPtoimipaikka.MaxLength = 30;
             this.txbTpPtoimipaikka.Name = "txbTpPtoimipaikka";
             this.txbTpPtoimipaikka.Size = new System.Drawing.Size(130, 20);
             this.txbTpPtoimipaikka.TabIndex = 6;
@@ -112,6 +115,7 @@
             // txbTpPostinumero
             // 
             this.txbTpPostinumero.Location = new System.Drawing.Point(326, 402);
+            this.txbTpPostinumero.MaxLength = 5;
             this.txbTpPostinumero.Name = "txbTpPostinumero";
             this.txbTpPostinumero.Size = new System.Drawing.Size(77, 20);
             this.txbTpPostinumero.TabIndex = 7;
@@ -120,6 +124,7 @@
             // txbTpSposti
             // 
             this.txbTpSposti.Location = new System.Drawing.Point(326, 473);
+            this.txbTpSposti.MaxLength = 50;
             this.txbTpSposti.Name = "txbTpSposti";
             this.txbTpSposti.Size = new System.Drawing.Size(130, 20);
             this.txbTpSposti.TabIndex = 8;
@@ -192,6 +197,7 @@
             // txbTpPuhnro
             // 
             this.txbTpPuhnro.Location = new System.Drawing.Point(515, 402);
+            this.txbTpPuhnro.MaxLength = 15;
             this.txbTpPuhnro.Name = "txbTpPuhnro";
             this.txbTpPuhnro.Size = new System.Drawing.Size(130, 20);
             this.txbTpPuhnro.TabIndex = 17;

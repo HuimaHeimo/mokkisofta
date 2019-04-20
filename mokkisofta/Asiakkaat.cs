@@ -47,12 +47,13 @@ namespace mokkisofta
         private void BtnAsPoista_Click(object sender, EventArgs e)
         {
             
-            sql.Connect();
+
             DialogResult kysely = MessageBox.Show("Haluatko varmasti poistaa valitun rivin?", "Poistetaanko?", MessageBoxButtons.OKCancel);
             if (kysely == DialogResult.OK)
             {
                 if (dgwAsiakkaat.CurrentCell != null)
                 {
+                    sql.Connect();
                     int rowIndex = dgwAsiakkaat.CurrentCell.RowIndex;
                     string valittuId = dgwAsiakkaat.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string asPoisto = $"DELETE FROM Asiakas WHERE asiakas_id='{valittuId}'";
@@ -92,6 +93,7 @@ namespace mokkisofta
             btnTpTallenna.Enabled = false; ;
             btnTpPeruuta.Enabled = false; ;
             lblId.Text = "-";
+            dgwAsiakkaat.Enabled = true;
         }
         private void lisaysTila()
         {
@@ -104,6 +106,7 @@ namespace mokkisofta
             btnTpTallenna.Enabled = true;
             btnTpPeruuta.Enabled = true;
             lblId.Text = "-";
+            dgwAsiakkaat.Enabled = false;
         }
         private void muokkausTila()
         {
@@ -126,13 +129,13 @@ namespace mokkisofta
             txbAsPostinumero.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
             txbAsSposti.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Sähköposti"].Value.ToString();
             txbAsPuhnro.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Puhelin"].Value.ToString();
+            //Otetaan datagridin käyttö pois muokkauksen ajaksi
             dgwAsiakkaat.Enabled = false;
         }
 
         private void BtnTpPeruuta_Click(object sender, EventArgs e)
         {
             perusTila();
-            dgwAsiakkaat.Enabled = true;
         }
 
         private void BtnTpTallenna_Click(object sender, EventArgs e)
@@ -144,7 +147,7 @@ namespace mokkisofta
                 string asSukunimi = txbAsSukunimi.Text;
                 string asOsoite = txbAsOsoite.Text;
                 string asPtoimipaikka = txbAsPtoimipaikka.Text;
-                string asPostinro = txbAsPtoimipaikka.Text;
+                string asPostinro = txbAsPostinumero.Text;
                 string asSposti = txbAsSposti.Text;
                 string asPuhnro = txbAsPuhnro.Text;
                 if (this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
@@ -163,12 +166,11 @@ namespace mokkisofta
             else if (btnMuokkaaPainettu == true)
             {
                 // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
-                int rowIndex = dgwAsiakkaat.CurrentCell.RowIndex;
                 string asEtunimi = txbAsEtunimi.Text;
                 string asSukunimi = txbAsSukunimi.Text;
                 string asOsoite = txbAsOsoite.Text;
                 string asPtoimipaikka = txbAsPtoimipaikka.Text;
-                string asPostinro = txbAsPtoimipaikka.Text;
+                string asPostinro = txbAsPostinumero.Text;
                 string asSposti = txbAsSposti.Text;
                 string asPuhnro = txbAsPuhnro.Text;
                 string valittuId = lblId.Text;
@@ -176,9 +178,25 @@ namespace mokkisofta
 
                 sql.Query(asMuokkaus);
                 dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
-                sql.Close();
-                dgwAsiakkaat.Enabled = true;
+
                 perusTila();
+            }
+            sql.Close();
+        }
+
+        private void TxbAsPuhnro_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TxbAsPostinumero_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
             }
         }
     }

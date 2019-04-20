@@ -15,6 +15,7 @@ namespace mokkisofta
         Sql S = new Sql();
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
+        private string valittuRivi = "";
         public Toimipisteet()
         {
             InitializeComponent();
@@ -58,14 +59,15 @@ namespace mokkisofta
 
         private void BtnTpPoista_Click(object sender, EventArgs e)
         {
-            S.Connect();
+
             DialogResult kysely = MessageBox.Show("Haluatko varmasti poistaa valitun rivin?", "Poistetaanko?", MessageBoxButtons.OKCancel);
             if (kysely == DialogResult.OK)
             {
                 if (DgwToimipisteet.CurrentCell != null)
                 {
+                    S.Connect();
                     int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
-                    string valittuRivi = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    valittuRivi = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string tpPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuRivi}'";
 
                     S.Query(tpPoisto);
@@ -127,7 +129,20 @@ namespace mokkisofta
             }
             else if (btnMuokkaaPainettu == true)
             {
-                // todo: muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
+                // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
+                string tpNimi = txbTpNimi.Text;
+                string tpOsoite = txbTpOsoite.Text;
+                string tpPtoimipaikka = txbTpPtoimipaikka.Text;
+                string tpPostinro = txbTpPostinumero.Text;
+                string tpSposti = txbTpSposti.Text;
+                string tpPuhnro = txbTpPuhnro.Text;
+                string tpMuokkaus = $"UPDATE Toimipiste SET nimi = '{tpNimi}', lahiosoite = '{tpOsoite}', postitoimipaikka = '{tpPtoimipaikka}', postinro = '{tpPostinro}', email = '{tpSposti}', puhelinnro = '{tpPuhnro}' WHERE toimipiste_id = {valittuRivi}";
+
+                S.Query(tpMuokkaus);
+                DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
+
+                DgwToimipisteet.Enabled = true;
+                perusTila();
             }
 
             S.Close();
@@ -150,6 +165,7 @@ namespace mokkisofta
             btnTpPoista.Enabled = true;
             btnTpTallenna.Enabled = false; ;
             btnTpPeruuta.Enabled = false; ;
+            DgwToimipisteet.Enabled = true;
         }
         private void lisaysTila()
         {
@@ -161,6 +177,7 @@ namespace mokkisofta
             btnTpPoista.Enabled = false;
             btnTpTallenna.Enabled = true;
             btnTpPeruuta.Enabled = true;
+            DgwToimipisteet.Enabled = false;
         }
         private void muokkausTila()
         {
@@ -173,6 +190,16 @@ namespace mokkisofta
             btnTpPoista.Enabled = false;
             btnTpTallenna.Enabled = true;
             btnTpPeruuta.Enabled = true;
+            //Lisätään valitun rivin tiedot tekstikenntiin
+            int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
+            valittuRivi = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
+            txbTpNimi.Text = DgwToimipisteet.Rows[rowIndex].Cells["Nimi"].Value.ToString();
+            txbTpOsoite.Text = DgwToimipisteet.Rows[rowIndex].Cells["Osoite"].Value.ToString();
+            txbTpPtoimipaikka.Text = DgwToimipisteet.Rows[rowIndex].Cells["paikkakunta"].Value.ToString();
+            txbTpPostinumero.Text = DgwToimipisteet.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
+            txbTpSposti.Text = DgwToimipisteet.Rows[rowIndex].Cells["Sähköposti"].Value.ToString();
+            txbTpPuhnro.Text = DgwToimipisteet.Rows[rowIndex].Cells["Puhelin"].Value.ToString();
+            DgwToimipisteet.Enabled = false;
         }
 
         private void DgwToimipisteet_CellContentClick(object sender, DataGridViewCellEventArgs e)

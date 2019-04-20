@@ -26,8 +26,8 @@ namespace mokkisofta.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-4I7QG7U\\SQLEXPRESS;Initial Catalog=vp;User ID=ryhma13;Passwor" +
-            "d=ryhma13")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-4I7QG7U\\SQLEXPRESS;Initial Catalog=vp;User ID=sa;Password=Kis" +
+            "sa123!")]
         public string vpConnectionString {
             get {
                 return ((string)(this["vpConnectionString"]));
