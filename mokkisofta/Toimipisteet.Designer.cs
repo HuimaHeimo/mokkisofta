@@ -176,6 +176,7 @@
             this.btnTpMuokkaa.TabIndex = 15;
             this.btnTpMuokkaa.Text = "Muokkaa";
             this.btnTpMuokkaa.UseVisualStyleBackColor = true;
+            this.btnTpMuokkaa.Click += new System.EventHandler(this.BtnTpMuokkaa_Click);
             // 
             // btnTpPoista
             // 

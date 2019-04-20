@@ -48,13 +48,12 @@ namespace mokkisofta
 
         private void BtnTpLisaa_Click(object sender, EventArgs e)
         {
-            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
-            btnLisaaPainettu = true;
-            btnTpLisaa.Enabled = false;
-            btnTpMuokkaa.Enabled = false;
-            btnTpPoista.Enabled = false;
-            btnTpTallenna.Enabled = true;
-            btnTpPeruuta.Enabled = true;
+            lisaysTila();
+        }
+
+        private void BtnTpMuokkaa_Click(object sender, EventArgs e)
+        {
+            muokkausTila();
         }
 
         private void BtnTpPoista_Click(object sender, EventArgs e)
@@ -123,20 +122,12 @@ namespace mokkisofta
 
                     S.Query(tpLisays);
                     DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
-                    btnLisaaPainettu = false;
-                    btnMuokkaaPainettu = false;
-                    this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Text = string.Empty);
-                    this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false);
-                    btnTpLisaa.Enabled = true;
-                    btnTpMuokkaa.Enabled = true;
-                    btnTpPoista.Enabled = true;
-                    btnTpTallenna.Enabled = false; ;
-                    btnTpPeruuta.Enabled = false; ;
+                    perusTila();
                 }
             }
             else if (btnMuokkaaPainettu == true)
             {
-
+                // todo: muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
             }
 
             S.Close();
@@ -144,17 +135,47 @@ namespace mokkisofta
 
         private void BtnTpPeruuta_Click(object sender, EventArgs e)
         {
+            perusTila();
+        }
+
+        private void perusTila()
+        {
+            // Tämän ajettaessa kaikki tekstikentät nollataan. Lisää, Muokkaa, ja Poista painikkeet käytössä.
             this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Text = string.Empty);
             this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false);
+            btnLisaaPainettu = false;
+            btnMuokkaaPainettu = false;
             btnTpLisaa.Enabled = true;
             btnTpMuokkaa.Enabled = true;
             btnTpPoista.Enabled = true;
-            btnLisaaPainettu = false;
-            btnMuokkaaPainettu = false;
             btnTpTallenna.Enabled = false; ;
             btnTpPeruuta.Enabled = false; ;
-
         }
+        private void lisaysTila()
+        {
+            // Siirrytään painamalla lisää nappia. Tekstikenttiin pystyy syöttämään tietoa. Vain Tallenna ja Peruuta painikkeet ovat käytössä.
+            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
+            btnLisaaPainettu = true;
+            btnTpLisaa.Enabled = false;
+            btnTpMuokkaa.Enabled = false;
+            btnTpPoista.Enabled = false;
+            btnTpTallenna.Enabled = true;
+            btnTpPeruuta.Enabled = true;
+        }
+        private void muokkausTila()
+        {
+            // Sama kuin lisaysTila() , erona btnMuokkaaPainettu <-> btnLisaaPainettu totuusarvot.
+            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
+            btnLisaaPainettu = false;
+            btnMuokkaaPainettu = true;
+            btnTpLisaa.Enabled = false;
+            btnTpMuokkaa.Enabled = false;
+            btnTpPoista.Enabled = false;
+            btnTpTallenna.Enabled = true;
+            btnTpPeruuta.Enabled = true;
+        }
+
+
 
 
         /*
