@@ -55,6 +55,34 @@ namespace mokkisofta
             return dr;
         }
 
+        public ComboBox haeTaulustaLaatikkoon(Sql S, ComboBox c, string taulu, string kentta, string kentta2 = "")
+        {
+            /* Funktio tietojen lukemiseen comboboxiin halutusta taulusta.
+                * Tällä hetkellä palauttaa comboboxin, eli korvaa nykyisen comboboxin uudella joka sisältää arvot. 
+                *  esim. cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, "Asiakas", "etunimi", "sukunimi");
+                */
+            string komento = $"SELECT * FROM {taulu}";
+            SqlDataReader sqlReader = S.DataReader(komento);
+            if (string.IsNullOrEmpty(kentta2))
+            {
+
+                while (sqlReader.Read())
+                {
+                    c.Items.Add(sqlReader[kentta].ToString());
+                }
+            }
+            else
+            {
+                while (sqlReader.Read())
+                {
+                    c.Items.Add(sqlReader[kentta].ToString() + " " + sqlReader[kentta2].ToString());
+                }
+            }
+
+            sqlReader.Close();
+            return c;
+        }
+
         /// <summary>
         /// Hakee kannasta tietoa datagridviewiin.
         /// </summary>
