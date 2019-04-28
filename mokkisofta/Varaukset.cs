@@ -19,8 +19,16 @@ namespace mokkisofta
 
             S.Connect();
             //DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS Id, asiakas_id AS Nimi, toimipiste_id AS Toimipiste, varattu_pvm AS Varattu pvm, vahvistus_pvm AS Vahvistus pvm, varattu_alkupvm AS Varauksen alkupvm, varattu_loppupvm AS Varauksen loppupvm FROM Varaus");
-            cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, "Asiakas", "etunimi", "sukunimi"); // toimivuuden testaus
+            //cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, "Asiakas", "etunimi", "sukunimi"); // toimivuuden testaus
+            DataTable dt = new DataTable();
+            dt = S.haeTaulustaLaatikkoon(S, dt, "Asiakas", "asiakas_id", "etunimi");
+            cboxVarAsiakas.DataSource = dt;
+            cboxVarAsiakas.ValueMember = "asiakas_id";
+            cboxVarAsiakas.DisplayMember = "etunimi";
+            
             S.Close();
+
+
         }
 
 

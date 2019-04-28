@@ -55,12 +55,12 @@ namespace mokkisofta
             return dr;
         }
 
-        public ComboBox haeTaulustaLaatikkoon(Sql S, ComboBox c, string taulu, string kentta, string kentta2 = "")
+        /*public ComboBox haeTaulustaLaatikkoon(Sql S, ComboBox c, string taulu, string kentta, string kentta2 = "")
         {
             /* Funktio tietojen lukemiseen comboboxiin halutusta taulusta.
                 * Tällä hetkellä palauttaa comboboxin, eli korvaa nykyisen comboboxin uudella joka sisältää arvot. 
                 *  esim. cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, "Asiakas", "etunimi", "sukunimi");
-                */
+                
             string komento = $"SELECT * FROM {taulu}";
             SqlDataReader sqlReader = S.DataReader(komento);
             if (string.IsNullOrEmpty(kentta2))
@@ -81,7 +81,22 @@ namespace mokkisofta
 
             sqlReader.Close();
             return c;
+        }*/
+        public DataTable haeTaulustaLaatikkoon(Sql S, DataTable dt, string taulu, string kentta1, string kentta2 = "")
+        {
+            /* Palauttaa datatablen joka ottaa sql objektin ja datatablen lisäksi parametriksi: taulun nimen, sekä kaksi taulun kenttäarvoa. Esim. kentta1 = toimipaikka_id, kentta2 = toimipaikan nimi.
+             * 
+             */
+            SqlDataReader sqlReader;
+            string komento = $"SELECT {kentta1}, {kentta2} FROM {taulu}";
+            sqlReader = S.DataReader(komento);
+            dt.Columns.Add(kentta1, typeof(string));
+            dt.Columns.Add(kentta2, typeof(string));
+            dt.Load(sqlReader);
+            return dt;
         }
+
+    
 
         /// <summary>
         /// Hakee kannasta tietoa datagridviewiin.
