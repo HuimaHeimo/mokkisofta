@@ -55,18 +55,30 @@ namespace mokkisofta
             return dr;
         }
 
-        public ComboBox haeTaulustaLaatikkoon(Sql S, string taulu, string kentta, ComboBox c)
+        public ComboBox haeTaulustaLaatikkoon(Sql S, ComboBox c, string taulu, string kentta, string kentta2 = "")
         {
-        /* Funktio tietojen lukemiseen comboboxiin halutusta taulusta.
-         * TODO: Tällä hetkellä palauttaa comboboxin, eli korvaa nykyisen comboboxin uudella joka sisältää arvot. Mahdollisesti järkevämpi ratkaisu?
-         * Tällä hetkellä syöttää vain yhden kentän arvon comboboxiin. Mutta jos esim. haetaan asiakkaiden koko nimiä. niin tätä voisi muuttaa hakemaan halutun määrän kenttiä taulusta.
-         */
+            /* Funktio tietojen lukemiseen comboboxiin halutusta taulusta.
+                * Tällä hetkellä palauttaa comboboxin, eli korvaa nykyisen comboboxin uudella joka sisältää arvot. 
+                *  esim. cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, "Asiakas", "etunimi", "sukunimi");
+                */
             string komento = $"SELECT * FROM {taulu}";
             SqlDataReader sqlReader = S.DataReader(komento);
-            while (sqlReader.Read())
+            if (string.IsNullOrEmpty(kentta2))
             {
-                c.Items.Add(sqlReader[kentta].ToString());
+
+                while (sqlReader.Read())
+                {
+                    c.Items.Add(sqlReader[kentta].ToString());
+                }
             }
+            else
+            {
+                while (sqlReader.Read())
+                {
+                    c.Items.Add(sqlReader[kentta].ToString() + " " + sqlReader[kentta2].ToString());
+                }
+            }
+
             sqlReader.Close();
             return c;
         }
