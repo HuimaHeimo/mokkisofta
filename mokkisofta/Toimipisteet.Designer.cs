@@ -85,7 +85,7 @@
             this.DgwToimipisteet.Location = new System.Drawing.Point(32, 45);
             this.DgwToimipisteet.Name = "DgwToimipisteet";
             this.DgwToimipisteet.Size = new System.Drawing.Size(788, 331);
-            this.DgwToimipisteet.TabIndex = 2;
+            this.DgwToimipisteet.TabIndex = 13;
             this.DgwToimipisteet.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgwToimipisteet_CellContentClick);
             // 
             // txbTpNimi
@@ -94,7 +94,7 @@
             this.txbTpNimi.MaxLength = 40;
             this.txbTpNimi.Name = "txbTpNimi";
             this.txbTpNimi.Size = new System.Drawing.Size(130, 20);
-            this.txbTpNimi.TabIndex = 4;
+            this.txbTpNimi.TabIndex = 2;
             // 
             // txbTpOsoite
             // 
@@ -102,7 +102,7 @@
             this.txbTpOsoite.MaxLength = 40;
             this.txbTpOsoite.Name = "txbTpOsoite";
             this.txbTpOsoite.Size = new System.Drawing.Size(130, 20);
-            this.txbTpOsoite.TabIndex = 5;
+            this.txbTpOsoite.TabIndex = 3;
             // 
             // txbTpPtoimipaikka
             // 
@@ -110,7 +110,7 @@
             this.txbTpPtoimipaikka.MaxLength = 30;
             this.txbTpPtoimipaikka.Name = "txbTpPtoimipaikka";
             this.txbTpPtoimipaikka.Size = new System.Drawing.Size(130, 20);
-            this.txbTpPtoimipaikka.TabIndex = 6;
+            this.txbTpPtoimipaikka.TabIndex = 5;
             // 
             // txbTpPostinumero
             // 
@@ -118,7 +118,7 @@
             this.txbTpPostinumero.MaxLength = 5;
             this.txbTpPostinumero.Name = "txbTpPostinumero";
             this.txbTpPostinumero.Size = new System.Drawing.Size(77, 20);
-            this.txbTpPostinumero.TabIndex = 7;
+            this.txbTpPostinumero.TabIndex = 4;
             this.txbTpPostinumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbTpPostinumero_KeyPress);
             // 
             // txbTpSposti
@@ -127,7 +127,7 @@
             this.txbTpSposti.MaxLength = 50;
             this.txbTpSposti.Name = "txbTpSposti";
             this.txbTpSposti.Size = new System.Drawing.Size(130, 20);
-            this.txbTpSposti.TabIndex = 8;
+            this.txbTpSposti.TabIndex = 6;
             // 
             // lblTpNimi
             // 
@@ -179,7 +179,7 @@
             this.btnTpMuokkaa.Location = new System.Drawing.Point(645, 451);
             this.btnTpMuokkaa.Name = "btnTpMuokkaa";
             this.btnTpMuokkaa.Size = new System.Drawing.Size(99, 41);
-            this.btnTpMuokkaa.TabIndex = 15;
+            this.btnTpMuokkaa.TabIndex = 9;
             this.btnTpMuokkaa.Text = "Muokkaa";
             this.btnTpMuokkaa.UseVisualStyleBackColor = true;
             this.btnTpMuokkaa.Click += new System.EventHandler(this.BtnTpMuokkaa_Click);
@@ -189,7 +189,7 @@
             this.btnTpPoista.Location = new System.Drawing.Point(750, 451);
             this.btnTpPoista.Name = "btnTpPoista";
             this.btnTpPoista.Size = new System.Drawing.Size(99, 41);
-            this.btnTpPoista.TabIndex = 16;
+            this.btnTpPoista.TabIndex = 10;
             this.btnTpPoista.Text = "Poista";
             this.btnTpPoista.UseVisualStyleBackColor = true;
             this.btnTpPoista.Click += new System.EventHandler(this.BtnTpPoista_Click);
@@ -200,7 +200,7 @@
             this.txbTpPuhnro.MaxLength = 15;
             this.txbTpPuhnro.Name = "txbTpPuhnro";
             this.txbTpPuhnro.Size = new System.Drawing.Size(130, 20);
-            this.txbTpPuhnro.TabIndex = 17;
+            this.txbTpPuhnro.TabIndex = 7;
             this.txbTpPuhnro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbTpPuhnro_KeyPress);
             // 
             // lblTpPuhnro
@@ -217,7 +217,7 @@
             this.btnTpLisaa.Location = new System.Drawing.Point(750, 402);
             this.btnTpLisaa.Name = "btnTpLisaa";
             this.btnTpLisaa.Size = new System.Drawing.Size(99, 41);
-            this.btnTpLisaa.TabIndex = 19;
+            this.btnTpLisaa.TabIndex = 8;
             this.btnTpLisaa.Text = "Lisää";
             this.btnTpLisaa.UseVisualStyleBackColor = true;
             this.btnTpLisaa.Click += new System.EventHandler(this.BtnTpLisaa_Click);
@@ -242,7 +242,7 @@
             this.btnTpTallenna.Location = new System.Drawing.Point(750, 498);
             this.btnTpTallenna.Name = "btnTpTallenna";
             this.btnTpTallenna.Size = new System.Drawing.Size(99, 41);
-            this.btnTpTallenna.TabIndex = 21;
+            this.btnTpTallenna.TabIndex = 12;
             this.btnTpTallenna.Text = "Tallenna";
             this.btnTpTallenna.UseVisualStyleBackColor = true;
             this.btnTpTallenna.Click += new System.EventHandler(this.BtnTpTallenna_Click);
@@ -252,7 +252,7 @@
             this.btnTpPeruuta.Location = new System.Drawing.Point(645, 498);
             this.btnTpPeruuta.Name = "btnTpPeruuta";
             this.btnTpPeruuta.Size = new System.Drawing.Size(99, 41);
-            this.btnTpPeruuta.TabIndex = 22;
+            this.btnTpPeruuta.TabIndex = 11;
             this.btnTpPeruuta.Text = "Peruuta";
             this.btnTpPeruuta.UseVisualStyleBackColor = true;
             this.btnTpPeruuta.Click += new System.EventHandler(this.BtnTpPeruuta_Click);

@@ -20,6 +20,7 @@ namespace mokkisofta
         {
             InitializeComponent();
 
+            DgwToimipisteet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             S.Connect();
             DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
             S.Close();

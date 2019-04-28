@@ -46,13 +46,13 @@
             this.txbPlvHinta = new System.Windows.Forms.TextBox();
             this.txbPlvKuvaus = new System.Windows.Forms.TextBox();
             this.txbAsNumero = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgwPalvelut = new System.Windows.Forms.DataGridView();
             this.cboxPlvToimipiste = new System.Windows.Forms.ComboBox();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwPalvelut)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +70,7 @@
             this.txbPlvNimi.Location = new System.Drawing.Point(104, 445);
             this.txbPlvNimi.Name = "txbPlvNimi";
             this.txbPlvNimi.Size = new System.Drawing.Size(130, 20);
-            this.txbPlvNimi.TabIndex = 62;
+            this.txbPlvNimi.TabIndex = 4;
             // 
             // statusStrip1
             // 
@@ -92,16 +92,17 @@
             this.btnPlvLisää.Location = new System.Drawing.Point(668, 400);
             this.btnPlvLisää.Name = "btnPlvLisää";
             this.btnPlvLisää.Size = new System.Drawing.Size(99, 41);
-            this.btnPlvLisää.TabIndex = 60;
+            this.btnPlvLisää.TabIndex = 9;
             this.btnPlvLisää.Text = "Lisää";
             this.btnPlvLisää.UseVisualStyleBackColor = true;
+            this.btnPlvLisää.Click += new System.EventHandler(this.palvelut_Click);
             // 
             // btnPlvPoista
             // 
             this.btnPlvPoista.Location = new System.Drawing.Point(668, 449);
             this.btnPlvPoista.Name = "btnPlvPoista";
             this.btnPlvPoista.Size = new System.Drawing.Size(99, 41);
-            this.btnPlvPoista.TabIndex = 57;
+            this.btnPlvPoista.TabIndex = 11;
             this.btnPlvPoista.Text = "Poista";
             this.btnPlvPoista.UseVisualStyleBackColor = true;
             // 
@@ -110,7 +111,7 @@
             this.btnPlvMuokkaa.Location = new System.Drawing.Point(563, 449);
             this.btnPlvMuokkaa.Name = "btnPlvMuokkaa";
             this.btnPlvMuokkaa.Size = new System.Drawing.Size(99, 41);
-            this.btnPlvMuokkaa.TabIndex = 56;
+            this.btnPlvMuokkaa.TabIndex = 10;
             this.btnPlvMuokkaa.Text = "Muokkaa";
             this.btnPlvMuokkaa.UseVisualStyleBackColor = true;
             // 
@@ -173,43 +174,43 @@
             this.txbPlvAlv.Location = new System.Drawing.Point(370, 471);
             this.txbPlvAlv.Name = "txbPlvAlv";
             this.txbPlvAlv.Size = new System.Drawing.Size(130, 20);
-            this.txbPlvAlv.TabIndex = 49;
+            this.txbPlvAlv.TabIndex = 8;
             // 
             // txbPlvTyyppi
             // 
             this.txbPlvTyyppi.Location = new System.Drawing.Point(370, 400);
             this.txbPlvTyyppi.Name = "txbPlvTyyppi";
             this.txbPlvTyyppi.Size = new System.Drawing.Size(77, 20);
-            this.txbPlvTyyppi.TabIndex = 48;
+            this.txbPlvTyyppi.TabIndex = 6;
             // 
             // txbPlvHinta
             // 
             this.txbPlvHinta.Location = new System.Drawing.Point(370, 436);
             this.txbPlvHinta.Name = "txbPlvHinta";
             this.txbPlvHinta.Size = new System.Drawing.Size(130, 20);
-            this.txbPlvHinta.TabIndex = 47;
+            this.txbPlvHinta.TabIndex = 7;
             // 
             // txbPlvKuvaus
             // 
             this.txbPlvKuvaus.Location = new System.Drawing.Point(104, 471);
             this.txbPlvKuvaus.Name = "txbPlvKuvaus";
             this.txbPlvKuvaus.Size = new System.Drawing.Size(130, 20);
-            this.txbPlvKuvaus.TabIndex = 46;
+            this.txbPlvKuvaus.TabIndex = 5;
             // 
             // txbAsNumero
             // 
             this.txbAsNumero.Location = new System.Drawing.Point(104, 393);
             this.txbAsNumero.Name = "txbAsNumero";
             this.txbAsNumero.Size = new System.Drawing.Size(58, 20);
-            this.txbAsNumero.TabIndex = 44;
+            this.txbAsNumero.TabIndex = 2;
             // 
-            // dataGridView1
+            // dgwPalvelut
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 43);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(738, 330);
-            this.dataGridView1.TabIndex = 43;
+            this.dgwPalvelut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwPalvelut.Location = new System.Drawing.Point(29, 43);
+            this.dgwPalvelut.Name = "dgwPalvelut";
+            this.dgwPalvelut.Size = new System.Drawing.Size(738, 330);
+            this.dgwPalvelut.TabIndex = 12;
             // 
             // cboxPlvToimipiste
             // 
@@ -217,7 +218,7 @@
             this.cboxPlvToimipiste.Location = new System.Drawing.Point(104, 419);
             this.cboxPlvToimipiste.Name = "cboxPlvToimipiste";
             this.cboxPlvToimipiste.Size = new System.Drawing.Size(121, 21);
-            this.cboxPlvToimipiste.TabIndex = 65;
+            this.cboxPlvToimipiste.TabIndex = 3;
             // 
             // tiedostoToolStripMenuItem
             // 
@@ -239,7 +240,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(801, 24);
-            this.menuStrip1.TabIndex = 42;
+            this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // Palvelut
@@ -265,13 +266,13 @@
             this.Controls.Add(this.txbPlvHinta);
             this.Controls.Add(this.txbPlvKuvaus);
             this.Controls.Add(this.txbAsNumero);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgwPalvelut);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Palvelut";
             this.Text = "Palvelut";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwPalvelut)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -299,7 +300,7 @@
         private System.Windows.Forms.TextBox txbPlvHinta;
         private System.Windows.Forms.TextBox txbPlvKuvaus;
         private System.Windows.Forms.TextBox txbAsNumero;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgwPalvelut;
         private System.Windows.Forms.ComboBox cboxPlvToimipiste;
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
