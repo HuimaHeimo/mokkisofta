@@ -39,7 +39,7 @@
             this.lblVarToimipiste = new System.Windows.Forms.Label();
             this.lblVarAsiakas = new System.Windows.Forms.Label();
             this.txbVarNumero = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.DgwVaraukset = new System.Windows.Forms.DataGridView();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblTpNumero = new System.Windows.Forms.Label();
@@ -52,7 +52,7 @@
             this.lblVarLoppupvm = new System.Windows.Forms.Label();
             this.dtVarLoppupvm = new System.Windows.Forms.DateTimePicker();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgwVaraukset)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -150,13 +150,13 @@
             this.txbVarNumero.Size = new System.Drawing.Size(58, 20);
             this.txbVarNumero.TabIndex = 23;
             // 
-            // dataGridView1
+            // DgwVaraukset
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(32, 45);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(738, 330);
-            this.dataGridView1.TabIndex = 22;
+            this.DgwVaraukset.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.DgwVaraukset.Location = new System.Drawing.Point(32, 45);
+            this.DgwVaraukset.Name = "DgwVaraukset";
+            this.DgwVaraukset.Size = new System.Drawing.Size(738, 330);
+            this.DgwVaraukset.TabIndex = 22;
             // 
             // ohjeToolStripMenuItem
             // 
@@ -265,14 +265,14 @@
             this.Controls.Add(this.lblVarToimipiste);
             this.Controls.Add(this.lblVarAsiakas);
             this.Controls.Add(this.txbVarNumero);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.DgwVaraukset);
             this.Controls.Add(this.lblTpNumero);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Varaukset";
             this.Text = "Varaukset";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.DgwVaraukset)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -293,7 +293,7 @@
         private System.Windows.Forms.Label lblVarToimipiste;
         private System.Windows.Forms.Label lblVarAsiakas;
         private System.Windows.Forms.TextBox txbVarNumero;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView DgwVaraukset;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
         private System.Windows.Forms.Label lblTpNumero;

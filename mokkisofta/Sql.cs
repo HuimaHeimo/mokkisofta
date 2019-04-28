@@ -55,6 +55,22 @@ namespace mokkisofta
             return dr;
         }
 
+        public ComboBox haeTaulustaLaatikkoon(Sql S, string taulu, string kentta, ComboBox c)
+        {
+        /* Funktio tietojen lukemiseen comboboxiin halutusta taulusta.
+         * TODO: Tällä hetkellä palauttaa comboboxin, eli korvaa nykyisen comboboxin uudella joka sisältää arvot. Mahdollisesti järkevämpi ratkaisu?
+         * Tällä hetkellä syöttää vain yhden kentän arvon comboboxiin. Mutta jos esim. haetaan asiakkaiden koko nimiä. niin tätä voisi muuttaa hakemaan halutun määrän kenttiä taulusta.
+         */
+            string komento = $"SELECT * FROM {taulu}";
+            SqlDataReader sqlReader = S.DataReader(komento);
+            while (sqlReader.Read())
+            {
+                c.Items.Add(sqlReader[kentta].ToString());
+            }
+            sqlReader.Close();
+            return c;
+        }
+
         /// <summary>
         /// Hakee kannasta tietoa datagridviewiin.
         /// </summary>
