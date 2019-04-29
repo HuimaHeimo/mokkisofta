@@ -21,8 +21,9 @@ namespace mokkisofta
             InitializeComponent();
             DgwVaraukset.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             S.Connect();
-            DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS Id, asiakas_id AS Nimi, toimipiste_id AS Toimipiste, varattu_pvm AS 'Varattu pvm', " +
-                "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' FROM Varaus");
+            DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
+                "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
+                "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
             DataTable asiakkaat = new DataTable();
             DataTable toimipisteet = new DataTable();
             cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, asiakkaat, "Asiakas", "asiakas_id", "etunimi", "sukunimi"); 
@@ -62,7 +63,7 @@ namespace mokkisofta
                 {
                     string varNimi = cboxVarAsiakas.SelectedValue.ToString();
                     string varToimipiste = cboxVarToimipiste.SelectedValue.ToString();
-                    string varVarattupvm = dtVarPvm.Value.ToString("yyyydMMdd");
+                    string varVarattupvm = dtVarPvm.Value.ToString("yyyyMMdd");
                     string varVahvistuspvm = dtVarVahvistuspvm.Value.ToString("yyyyMMdd");
                     string varAlkupvm = dtVarAlkupvm.Value.ToString("yyyyMMdd");
                     string varLoppupvm = dtVarLoppupvm.Value.ToString("yyyyMMdd");
@@ -70,8 +71,9 @@ namespace mokkisofta
                         $"VALUES ('{varNimi}', '{varToimipiste}', '{varVarattupvm}', '{varVahvistuspvm}', '{varAlkupvm}', '{varLoppupvm}')";
 
                     S.Query(varLisays);
-                    DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS Id, asiakas_id AS Nimi, toimipiste_id AS Toimipiste, varattu_pvm AS 'Varattu pvm', " +
-                        "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' FROM Varaus");
+                    DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
+                        "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
+                        "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
                     perusTila();
                 }
             }
@@ -88,8 +90,9 @@ namespace mokkisofta
                     $"vahvistus_pvm = '{varVahvistuspvm}', varattu_alkupvm = '{varAlkupvm}', varattu_loppupvm = '{varLoppupvm}' WHERE varaus_id = {valittuRivi}";
 
                 S.Query(varMuokkaus);
-                DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS Id, asiakas_id AS Nimi, toimipiste_id AS Toimipiste, varattu_pvm AS 'Varattu pvm', " +
-                    "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' FROM Varaus");
+                DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
+                    "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
+                    "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
                 perusTila();
             }
 
@@ -108,7 +111,9 @@ namespace mokkisofta
                     string varPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuRivi}'";
 
                     S.Query(varPoisto);
-                    DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS Id, asiakas_id AS Nimi, toimipiste_id AS Toimipiste, varattu_pvm AS 'Varattu pvm', vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' FROM Varaus");
+                    DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
+                        "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
+                        "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
                     S.Close();
                 }
             }
@@ -161,7 +166,7 @@ namespace mokkisofta
             //Lisätään valitun rivin tiedot tekstikenntiin
             int rowIndex = DgwVaraukset.CurrentCell.RowIndex;
             valittuRivi = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
-            cboxVarAsiakas.Text = DgwVaraukset.Rows[rowIndex].Cells["Nimi"].Value.ToString();
+            cboxVarAsiakas.Text = DgwVaraukset.Rows[rowIndex].Cells["Etunimi"].Value.ToString() + " " + DgwVaraukset.Rows[rowIndex].Cells["Sukunimi"].Value.ToString();
             cboxVarToimipiste.Text = DgwVaraukset.Rows[rowIndex].Cells["Toimipiste"].Value.ToString();
             dtVarPvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Varattu pvm"].Value.ToString();
             dtVarVahvistuspvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Vahvistus pvm"].Value.ToString();
