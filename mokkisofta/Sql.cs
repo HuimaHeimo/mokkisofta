@@ -81,9 +81,7 @@ namespace mokkisofta
                 c.DisplayMember = "KENTTA";
                 return c;
             }
-        }
-
-    
+        }  
 
         /// <summary>
         /// Hakee kannasta tietoa datagridviewiin.

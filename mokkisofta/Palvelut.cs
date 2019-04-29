@@ -22,7 +22,7 @@ namespace mokkisofta
 
             // Haetaan toimipisteet alasvetovalikkoon.
             S.Connect();
-            cboxPlvToimipiste = S.haeTaulustaLaatikkoon(S, cboxPlvToimipiste, "Toimipiste", "nimi", ""); // toimivuuden testaus
+            //cboxPlvToimipiste = S.haeTaulustaLaatikkoon(S, cboxPlvToimipiste, "Toimipiste", "nimi", ""); // toimivuuden testaus
             S.Close();
 
             // Haetaan tietokannasta palvelut DataGridViewiin.
