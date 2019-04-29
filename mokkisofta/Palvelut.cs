@@ -17,10 +17,13 @@ namespace mokkisofta
         {
             InitializeComponent();
 
-            // Tehdään toimipiste-valinnasta dropdown-menu, joka ei vastaanota tekstiä käyttäjältä.
+
             cboxPlvToimipiste.DropDownStyle = ComboBoxStyle.DropDownList;
-            //cboxPlvToimipiste.DataSource = S.Query();
-            cboxPlvToimipiste.DisplayMember = "nimi";
+
+            // Haetaan toimipisteet alasvetovalikkoon.
+            S.Connect();
+            cboxPlvToimipiste = S.haeTaulustaLaatikkoon(S, cboxPlvToimipiste, "Toimipiste", "nimi", ""); // toimivuuden testaus
+            S.Close();
 
             // Haetaan tietokannasta palvelut DataGridViewiin.
             S.Connect();

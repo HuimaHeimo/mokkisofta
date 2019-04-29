@@ -58,7 +58,7 @@ namespace mokkisofta
         public ComboBox haeTaulustaLaatikkoon(Sql S, ComboBox c, string taulu, string kentta, string kentta2 = "")
         {
             /* Funktio tietojen lukemiseen comboboxiin halutusta taulusta.
-                * Tällä hetkellä palauttaa comboboxin, eli korvaa nykyisen comboboxin uudella joka sisältää arvot. 
+                * Tällä hetkellä palauttaa comboboxin, eli korvaa nykyisen comboboxin uudella joka sisältää arvot.
                 *  esim. cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, "Asiakas", "etunimi", "sukunimi");
                 */
             string komento = $"SELECT * FROM {taulu}";
