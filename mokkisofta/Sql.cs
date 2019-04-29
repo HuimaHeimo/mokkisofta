@@ -55,45 +55,32 @@ namespace mokkisofta
             return dr;
         }
 
-        /*public ComboBox haeTaulustaLaatikkoon(Sql S, ComboBox c, string taulu, string kentta, string kentta2 = "")
-        {
-            /* Funktio tietojen lukemiseen comboboxiin halutusta taulusta.
-                * Tällä hetkellä palauttaa comboboxin, eli korvaa nykyisen comboboxin uudella joka sisältää arvot. 
-                *  esim. cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, "Asiakas", "etunimi", "sukunimi");
-                
-            string komento = $"SELECT * FROM {taulu}";
-            SqlDataReader sqlReader = S.DataReader(komento);
-            if (string.IsNullOrEmpty(kentta2))
-            {
-
-                while (sqlReader.Read())
-                {
-                    c.Items.Add(sqlReader[kentta].ToString());
-                }
-            }
-            else
-            {
-                while (sqlReader.Read())
-                {
-                    c.Items.Add(sqlReader[kentta].ToString() + " " + sqlReader[kentta2].ToString());
-                }
-            }
-
-            sqlReader.Close();
-            return c;
-        }*/
-        public DataTable haeTaulustaLaatikkoon(Sql S, DataTable dt, string taulu, string kentta1, string kentta2 = "")
+        public ComboBox haeTaulustaLaatikkoon(Sql S, ComboBox c, DataTable dt, string taulu, string kentta1, string kentta2, string kentta3 = "")
         {
             /* Palauttaa datatablen joka ottaa sql objektin ja datatablen lisäksi parametriksi: taulun nimen, sekä kaksi taulun kenttäarvoa. Esim. kentta1 = toimipaikka_id, kentta2 = toimipaikan nimi.
-             * 
+             * kentta3 on vaihtoehtoinen parametri jota tarvitsee Asiakkaiden nimen tulostamisessa (etunimi + sukunimi samaan comboboxiin)
              */
             SqlDataReader sqlReader;
-            string komento = $"SELECT {kentta1}, {kentta2} FROM {taulu}";
-            sqlReader = S.DataReader(komento);
-            dt.Columns.Add(kentta1, typeof(string));
-            dt.Columns.Add(kentta2, typeof(string));
-            dt.Load(sqlReader);
-            return dt;
+            if (string.IsNullOrEmpty(kentta3))
+            {
+                string komento = $"SELECT {kentta1}, {kentta2} FROM {taulu}";
+                sqlReader = S.DataReader(komento);
+                dt.Load(sqlReader);
+                c.DataSource = dt;
+                c.ValueMember = kentta1;
+                c.DisplayMember = kentta2;
+                return c;
+            } else
+            {
+                // Käyttäjän syöttäessä useamman kenttaparametrin; kentta2 ja kentta3 muodostavat Aliaksen KENTTA joka luetaan comboboxin nimeen.
+                string komento = $"SELECT {kentta1}, {kentta2} + ' ' + {kentta3} as KENTTA FROM {taulu}";
+                sqlReader = S.DataReader(komento);
+                dt.Load(sqlReader);
+                c.DataSource = dt;
+                c.ValueMember = kentta1;
+                c.DisplayMember = "KENTTA";
+                return c;
+            }
         }
 
     
