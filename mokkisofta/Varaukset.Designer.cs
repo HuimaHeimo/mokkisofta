@@ -76,7 +76,7 @@
             this.btnVarLisaa.Location = new System.Drawing.Point(725, 399);
             this.btnVarLisaa.Name = "btnVarLisaa";
             this.btnVarLisaa.Size = new System.Drawing.Size(99, 41);
-            this.btnVarLisaa.TabIndex = 39;
+            this.btnVarLisaa.TabIndex = 8;
             this.btnVarLisaa.Text = "Lisää";
             this.btnVarLisaa.UseVisualStyleBackColor = true;
             this.btnVarLisaa.Click += new System.EventHandler(this.BtnVarLisaa_Click);
@@ -86,7 +86,7 @@
             this.btnVarPoista.Location = new System.Drawing.Point(725, 448);
             this.btnVarPoista.Name = "btnVarPoista";
             this.btnVarPoista.Size = new System.Drawing.Size(99, 41);
-            this.btnVarPoista.TabIndex = 36;
+            this.btnVarPoista.TabIndex = 10;
             this.btnVarPoista.Text = "Poista";
             this.btnVarPoista.UseVisualStyleBackColor = true;
             this.btnVarPoista.Click += new System.EventHandler(this.BtnVarPoista_Click);
@@ -96,7 +96,7 @@
             this.btnVarMuokkaa.Location = new System.Drawing.Point(620, 448);
             this.btnVarMuokkaa.Name = "btnVarMuokkaa";
             this.btnVarMuokkaa.Size = new System.Drawing.Size(99, 41);
-            this.btnVarMuokkaa.TabIndex = 35;
+            this.btnVarMuokkaa.TabIndex = 9;
             this.btnVarMuokkaa.Text = "Muokkaa";
             this.btnVarMuokkaa.UseVisualStyleBackColor = true;
             this.btnVarMuokkaa.Click += new System.EventHandler(this.BtnVarMuokkaa_Click);
@@ -183,7 +183,7 @@
             this.cboxVarAsiakas.Location = new System.Drawing.Point(79, 399);
             this.cboxVarAsiakas.Name = "cboxVarAsiakas";
             this.cboxVarAsiakas.Size = new System.Drawing.Size(152, 21);
-            this.cboxVarAsiakas.TabIndex = 41;
+            this.cboxVarAsiakas.TabIndex = 2;
             // 
             // cboxVarToimipiste
             // 
@@ -191,28 +191,28 @@
             this.cboxVarToimipiste.Location = new System.Drawing.Point(79, 434);
             this.cboxVarToimipiste.Name = "cboxVarToimipiste";
             this.cboxVarToimipiste.Size = new System.Drawing.Size(152, 21);
-            this.cboxVarToimipiste.TabIndex = 42;
+            this.cboxVarToimipiste.TabIndex = 3;
             // 
             // dtVarPvm
             // 
             this.dtVarPvm.Location = new System.Drawing.Point(354, 399);
             this.dtVarPvm.Name = "dtVarPvm";
             this.dtVarPvm.Size = new System.Drawing.Size(200, 20);
-            this.dtVarPvm.TabIndex = 43;
+            this.dtVarPvm.TabIndex = 4;
             // 
             // dtVarVahvistuspvm
             // 
             this.dtVarVahvistuspvm.Location = new System.Drawing.Point(354, 425);
             this.dtVarVahvistuspvm.Name = "dtVarVahvistuspvm";
             this.dtVarVahvistuspvm.Size = new System.Drawing.Size(200, 20);
-            this.dtVarVahvistuspvm.TabIndex = 44;
+            this.dtVarVahvistuspvm.TabIndex = 5;
             // 
             // dtVarAlkupvm
             // 
             this.dtVarAlkupvm.Location = new System.Drawing.Point(354, 451);
             this.dtVarAlkupvm.Name = "dtVarAlkupvm";
             this.dtVarAlkupvm.Size = new System.Drawing.Size(200, 20);
-            this.dtVarAlkupvm.TabIndex = 45;
+            this.dtVarAlkupvm.TabIndex = 6;
             // 
             // lblVarLoppupvm
             // 
@@ -228,14 +228,14 @@
             this.dtVarLoppupvm.Location = new System.Drawing.Point(354, 477);
             this.dtVarLoppupvm.Name = "dtVarLoppupvm";
             this.dtVarLoppupvm.Size = new System.Drawing.Size(200, 20);
-            this.dtVarLoppupvm.TabIndex = 47;
+            this.dtVarLoppupvm.TabIndex = 7;
             // 
             // btnVarPeruuta
             // 
             this.btnVarPeruuta.Location = new System.Drawing.Point(620, 495);
             this.btnVarPeruuta.Name = "btnVarPeruuta";
             this.btnVarPeruuta.Size = new System.Drawing.Size(99, 41);
-            this.btnVarPeruuta.TabIndex = 48;
+            this.btnVarPeruuta.TabIndex = 11;
             this.btnVarPeruuta.Text = "Peruuta";
             this.btnVarPeruuta.UseVisualStyleBackColor = true;
             this.btnVarPeruuta.Click += new System.EventHandler(this.BtnVarPeruuta_Click);
@@ -245,7 +245,7 @@
             this.btnVarTallenna.Location = new System.Drawing.Point(725, 495);
             this.btnVarTallenna.Name = "btnVarTallenna";
             this.btnVarTallenna.Size = new System.Drawing.Size(99, 41);
-            this.btnVarTallenna.TabIndex = 49;
+            this.btnVarTallenna.TabIndex = 12;
             this.btnVarTallenna.Text = "Tallenna";
             this.btnVarTallenna.UseVisualStyleBackColor = true;
             this.btnVarTallenna.Click += new System.EventHandler(this.BtnVarTallenna_Click);

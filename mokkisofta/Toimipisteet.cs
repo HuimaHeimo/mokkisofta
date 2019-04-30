@@ -16,15 +16,15 @@ namespace mokkisofta
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
         private string valittuRivi = "";
+        private string dgSqlHakulause = "SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste";
         public Toimipisteet()
         {
             InitializeComponent();
 
             DgwToimipisteet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             S.Connect();
-            DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
+            DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
             S.Close();
-
             this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false); // Ohjelman käynnistyessä tekstikenttiin ei voi syöttää tietoa.
             btnTpTallenna.Enabled = false;
             btnTpPeruuta.Enabled = false;
@@ -54,7 +54,7 @@ namespace mokkisofta
                     string tpPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuRivi}'";
 
                     S.Query(tpPoisto);
-                    DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
+                    DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
                     S.Close();
                 }
             }
@@ -81,7 +81,6 @@ namespace mokkisofta
             }
         }
 
-
         private void BtnTpTallenna_Click(object sender, EventArgs e)
         {
             /* Ehtolauseella tarkastetaan halutaanko lisätä vai muokata tietoja tietokantaan. 
@@ -104,9 +103,8 @@ namespace mokkisofta
                 else
                 {
                     string tpLisays = $"INSERT INTO Toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES ('{tpNimi}', '{tpOsoite}', '{tpPtoimipaikka}', '{tpPostinro}', '{tpSposti}', '{tpPuhnro}')";
-
                     S.Query(tpLisays);
-                    DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
+                    DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
                     perusTila();
                 }
             }
@@ -120,10 +118,8 @@ namespace mokkisofta
                 string tpSposti = txbTpSposti.Text;
                 string tpPuhnro = txbTpPuhnro.Text;
                 string tpMuokkaus = $"UPDATE Toimipiste SET nimi = '{tpNimi}', lahiosoite = '{tpOsoite}', postitoimipaikka = '{tpPtoimipaikka}', postinro = '{tpPostinro}', email = '{tpSposti}', puhelinnro = '{tpPuhnro}' WHERE toimipiste_id = {valittuRivi}";
-
                 S.Query(tpMuokkaus);
-                DgwToimipisteet.DataSource = S.ShowInGridView("SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste");
-
+                DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
                 perusTila();
             }
 
@@ -188,33 +184,6 @@ namespace mokkisofta
         {
 
         }
-
-
-
-
-        /*
-        private void BtnTpLisaa_Click(object sender, EventArgs e)
-        {
-            string tpNimi = txbTpNimi.Text;
-            string tpOsoite = txbTpOsoite.Text;
-            string pToimiPaikka = txbTpPtoimipaikka.Text;
-            string postiNro = txbTpPostinumero.Text;
-            string sPosti = txbTpSposti.Text;
-            string puhNro = txbTpNumero.Text;
-            // Yhdistetään kantaan ja lisätään Toimipiste-taulu dataGridViewiin.
-            user = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
-            SqlConnection sql;
-            database = @"Data Source=" + server + ";Initial Catalog=" + dbname + ";User ID=sa;Password=Kissa123!";
-
-            sql = new SqlConnection(database);
-            sql.Open();
-            da = new SqlDataAdapter("INSERT INTO Toimipiste (nimi, lahiosoite, postitoimipaikka, postinro, email, puhelinnro) VALUES" + "(" + tpNimi + ", " + txbTpOsoite + ", " + postiNro + ", " + sPosti + ", " + puhNro + ")", sql);
-            da.Fill(ds, "Toimipiste");
-            DgwToimipisteet.DataSource = ds;
-            DgwToimipisteet.DataMember = "Toimipiste";
-
-            sql.Close();
-        }*/
     }
     }
 

@@ -16,14 +16,18 @@ namespace mokkisofta
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
         private string valittuRivi = "";
+        /* SQL hakulause tietojen hakemiseen datagridiin. Hakee Asiakas taulusta etunimen ja sukunimen ja tulostaa ne Asiakas_id sijasta.
+         * Hakee Toimipiste taulusta Toimipisteen nimen ja tulostaa sen toimipiste_id sijasta. Loput kentistä on Varaus taulusta.
+         */
+        private string dgSqlHakulause = "SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
+            "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
+            "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id";
         public Varaukset()
         {
             InitializeComponent();
             DgwVaraukset.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             S.Connect();
-            DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
-                "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
-                "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
+            DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable asiakkaat = new DataTable();
             DataTable toimipisteet = new DataTable();
             cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, asiakkaat, "Asiakas", "asiakas_id", "etunimi", "sukunimi"); 
@@ -71,9 +75,7 @@ namespace mokkisofta
                         $"VALUES ('{varNimi}', '{varToimipiste}', '{varVarattupvm}', '{varVahvistuspvm}', '{varAlkupvm}', '{varLoppupvm}')";
 
                     S.Query(varLisays);
-                    DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
-                        "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
-                        "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
+                    DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
                     perusTila();
                 }
             }
@@ -90,9 +92,7 @@ namespace mokkisofta
                     $"vahvistus_pvm = '{varVahvistuspvm}', varattu_alkupvm = '{varAlkupvm}', varattu_loppupvm = '{varLoppupvm}' WHERE varaus_id = {valittuRivi}";
 
                 S.Query(varMuokkaus);
-                DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
-                    "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
-                    "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
+                DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
                 perusTila();
             }
 
@@ -109,11 +109,8 @@ namespace mokkisofta
                     int rowIndex = DgwVaraukset.CurrentCell.RowIndex;
                     valittuRivi = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string varPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuRivi}'";
-
                     S.Query(varPoisto);
-                    DgwVaraukset.DataSource = S.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
-                        "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
-                        "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
+                    DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
                     S.Close();
                 }
             }
