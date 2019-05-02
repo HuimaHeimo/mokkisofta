@@ -45,7 +45,7 @@
             this.txbPlvTyyppi = new System.Windows.Forms.TextBox();
             this.txbPlvHinta = new System.Windows.Forms.TextBox();
             this.txbPlvKuvaus = new System.Windows.Forms.TextBox();
-            this.txbAsNumero = new System.Windows.Forms.TextBox();
+            this.txbPaNumero = new System.Windows.Forms.TextBox();
             this.dgwPalvelut = new System.Windows.Forms.DataGridView();
             this.cboxPlvToimipiste = new System.Windows.Forms.ComboBox();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -197,12 +197,12 @@
             this.txbPlvKuvaus.Size = new System.Drawing.Size(130, 20);
             this.txbPlvKuvaus.TabIndex = 5;
             // 
-            // txbAsNumero
+            // txbPaNumero
             // 
-            this.txbAsNumero.Location = new System.Drawing.Point(104, 393);
-            this.txbAsNumero.Name = "txbAsNumero";
-            this.txbAsNumero.Size = new System.Drawing.Size(58, 20);
-            this.txbAsNumero.TabIndex = 2;
+            this.txbPaNumero.Location = new System.Drawing.Point(104, 393);
+            this.txbPaNumero.Name = "txbPaNumero";
+            this.txbPaNumero.Size = new System.Drawing.Size(58, 20);
+            this.txbPaNumero.TabIndex = 2;
             // 
             // dgwPalvelut
             // 
@@ -217,7 +217,7 @@
             this.cboxPlvToimipiste.FormattingEnabled = true;
             this.cboxPlvToimipiste.Location = new System.Drawing.Point(104, 419);
             this.cboxPlvToimipiste.Name = "cboxPlvToimipiste";
-            this.cboxPlvToimipiste.Size = new System.Drawing.Size(121, 21);
+            this.cboxPlvToimipiste.Size = new System.Drawing.Size(130, 21);
             this.cboxPlvToimipiste.TabIndex = 3;
             // 
             // tiedostoToolStripMenuItem
@@ -265,7 +265,7 @@
             this.Controls.Add(this.txbPlvTyyppi);
             this.Controls.Add(this.txbPlvHinta);
             this.Controls.Add(this.txbPlvKuvaus);
-            this.Controls.Add(this.txbAsNumero);
+            this.Controls.Add(this.txbPaNumero);
             this.Controls.Add(this.dgwPalvelut);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Palvelut";
@@ -299,7 +299,7 @@
         private System.Windows.Forms.TextBox txbPlvTyyppi;
         private System.Windows.Forms.TextBox txbPlvHinta;
         private System.Windows.Forms.TextBox txbPlvKuvaus;
-        private System.Windows.Forms.TextBox txbAsNumero;
+        private System.Windows.Forms.TextBox txbPaNumero;
         private System.Windows.Forms.DataGridView dgwPalvelut;
         private System.Windows.Forms.ComboBox cboxPlvToimipiste;
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;

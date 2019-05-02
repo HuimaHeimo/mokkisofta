@@ -22,6 +22,9 @@ namespace mokkisofta
             dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
             sql.Close();
 
+            // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
+            dgwAsiakkaat.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
             this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false); // Ohjelman käynnistyessä tekstikenttiin ei voi syöttää tietoa.
             btnTpTallenna.Enabled = false;
             btnTpPeruuta.Enabled = false;
