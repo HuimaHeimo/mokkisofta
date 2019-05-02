@@ -25,7 +25,7 @@ namespace mokkisofta
                 cbxRptToimipiste.Enabled = true;
                 s.Connect();
                 DataTable toimipisteet = new DataTable();
-                cbxRptToimipiste = s.haeTaulustaLaatikkoon(s, cbxRptToimipiste, toimipisteet, "Toimipiste", "toimipiste_id", "nimi");
+                cbxRptToimipiste = s.haeTaulustaLaatikkoon(s, cbxRptToimipiste, toimipisteet, "Toimipiste", "nimi", "toimipiste_id");
                 s.Close();
             }
             else
@@ -49,6 +49,23 @@ namespace mokkisofta
             {
                 cbxRptAsiakkaat.Enabled = false;
                 cbxRptAsiakkaat.Text = "Kaikki";
+            }
+        }
+
+        private void ChbRptSisallytaPalvelu_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chbRptSisallytaPalvelu.Checked)
+            {
+                cbxRptPalvelut.Enabled = true;
+                s.Connect();
+                DataTable palvelut = new DataTable();
+                cbxRptPalvelut = s.haeTaulustaLaatikkoon(s, cbxRptPalvelut, palvelut, "Palvelu", "palvelu_id", "nimi");
+                s.Close();
+            }
+            else
+            {
+                cbxRptPalvelut.Enabled = false;
+                cbxRptPalvelut.Text = "Kaikki";
             }
         }
     }

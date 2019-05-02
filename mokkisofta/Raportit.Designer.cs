@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -92,7 +92,7 @@
             // 
             // btnRptHae
             // 
-            this.btnRptHae.Location = new System.Drawing.Point(668, 409);
+            this.btnRptHae.Location = new System.Drawing.Point(484, 409);
             this.btnRptHae.Name = "btnRptHae";
             this.btnRptHae.Size = new System.Drawing.Size(99, 41);
             this.btnRptHae.TabIndex = 11;
@@ -103,7 +103,7 @@
             // 
             this.cbxRptToimipiste.Enabled = false;
             this.cbxRptToimipiste.FormattingEnabled = true;
-            this.cbxRptToimipiste.Location = new System.Drawing.Point(155, 420);
+            this.cbxRptToimipiste.Location = new System.Drawing.Point(196, 409);
             this.cbxRptToimipiste.Name = "cbxRptToimipiste";
             this.cbxRptToimipiste.Size = new System.Drawing.Size(121, 21);
             this.cbxRptToimipiste.TabIndex = 12;
@@ -112,26 +112,26 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 423);
+            this.label1.Location = new System.Drawing.Point(87, 412);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(137, 13);
+            this.label1.Size = new System.Drawing.Size(63, 13);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Hae raportit toimipisteestä : ";
+            this.label1.Text = "Toimipiste : ";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 450);
+            this.label2.Location = new System.Drawing.Point(87, 439);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 13);
+            this.label2.Size = new System.Drawing.Size(48, 13);
             this.label2.TabIndex = 15;
-            this.label2.Text = "Hae raportit palvelusta :";
+            this.label2.Text = "Palvelu :";
             // 
             // cbxRptPalvelut
             // 
             this.cbxRptPalvelut.Enabled = false;
             this.cbxRptPalvelut.FormattingEnabled = true;
-            this.cbxRptPalvelut.Location = new System.Drawing.Point(155, 447);
+            this.cbxRptPalvelut.Location = new System.Drawing.Point(196, 436);
             this.cbxRptPalvelut.Name = "cbxRptPalvelut";
             this.cbxRptPalvelut.Size = new System.Drawing.Size(121, 21);
             this.cbxRptPalvelut.TabIndex = 14;
@@ -139,7 +139,7 @@
             // 
             // dtpRptAlku
             // 
-            this.dtpRptAlku.Location = new System.Drawing.Point(121, 501);
+            this.dtpRptAlku.Location = new System.Drawing.Point(196, 490);
             this.dtpRptAlku.Name = "dtpRptAlku";
             this.dtpRptAlku.Size = new System.Drawing.Size(200, 20);
             this.dtpRptAlku.TabIndex = 16;
@@ -147,7 +147,7 @@
             // 
             // dtpRptLoppu
             // 
-            this.dtpRptLoppu.Location = new System.Drawing.Point(121, 527);
+            this.dtpRptLoppu.Location = new System.Drawing.Point(196, 516);
             this.dtpRptLoppu.Name = "dtpRptLoppu";
             this.dtpRptLoppu.Size = new System.Drawing.Size(200, 20);
             this.dtpRptLoppu.TabIndex = 17;
@@ -155,7 +155,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 507);
+            this.label3.Location = new System.Drawing.Point(87, 496);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 18;
@@ -164,7 +164,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(12, 533);
+            this.label4.Location = new System.Drawing.Point(87, 522);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 13);
             this.label4.TabIndex = 19;
@@ -172,7 +172,7 @@
             // 
             // btnRptTyhjenna
             // 
-            this.btnRptTyhjenna.Location = new System.Drawing.Point(773, 409);
+            this.btnRptTyhjenna.Location = new System.Drawing.Point(589, 409);
             this.btnRptTyhjenna.Name = "btnRptTyhjenna";
             this.btnRptTyhjenna.Size = new System.Drawing.Size(99, 41);
             this.btnRptTyhjenna.TabIndex = 20;
@@ -182,17 +182,17 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 477);
+            this.label5.Location = new System.Drawing.Point(87, 466);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(128, 13);
+            this.label5.Size = new System.Drawing.Size(56, 13);
             this.label5.TabIndex = 22;
-            this.label5.Text = "Hae raportit asiakkaasta :";
+            this.label5.Text = "Asiakkas :";
             // 
             // cbxRptAsiakkaat
             // 
             this.cbxRptAsiakkaat.Enabled = false;
             this.cbxRptAsiakkaat.FormattingEnabled = true;
-            this.cbxRptAsiakkaat.Location = new System.Drawing.Point(155, 474);
+            this.cbxRptAsiakkaat.Location = new System.Drawing.Point(196, 463);
             this.cbxRptAsiakkaat.Name = "cbxRptAsiakkaat";
             this.cbxRptAsiakkaat.Size = new System.Drawing.Size(121, 21);
             this.cbxRptAsiakkaat.TabIndex = 21;
@@ -200,7 +200,7 @@
             // 
             // btnRptLataa
             // 
-            this.btnRptLataa.Location = new System.Drawing.Point(773, 456);
+            this.btnRptLataa.Location = new System.Drawing.Point(589, 456);
             this.btnRptLataa.Name = "btnRptLataa";
             this.btnRptLataa.Size = new System.Drawing.Size(99, 41);
             this.btnRptLataa.TabIndex = 24;
@@ -209,7 +209,7 @@
             // 
             // btnRptTallenna
             // 
-            this.btnRptTallenna.Location = new System.Drawing.Point(668, 456);
+            this.btnRptTallenna.Location = new System.Drawing.Point(484, 456);
             this.btnRptTallenna.Name = "btnRptTallenna";
             this.btnRptTallenna.Size = new System.Drawing.Size(99, 41);
             this.btnRptTallenna.TabIndex = 23;
@@ -218,7 +218,7 @@
             // 
             // btnRptTulosta
             // 
-            this.btnRptTulosta.Location = new System.Drawing.Point(773, 503);
+            this.btnRptTulosta.Location = new System.Drawing.Point(589, 503);
             this.btnRptTulosta.Name = "btnRptTulosta";
             this.btnRptTulosta.Size = new System.Drawing.Size(99, 41);
             this.btnRptTulosta.TabIndex = 25;
@@ -227,16 +227,16 @@
             // 
             // chrRptChart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chrRptChart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chrRptChart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chrRptChart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chrRptChart1.Legends.Add(legend2);
             this.chrRptChart1.Location = new System.Drawing.Point(462, 27);
             this.chrRptChart1.Name = "chrRptChart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chrRptChart1.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            this.chrRptChart1.Series.Add(series2);
             this.chrRptChart1.Size = new System.Drawing.Size(410, 376);
             this.chrRptChart1.TabIndex = 26;
             this.chrRptChart1.Text = "chart1";
@@ -244,32 +244,33 @@
             // chbRptSisallytaToimip
             // 
             this.chbRptSisallytaToimip.AutoSize = true;
-            this.chbRptSisallytaToimip.Location = new System.Drawing.Point(282, 422);
+            this.chbRptSisallytaToimip.Location = new System.Drawing.Point(323, 411);
             this.chbRptSisallytaToimip.Name = "chbRptSisallytaToimip";
-            this.chbRptSisallytaToimip.Size = new System.Drawing.Size(119, 17);
+            this.chbRptSisallytaToimip.Size = new System.Drawing.Size(100, 17);
             this.chbRptSisallytaToimip.TabIndex = 27;
-            this.chbRptSisallytaToimip.Text = "Sisällytä toimipisteet";
+            this.chbRptSisallytaToimip.Text = "Rajaa toimipiste";
             this.chbRptSisallytaToimip.UseVisualStyleBackColor = true;
             this.chbRptSisallytaToimip.CheckedChanged += new System.EventHandler(this.ChbRptSisallytaToimip_CheckedChanged);
             // 
             // chbRptSisallytaPalvelu
             // 
             this.chbRptSisallytaPalvelu.AutoSize = true;
-            this.chbRptSisallytaPalvelu.Location = new System.Drawing.Point(282, 449);
+            this.chbRptSisallytaPalvelu.Location = new System.Drawing.Point(323, 438);
             this.chbRptSisallytaPalvelu.Name = "chbRptSisallytaPalvelu";
-            this.chbRptSisallytaPalvelu.Size = new System.Drawing.Size(101, 17);
+            this.chbRptSisallytaPalvelu.Size = new System.Drawing.Size(91, 17);
             this.chbRptSisallytaPalvelu.TabIndex = 28;
-            this.chbRptSisallytaPalvelu.Text = "Sisällytä palvelu";
+            this.chbRptSisallytaPalvelu.Text = "Rajaa palvelu";
             this.chbRptSisallytaPalvelu.UseVisualStyleBackColor = true;
+            this.chbRptSisallytaPalvelu.CheckedChanged += new System.EventHandler(this.ChbRptSisallytaPalvelu_CheckedChanged);
             // 
             // chbRptSisallytaAsiakas
             // 
             this.chbRptSisallytaAsiakas.AutoSize = true;
-            this.chbRptSisallytaAsiakas.Location = new System.Drawing.Point(282, 476);
+            this.chbRptSisallytaAsiakas.Location = new System.Drawing.Point(323, 465);
             this.chbRptSisallytaAsiakas.Name = "chbRptSisallytaAsiakas";
-            this.chbRptSisallytaAsiakas.Size = new System.Drawing.Size(104, 17);
+            this.chbRptSisallytaAsiakas.Size = new System.Drawing.Size(93, 17);
             this.chbRptSisallytaAsiakas.TabIndex = 29;
-            this.chbRptSisallytaAsiakas.Text = "Sisällytä Asiakas";
+            this.chbRptSisallytaAsiakas.Text = "Rajaa asiakas";
             this.chbRptSisallytaAsiakas.UseVisualStyleBackColor = true;
             this.chbRptSisallytaAsiakas.CheckedChanged += new System.EventHandler(this.ChbRptsisallytaAsiakas_CheckedChanged);
             // 
