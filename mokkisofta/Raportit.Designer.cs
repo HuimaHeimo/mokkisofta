@@ -51,6 +51,9 @@
             this.btnRptTallenna = new System.Windows.Forms.Button();
             this.btnRptTulosta = new System.Windows.Forms.Button();
             this.chrRptChart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.chbRptSisallytaToimip = new System.Windows.Forms.CheckBox();
+            this.chbRptSisallytaPalvelu = new System.Windows.Forms.CheckBox();
+            this.chbRptSisallytaAsiakas = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrRptChart1)).BeginInit();
@@ -98,6 +101,7 @@
             // 
             // cbxRptToimipiste
             // 
+            this.cbxRptToimipiste.Enabled = false;
             this.cbxRptToimipiste.FormattingEnabled = true;
             this.cbxRptToimipiste.Location = new System.Drawing.Point(155, 420);
             this.cbxRptToimipiste.Name = "cbxRptToimipiste";
@@ -125,6 +129,7 @@
             // 
             // cbxRptPalvelut
             // 
+            this.cbxRptPalvelut.Enabled = false;
             this.cbxRptPalvelut.FormattingEnabled = true;
             this.cbxRptPalvelut.Location = new System.Drawing.Point(155, 447);
             this.cbxRptPalvelut.Name = "cbxRptPalvelut";
@@ -134,7 +139,7 @@
             // 
             // dtpRptAlku
             // 
-            this.dtpRptAlku.Location = new System.Drawing.Point(407, 422);
+            this.dtpRptAlku.Location = new System.Drawing.Point(121, 501);
             this.dtpRptAlku.Name = "dtpRptAlku";
             this.dtpRptAlku.Size = new System.Drawing.Size(200, 20);
             this.dtpRptAlku.TabIndex = 16;
@@ -142,7 +147,7 @@
             // 
             // dtpRptLoppu
             // 
-            this.dtpRptLoppu.Location = new System.Drawing.Point(407, 448);
+            this.dtpRptLoppu.Location = new System.Drawing.Point(121, 527);
             this.dtpRptLoppu.Name = "dtpRptLoppu";
             this.dtpRptLoppu.Size = new System.Drawing.Size(200, 20);
             this.dtpRptLoppu.TabIndex = 17;
@@ -150,7 +155,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(298, 428);
+            this.label3.Location = new System.Drawing.Point(12, 507);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 18;
@@ -159,7 +164,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(298, 454);
+            this.label4.Location = new System.Drawing.Point(12, 533);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 13);
             this.label4.TabIndex = 19;
@@ -185,6 +190,7 @@
             // 
             // cbxRptAsiakkaat
             // 
+            this.cbxRptAsiakkaat.Enabled = false;
             this.cbxRptAsiakkaat.FormattingEnabled = true;
             this.cbxRptAsiakkaat.Location = new System.Drawing.Point(155, 474);
             this.cbxRptAsiakkaat.Name = "cbxRptAsiakkaat";
@@ -235,11 +241,46 @@
             this.chrRptChart1.TabIndex = 26;
             this.chrRptChart1.Text = "chart1";
             // 
+            // chbRptSisallytaToimip
+            // 
+            this.chbRptSisallytaToimip.AutoSize = true;
+            this.chbRptSisallytaToimip.Location = new System.Drawing.Point(282, 422);
+            this.chbRptSisallytaToimip.Name = "chbRptSisallytaToimip";
+            this.chbRptSisallytaToimip.Size = new System.Drawing.Size(119, 17);
+            this.chbRptSisallytaToimip.TabIndex = 27;
+            this.chbRptSisallytaToimip.Text = "Sisällytä toimipisteet";
+            this.chbRptSisallytaToimip.UseVisualStyleBackColor = true;
+            this.chbRptSisallytaToimip.CheckedChanged += new System.EventHandler(this.ChbRptSisallytaToimip_CheckedChanged);
+            // 
+            // chbRptSisallytaPalvelu
+            // 
+            this.chbRptSisallytaPalvelu.AutoSize = true;
+            this.chbRptSisallytaPalvelu.Location = new System.Drawing.Point(282, 449);
+            this.chbRptSisallytaPalvelu.Name = "chbRptSisallytaPalvelu";
+            this.chbRptSisallytaPalvelu.Size = new System.Drawing.Size(101, 17);
+            this.chbRptSisallytaPalvelu.TabIndex = 28;
+            this.chbRptSisallytaPalvelu.Text = "Sisällytä palvelu";
+            this.chbRptSisallytaPalvelu.UseVisualStyleBackColor = true;
+            // 
+            // chbRptSisallytaAsiakas
+            // 
+            this.chbRptSisallytaAsiakas.AutoSize = true;
+            this.chbRptSisallytaAsiakas.Location = new System.Drawing.Point(282, 476);
+            this.chbRptSisallytaAsiakas.Name = "chbRptSisallytaAsiakas";
+            this.chbRptSisallytaAsiakas.Size = new System.Drawing.Size(104, 17);
+            this.chbRptSisallytaAsiakas.TabIndex = 29;
+            this.chbRptSisallytaAsiakas.Text = "Sisällytä Asiakas";
+            this.chbRptSisallytaAsiakas.UseVisualStyleBackColor = true;
+            this.chbRptSisallytaAsiakas.CheckedChanged += new System.EventHandler(this.ChbRptsisallytaAsiakas_CheckedChanged);
+            // 
             // Raportit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.chbRptSisallytaAsiakas);
+            this.Controls.Add(this.chbRptSisallytaPalvelu);
+            this.Controls.Add(this.chbRptSisallytaToimip);
             this.Controls.Add(this.chrRptChart1);
             this.Controls.Add(this.btnRptTulosta);
             this.Controls.Add(this.btnRptLataa);
@@ -291,5 +332,8 @@
         private System.Windows.Forms.Button btnRptTallenna;
         private System.Windows.Forms.Button btnRptTulosta;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrRptChart1;
+        private System.Windows.Forms.CheckBox chbRptSisallytaToimip;
+        private System.Windows.Forms.CheckBox chbRptSisallytaPalvelu;
+        private System.Windows.Forms.CheckBox chbRptSisallytaAsiakas;
     }
 }
