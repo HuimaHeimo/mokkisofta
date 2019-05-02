@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,8 +50,10 @@
             this.btnRptLataa = new System.Windows.Forms.Button();
             this.btnRptTallenna = new System.Windows.Forms.Button();
             this.btnRptTulosta = new System.Windows.Forms.Button();
+            this.chrRptChart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrRptChart1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -79,7 +84,7 @@
             this.dgwRaportit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwRaportit.Location = new System.Drawing.Point(12, 27);
             this.dgwRaportit.Name = "dgwRaportit";
-            this.dgwRaportit.Size = new System.Drawing.Size(860, 376);
+            this.dgwRaportit.Size = new System.Drawing.Size(444, 376);
             this.dgwRaportit.TabIndex = 2;
             // 
             // btnRptHae
@@ -214,11 +219,28 @@
             this.btnRptTulosta.Text = "Tulosta";
             this.btnRptTulosta.UseVisualStyleBackColor = true;
             // 
+            // chrRptChart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chrRptChart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrRptChart1.Legends.Add(legend1);
+            this.chrRptChart1.Location = new System.Drawing.Point(462, 27);
+            this.chrRptChart1.Name = "chrRptChart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chrRptChart1.Series.Add(series1);
+            this.chrRptChart1.Size = new System.Drawing.Size(410, 376);
+            this.chrRptChart1.TabIndex = 26;
+            this.chrRptChart1.Text = "chart1";
+            // 
             // Raportit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.chrRptChart1);
             this.Controls.Add(this.btnRptTulosta);
             this.Controls.Add(this.btnRptLataa);
             this.Controls.Add(this.btnRptTallenna);
@@ -242,6 +264,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrRptChart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,5 +290,6 @@
         private System.Windows.Forms.Button btnRptLataa;
         private System.Windows.Forms.Button btnRptTallenna;
         private System.Windows.Forms.Button btnRptTulosta;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrRptChart1;
     }
 }
