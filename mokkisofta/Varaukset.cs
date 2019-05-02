@@ -41,15 +41,6 @@ namespace mokkisofta
             lisaysTila();
         }
 
-
-            // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
-            DgwVaraukset.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
-            // Lisätään comboboxiin asiakas-taulun asiakkaat.
-            S.Connect();
-            DataTable dt = new DataTable();
-            cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, dt, "Asiakas", "asiakas_id", "etunimi", "sukunimi");   
-
         private void BtnVarMuokkaa_Click(object sender, EventArgs e)
         {
             muokkausTila();
@@ -104,7 +95,6 @@ namespace mokkisofta
                 DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
                 perusTila();
             }
-
 
             S.Close();
         }
