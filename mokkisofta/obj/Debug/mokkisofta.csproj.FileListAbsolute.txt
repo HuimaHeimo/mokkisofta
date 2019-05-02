@@ -61,3 +61,17 @@ C:\Users\altti\source\repos\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.Ge
 C:\Users\altti\source\repos\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.CoreCompileInputs.cache
 C:\Users\altti\source\repos\mokkisofta\mokkisofta\obj\Debug\mokkisofta.exe
 C:\Users\altti\source\repos\mokkisofta\mokkisofta\obj\Debug\mokkisofta.pdb
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csprojAssemblyReference.cache
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Tietoa.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Raportit.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Palvelut.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Asiakkaat.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Laskut.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Varaukset.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Toimipisteet.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Paaikkuna.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.Properties.Resources.resources
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.GenerateResource.cache
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.CoreCompileInputs.cache
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.exe
+C:\Users\janne\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.pdb

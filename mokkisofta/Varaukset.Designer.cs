@@ -30,7 +30,7 @@
         {
             this.tslTpstatuslabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.btnVarLisää = new System.Windows.Forms.Button();
+            this.btnVarLisaa = new System.Windows.Forms.Button();
             this.btnVarPoista = new System.Windows.Forms.Button();
             this.btnVarMuokkaa = new System.Windows.Forms.Button();
             this.lblVarAlkupvm = new System.Windows.Forms.Label();
@@ -38,11 +38,9 @@
             this.lblVarVahvistuspvm = new System.Windows.Forms.Label();
             this.lblVarToimipiste = new System.Windows.Forms.Label();
             this.lblVarAsiakas = new System.Windows.Forms.Label();
-            this.txbVarNumero = new System.Windows.Forms.TextBox();
             this.DgwVaraukset = new System.Windows.Forms.DataGridView();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.lblTpNumero = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cboxVarAsiakas = new System.Windows.Forms.ComboBox();
             this.cboxVarToimipiste = new System.Windows.Forms.ComboBox();
@@ -51,6 +49,8 @@
             this.dtVarAlkupvm = new System.Windows.Forms.DateTimePicker();
             this.lblVarLoppupvm = new System.Windows.Forms.Label();
             this.dtVarLoppupvm = new System.Windows.Forms.DateTimePicker();
+            this.btnVarPeruuta = new System.Windows.Forms.Button();
+            this.btnVarTallenna = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgwVaraukset)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -65,43 +65,46 @@
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tslTpstatuslabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 500);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 561);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(801, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(875, 22);
             this.statusStrip1.TabIndex = 40;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // btnVarLisää
+            // btnVarLisaa
             // 
-            this.btnVarLisää.Location = new System.Drawing.Point(671, 402);
-            this.btnVarLisää.Name = "btnVarLisää";
-            this.btnVarLisää.Size = new System.Drawing.Size(99, 41);
-            this.btnVarLisää.TabIndex = 39;
-            this.btnVarLisää.Text = "Lisää";
-            this.btnVarLisää.UseVisualStyleBackColor = true;
+            this.btnVarLisaa.Location = new System.Drawing.Point(725, 399);
+            this.btnVarLisaa.Name = "btnVarLisaa";
+            this.btnVarLisaa.Size = new System.Drawing.Size(99, 41);
+            this.btnVarLisaa.TabIndex = 8;
+            this.btnVarLisaa.Text = "Lisää";
+            this.btnVarLisaa.UseVisualStyleBackColor = true;
+            this.btnVarLisaa.Click += new System.EventHandler(this.BtnVarLisaa_Click);
             // 
             // btnVarPoista
             // 
-            this.btnVarPoista.Location = new System.Drawing.Point(671, 451);
+            this.btnVarPoista.Location = new System.Drawing.Point(725, 448);
             this.btnVarPoista.Name = "btnVarPoista";
             this.btnVarPoista.Size = new System.Drawing.Size(99, 41);
-            this.btnVarPoista.TabIndex = 36;
+            this.btnVarPoista.TabIndex = 10;
             this.btnVarPoista.Text = "Poista";
             this.btnVarPoista.UseVisualStyleBackColor = true;
+            this.btnVarPoista.Click += new System.EventHandler(this.BtnVarPoista_Click);
             // 
             // btnVarMuokkaa
             // 
-            this.btnVarMuokkaa.Location = new System.Drawing.Point(566, 451);
+            this.btnVarMuokkaa.Location = new System.Drawing.Point(620, 448);
             this.btnVarMuokkaa.Name = "btnVarMuokkaa";
             this.btnVarMuokkaa.Size = new System.Drawing.Size(99, 41);
-            this.btnVarMuokkaa.TabIndex = 35;
+            this.btnVarMuokkaa.TabIndex = 9;
             this.btnVarMuokkaa.Text = "Muokkaa";
             this.btnVarMuokkaa.UseVisualStyleBackColor = true;
+            this.btnVarMuokkaa.Click += new System.EventHandler(this.BtnVarMuokkaa_Click);
             // 
             // lblVarAlkupvm
             // 
             this.lblVarAlkupvm.AutoSize = true;
-            this.lblVarAlkupvm.Location = new System.Drawing.Point(237, 457);
+            this.lblVarAlkupvm.Location = new System.Drawing.Point(265, 457);
             this.lblVarAlkupvm.Name = "lblVarAlkupvm";
             this.lblVarAlkupvm.Size = new System.Drawing.Size(51, 13);
             this.lblVarAlkupvm.TabIndex = 34;
@@ -110,7 +113,7 @@
             // lblVarPvm
             // 
             this.lblVarPvm.AutoSize = true;
-            this.lblVarPvm.Location = new System.Drawing.Point(237, 402);
+            this.lblVarPvm.Location = new System.Drawing.Point(265, 402);
             this.lblVarPvm.Name = "lblVarPvm";
             this.lblVarPvm.Size = new System.Drawing.Size(64, 13);
             this.lblVarPvm.TabIndex = 33;
@@ -119,7 +122,7 @@
             // lblVarVahvistuspvm
             // 
             this.lblVarVahvistuspvm.AutoSize = true;
-            this.lblVarVahvistuspvm.Location = new System.Drawing.Point(237, 430);
+            this.lblVarVahvistuspvm.Location = new System.Drawing.Point(265, 430);
             this.lblVarVahvistuspvm.Name = "lblVarVahvistuspvm";
             this.lblVarVahvistuspvm.Size = new System.Drawing.Size(76, 13);
             this.lblVarVahvistuspvm.TabIndex = 32;
@@ -128,7 +131,7 @@
             // lblVarToimipiste
             // 
             this.lblVarToimipiste.AutoSize = true;
-            this.lblVarToimipiste.Location = new System.Drawing.Point(43, 473);
+            this.lblVarToimipiste.Location = new System.Drawing.Point(19, 442);
             this.lblVarToimipiste.Name = "lblVarToimipiste";
             this.lblVarToimipiste.Size = new System.Drawing.Size(54, 13);
             this.lblVarToimipiste.TabIndex = 31;
@@ -137,25 +140,18 @@
             // lblVarAsiakas
             // 
             this.lblVarAsiakas.AutoSize = true;
-            this.lblVarAsiakas.Location = new System.Drawing.Point(43, 438);
+            this.lblVarAsiakas.Location = new System.Drawing.Point(19, 407);
             this.lblVarAsiakas.Name = "lblVarAsiakas";
             this.lblVarAsiakas.Size = new System.Drawing.Size(44, 13);
             this.lblVarAsiakas.TabIndex = 30;
             this.lblVarAsiakas.Text = "Asiakas";
-            // 
-            // txbVarNumero
-            // 
-            this.txbVarNumero.Location = new System.Drawing.Point(93, 402);
-            this.txbVarNumero.Name = "txbVarNumero";
-            this.txbVarNumero.Size = new System.Drawing.Size(58, 20);
-            this.txbVarNumero.TabIndex = 23;
             // 
             // DgwVaraukset
             // 
             this.DgwVaraukset.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DgwVaraukset.Location = new System.Drawing.Point(32, 45);
             this.DgwVaraukset.Name = "DgwVaraukset";
-            this.DgwVaraukset.Size = new System.Drawing.Size(738, 330);
+            this.DgwVaraukset.Size = new System.Drawing.Size(792, 333);
             this.DgwVaraukset.TabIndex = 22;
             // 
             // ohjeToolStripMenuItem
@@ -170,15 +166,6 @@
             this.tiedostoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.tiedostoToolStripMenuItem.Text = "Tiedosto";
             // 
-            // lblTpNumero
-            // 
-            this.lblTpNumero.AutoSize = true;
-            this.lblTpNumero.Location = new System.Drawing.Point(43, 402);
-            this.lblTpNumero.Name = "lblTpNumero";
-            this.lblTpNumero.Size = new System.Drawing.Size(44, 13);
-            this.lblTpNumero.TabIndex = 29;
-            this.lblTpNumero.Text = "Numero";
-            // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -186,51 +173,51 @@
             this.ohjeToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(801, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(875, 24);
             this.menuStrip1.TabIndex = 21;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // cboxVarAsiakas
             // 
             this.cboxVarAsiakas.FormattingEnabled = true;
-            this.cboxVarAsiakas.Location = new System.Drawing.Point(93, 435);
+            this.cboxVarAsiakas.Location = new System.Drawing.Point(79, 399);
             this.cboxVarAsiakas.Name = "cboxVarAsiakas";
-            this.cboxVarAsiakas.Size = new System.Drawing.Size(121, 21);
-            this.cboxVarAsiakas.TabIndex = 41;
+            this.cboxVarAsiakas.Size = new System.Drawing.Size(152, 21);
+            this.cboxVarAsiakas.TabIndex = 2;
             // 
             // cboxVarToimipiste
             // 
             this.cboxVarToimipiste.FormattingEnabled = true;
-            this.cboxVarToimipiste.Location = new System.Drawing.Point(93, 470);
+            this.cboxVarToimipiste.Location = new System.Drawing.Point(79, 434);
             this.cboxVarToimipiste.Name = "cboxVarToimipiste";
-            this.cboxVarToimipiste.Size = new System.Drawing.Size(121, 21);
-            this.cboxVarToimipiste.TabIndex = 42;
+            this.cboxVarToimipiste.Size = new System.Drawing.Size(152, 21);
+            this.cboxVarToimipiste.TabIndex = 3;
             // 
             // dtVarPvm
             // 
-            this.dtVarPvm.Location = new System.Drawing.Point(326, 399);
+            this.dtVarPvm.Location = new System.Drawing.Point(354, 399);
             this.dtVarPvm.Name = "dtVarPvm";
             this.dtVarPvm.Size = new System.Drawing.Size(200, 20);
-            this.dtVarPvm.TabIndex = 43;
+            this.dtVarPvm.TabIndex = 4;
             // 
             // dtVarVahvistuspvm
             // 
-            this.dtVarVahvistuspvm.Location = new System.Drawing.Point(326, 425);
+            this.dtVarVahvistuspvm.Location = new System.Drawing.Point(354, 425);
             this.dtVarVahvistuspvm.Name = "dtVarVahvistuspvm";
             this.dtVarVahvistuspvm.Size = new System.Drawing.Size(200, 20);
-            this.dtVarVahvistuspvm.TabIndex = 44;
+            this.dtVarVahvistuspvm.TabIndex = 5;
             // 
             // dtVarAlkupvm
             // 
-            this.dtVarAlkupvm.Location = new System.Drawing.Point(326, 451);
+            this.dtVarAlkupvm.Location = new System.Drawing.Point(354, 451);
             this.dtVarAlkupvm.Name = "dtVarAlkupvm";
             this.dtVarAlkupvm.Size = new System.Drawing.Size(200, 20);
-            this.dtVarAlkupvm.TabIndex = 45;
+            this.dtVarAlkupvm.TabIndex = 6;
             // 
             // lblVarLoppupvm
             // 
             this.lblVarLoppupvm.AutoSize = true;
-            this.lblVarLoppupvm.Location = new System.Drawing.Point(237, 478);
+            this.lblVarLoppupvm.Location = new System.Drawing.Point(265, 478);
             this.lblVarLoppupvm.Name = "lblVarLoppupvm";
             this.lblVarLoppupvm.Size = new System.Drawing.Size(60, 13);
             this.lblVarLoppupvm.TabIndex = 46;
@@ -238,16 +225,38 @@
             // 
             // dtVarLoppupvm
             // 
-            this.dtVarLoppupvm.Location = new System.Drawing.Point(326, 477);
+            this.dtVarLoppupvm.Location = new System.Drawing.Point(354, 477);
             this.dtVarLoppupvm.Name = "dtVarLoppupvm";
             this.dtVarLoppupvm.Size = new System.Drawing.Size(200, 20);
-            this.dtVarLoppupvm.TabIndex = 47;
+            this.dtVarLoppupvm.TabIndex = 7;
+            // 
+            // btnVarPeruuta
+            // 
+            this.btnVarPeruuta.Location = new System.Drawing.Point(620, 495);
+            this.btnVarPeruuta.Name = "btnVarPeruuta";
+            this.btnVarPeruuta.Size = new System.Drawing.Size(99, 41);
+            this.btnVarPeruuta.TabIndex = 11;
+            this.btnVarPeruuta.Text = "Peruuta";
+            this.btnVarPeruuta.UseVisualStyleBackColor = true;
+            this.btnVarPeruuta.Click += new System.EventHandler(this.BtnVarPeruuta_Click);
+            // 
+            // btnVarTallenna
+            // 
+            this.btnVarTallenna.Location = new System.Drawing.Point(725, 495);
+            this.btnVarTallenna.Name = "btnVarTallenna";
+            this.btnVarTallenna.Size = new System.Drawing.Size(99, 41);
+            this.btnVarTallenna.TabIndex = 12;
+            this.btnVarTallenna.Text = "Tallenna";
+            this.btnVarTallenna.UseVisualStyleBackColor = true;
+            this.btnVarTallenna.Click += new System.EventHandler(this.BtnVarTallenna_Click);
             // 
             // Varaukset
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(801, 522);
+            this.ClientSize = new System.Drawing.Size(875, 583);
+            this.Controls.Add(this.btnVarPeruuta);
+            this.Controls.Add(this.btnVarTallenna);
             this.Controls.Add(this.dtVarLoppupvm);
             this.Controls.Add(this.lblVarLoppupvm);
             this.Controls.Add(this.dtVarAlkupvm);
@@ -256,7 +265,7 @@
             this.Controls.Add(this.cboxVarToimipiste);
             this.Controls.Add(this.cboxVarAsiakas);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btnVarLisää);
+            this.Controls.Add(this.btnVarLisaa);
             this.Controls.Add(this.btnVarPoista);
             this.Controls.Add(this.btnVarMuokkaa);
             this.Controls.Add(this.lblVarAlkupvm);
@@ -264,9 +273,7 @@
             this.Controls.Add(this.lblVarVahvistuspvm);
             this.Controls.Add(this.lblVarToimipiste);
             this.Controls.Add(this.lblVarAsiakas);
-            this.Controls.Add(this.txbVarNumero);
             this.Controls.Add(this.DgwVaraukset);
-            this.Controls.Add(this.lblTpNumero);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Varaukset";
             this.Text = "Varaukset";
@@ -284,7 +291,7 @@
 
         private System.Windows.Forms.ToolStripStatusLabel tslTpstatuslabel1;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.Button btnVarLisää;
+        private System.Windows.Forms.Button btnVarLisaa;
         private System.Windows.Forms.Button btnVarPoista;
         private System.Windows.Forms.Button btnVarMuokkaa;
         private System.Windows.Forms.Label lblVarAlkupvm;
@@ -292,11 +299,9 @@
         private System.Windows.Forms.Label lblVarVahvistuspvm;
         private System.Windows.Forms.Label lblVarToimipiste;
         private System.Windows.Forms.Label lblVarAsiakas;
-        private System.Windows.Forms.TextBox txbVarNumero;
         private System.Windows.Forms.DataGridView DgwVaraukset;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
-        private System.Windows.Forms.Label lblTpNumero;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ComboBox cboxVarAsiakas;
         private System.Windows.Forms.ComboBox cboxVarToimipiste;
@@ -305,5 +310,7 @@
         private System.Windows.Forms.DateTimePicker dtVarAlkupvm;
         private System.Windows.Forms.Label lblVarLoppupvm;
         private System.Windows.Forms.DateTimePicker dtVarLoppupvm;
+        private System.Windows.Forms.Button btnVarPeruuta;
+        private System.Windows.Forms.Button btnVarTallenna;
     }
 }

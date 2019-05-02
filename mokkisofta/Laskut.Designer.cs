@@ -46,7 +46,7 @@
             this.txbLasPostitoimipaikka = new System.Windows.Forms.TextBox();
             this.txbLasNimi = new System.Windows.Forms.TextBox();
             this.txbLasNumero = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgwLaskut = new System.Windows.Forms.DataGridView();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblLasNumero = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -56,7 +56,7 @@
             this.txbLasAlv = new System.Windows.Forms.TextBox();
             this.lblLasAlv = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwLaskut)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -115,6 +115,7 @@
             this.btnLasPoista.TabIndex = 80;
             this.btnLasPoista.Text = "Poista";
             this.btnLasPoista.UseVisualStyleBackColor = true;
+            this.btnLasPoista.Click += new System.EventHandler(this.btnLasPoista_Click);
             // 
             // btnLasMuokkaa
             // 
@@ -124,6 +125,7 @@
             this.btnLasMuokkaa.TabIndex = 79;
             this.btnLasMuokkaa.Text = "Muokkaa";
             this.btnLasMuokkaa.UseVisualStyleBackColor = true;
+            this.btnLasMuokkaa.Click += new System.EventHandler(this.btnLasMuokkaa_Click);
             // 
             // lblLasPostinro
             // 
@@ -205,13 +207,13 @@
             this.txbLasNumero.Size = new System.Drawing.Size(58, 20);
             this.txbLasNumero.TabIndex = 68;
             // 
-            // dataGridView1
+            // dgwLaskut
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(29, 43);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(738, 330);
-            this.dataGridView1.TabIndex = 67;
+            this.dgwLaskut.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwLaskut.Location = new System.Drawing.Point(29, 43);
+            this.dgwLaskut.Name = "dgwLaskut";
+            this.dgwLaskut.Size = new System.Drawing.Size(738, 330);
+            this.dgwLaskut.TabIndex = 67;
             // 
             // ohjeToolStripMenuItem
             // 
@@ -305,14 +307,14 @@
             this.Controls.Add(this.txbLasPostitoimipaikka);
             this.Controls.Add(this.txbLasNimi);
             this.Controls.Add(this.txbLasNumero);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgwLaskut);
             this.Controls.Add(this.lblLasNumero);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Laskut";
             this.Text = "Laskut";
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwLaskut)).EndInit();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -340,7 +342,7 @@
         private System.Windows.Forms.TextBox txbLasPostitoimipaikka;
         private System.Windows.Forms.TextBox txbLasNimi;
         private System.Windows.Forms.TextBox txbLasNumero;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgwLaskut;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.Label lblLasNumero;
         private System.Windows.Forms.MenuStrip menuStrip1;

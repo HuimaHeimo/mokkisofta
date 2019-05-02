@@ -26,8 +26,10 @@ namespace mokkisofta
 
             // Haetaan toimipisteet alasvetovalikkoon.
             S.Connect();
+
             DataTable dt = new DataTable();
             cboxPlvToimipiste = S.haeTaulustaLaatikkoon(S, cboxPlvToimipiste, dt, "Toimipiste", "nimi", "postitoimipaikka", ""); 
+
             S.Close();
 
             // Haetaan tietokannasta palvelut DataGridViewiin.
