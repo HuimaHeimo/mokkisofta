@@ -251,7 +251,7 @@
             this.chrRptChart1.Size = new System.Drawing.Size(410, 376);
             this.chrRptChart1.TabIndex = 26;
             this.chrRptChart1.Text = "chart1";
-            this.chrRptChart1.Click += new System.EventHandler(this.ChrRptChart1_Click);
+
             // 
             // chbRptSisallytaToimip
             // 

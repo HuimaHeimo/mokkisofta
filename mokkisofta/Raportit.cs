@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace mokkisofta
 {
@@ -16,6 +17,7 @@ namespace mokkisofta
         public Raportit()
         {
             InitializeComponent();
+
         }
 
         private void ChbRptSisallytaToimip_CheckedChanged(object sender, EventArgs e)
@@ -73,28 +75,32 @@ namespace mokkisofta
 
         private void BtnRptHae_Click(object sender, EventArgs e)
         {
+            
             if (this.Controls.OfType<CheckBox>().Any(t => !checked(t.Checked)))
             {
 
                 s.Connect();
-                dgwRaportit.DataSource = s.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
-            "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
-            "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
-                int varausmaara = s.Haelukumaara("SELECT COUNT(varaus_id) FROM Varaus");
-                int asiakasmaara = s.Haelukumaara("SELECT COUNT(DISTINCT asiakas_id) FROM Varaus");
-                
+                dtpRptAlku.CustomFormat = "yyyyMMdd";
+                dtpRptLoppu.CustomFormat = "yyyyMMdd";
+                dgwRaportit.DataSource = s.ShowInGridView("SELECT varaus_id AS 'Varaus Id', Asiakas.etunimi +' '+ Asiakas.sukunimi AS 'Asiakas',Toimipiste.toimipiste_id AS 'Toimipiste ID' , Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varaus pvm'" +
+                "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
+                int i = 0;
+                int ts = (int) dtpRptLoppu.Value.ToOADate() - (int) dtpRptAlku.Value.ToOADate();
 
-                chrRptChart1.Series["Varaukset"].Points.AddXY(dtpRptAlku.Value.ToString(), varausmaara);
-                chrRptChart1.Series["Asiakkaat"].Points.AddXY(dtpRptAlku.Value.ToString(), asiakasmaara);
+                for (; ts > 0; ts--)
+                {                   
+                    int varausmaara = s.Haelukumaara($"SELECT COUNT(varaus_id) FROM Varaus WHERE varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
+                    int asiakasmaara = s.Haelukumaara($"SELECT COUNT(DISTINCT asiakas_id) FROM Varaus WHERE varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
+                    chrRptChart1.Series["Varaukset"].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), varausmaara);
+                    chrRptChart1.Series["Asiakkaat"].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), asiakasmaara);
+                    i++;                    
+                }
                 
                 s.Close();
             }
         }
 
-        private void ChrRptChart1_Click(object sender, EventArgs e)
-        {
 
-        }
     }
 }
 
