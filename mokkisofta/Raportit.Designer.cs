@@ -290,6 +290,6 @@
         private System.Windows.Forms.Button btnRptLataa;
         private System.Windows.Forms.Button btnRptTallenna;
         private System.Windows.Forms.Button btnRptTulosta;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chrRptChart1;
+        //private System.Windows.Forms.DataVisualization.Charting.Chart chrRptChart1;
     }
 }

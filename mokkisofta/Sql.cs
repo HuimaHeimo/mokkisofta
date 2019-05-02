@@ -83,11 +83,6 @@ namespace mokkisofta
                 return c;
             }
 
-        }
-
-
-
-
         } 
 
         /// <summary>
