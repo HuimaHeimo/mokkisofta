@@ -28,45 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControl1.SuspendLayout();
+            this.dgwRaportit = new System.Windows.Forms.DataGridView();
+            this.btnRptHae = new System.Windows.Forms.Button();
+            this.cbxRptToimipiste = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cbxRptPalvelut = new System.Windows.Forms.ComboBox();
+            this.dtpRptAlku = new System.Windows.Forms.DateTimePicker();
+            this.dtpRptLoppu = new System.Windows.Forms.DateTimePicker();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnRptTyhjenna = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(12, 27);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(860, 467);
-            this.tabControl1.TabIndex = 0;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(852, 441);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // tabPage2
-            // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(852, 441);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // menuStrip1
             // 
@@ -91,31 +69,141 @@
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
             // 
+            // dgwRaportit
+            // 
+            this.dgwRaportit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwRaportit.Location = new System.Drawing.Point(12, 27);
+            this.dgwRaportit.Name = "dgwRaportit";
+            this.dgwRaportit.Size = new System.Drawing.Size(860, 466);
+            this.dgwRaportit.TabIndex = 2;
+            // 
+            // btnRptHae
+            // 
+            this.btnRptHae.Location = new System.Drawing.Point(669, 499);
+            this.btnRptHae.Name = "btnRptHae";
+            this.btnRptHae.Size = new System.Drawing.Size(99, 41);
+            this.btnRptHae.TabIndex = 11;
+            this.btnRptHae.Text = "Hae";
+            this.btnRptHae.UseVisualStyleBackColor = true;
+            // 
+            // cbxRptToimipiste
+            // 
+            this.cbxRptToimipiste.FormattingEnabled = true;
+            this.cbxRptToimipiste.Location = new System.Drawing.Point(158, 505);
+            this.cbxRptToimipiste.Name = "cbxRptToimipiste";
+            this.cbxRptToimipiste.Size = new System.Drawing.Size(121, 21);
+            this.cbxRptToimipiste.TabIndex = 12;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 508);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 13);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "Hae raportit toimipisteestä : ";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(15, 535);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 13);
+            this.label2.TabIndex = 15;
+            this.label2.Text = "Hae raportit palveluista :";
+            // 
+            // cbxRptPalvelut
+            // 
+            this.cbxRptPalvelut.FormattingEnabled = true;
+            this.cbxRptPalvelut.Location = new System.Drawing.Point(158, 532);
+            this.cbxRptPalvelut.Name = "cbxRptPalvelut";
+            this.cbxRptPalvelut.Size = new System.Drawing.Size(121, 21);
+            this.cbxRptPalvelut.TabIndex = 14;
+            // 
+            // dtpRptAlku
+            // 
+            this.dtpRptAlku.Location = new System.Drawing.Point(410, 507);
+            this.dtpRptAlku.Name = "dtpRptAlku";
+            this.dtpRptAlku.Size = new System.Drawing.Size(200, 20);
+            this.dtpRptAlku.TabIndex = 16;
+            this.dtpRptAlku.Value = new System.DateTime(2019, 4, 25, 0, 0, 0, 0);
+            // 
+            // dtpRptLoppu
+            // 
+            this.dtpRptLoppu.Location = new System.Drawing.Point(410, 533);
+            this.dtpRptLoppu.Name = "dtpRptLoppu";
+            this.dtpRptLoppu.Size = new System.Drawing.Size(200, 20);
+            this.dtpRptLoppu.TabIndex = 17;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(301, 513);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(97, 13);
+            this.label3.TabIndex = 18;
+            this.label3.Text = "Raportin alku pvä :";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(301, 539);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 13);
+            this.label4.TabIndex = 19;
+            this.label4.Text = "Raportin loppu pvä :";
+            // 
+            // btnRptTyhjenna
+            // 
+            this.btnRptTyhjenna.Location = new System.Drawing.Point(774, 499);
+            this.btnRptTyhjenna.Name = "btnRptTyhjenna";
+            this.btnRptTyhjenna.Size = new System.Drawing.Size(99, 41);
+            this.btnRptTyhjenna.TabIndex = 20;
+            this.btnRptTyhjenna.Text = "Tyhjennä";
+            this.btnRptTyhjenna.UseVisualStyleBackColor = true;
+            // 
             // Raportit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btnRptTyhjenna);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.dtpRptLoppu);
+            this.Controls.Add(this.dtpRptAlku);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.cbxRptPalvelut);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cbxRptToimipiste);
+            this.Controls.Add(this.btnRptHae);
+            this.Controls.Add(this.dgwRaportit);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Raportit";
             this.Text = "Raportit";
-            this.tabControl1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
-        private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dgwRaportit;
+        private System.Windows.Forms.Button btnRptHae;
+        private System.Windows.Forms.ComboBox cbxRptToimipiste;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbxRptPalvelut;
+        private System.Windows.Forms.DateTimePicker dtpRptAlku;
+        private System.Windows.Forms.DateTimePicker dtpRptLoppu;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnRptTyhjenna;
     }
 }
