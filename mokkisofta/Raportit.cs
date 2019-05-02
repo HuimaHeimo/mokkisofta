@@ -67,6 +67,35 @@ namespace mokkisofta
                 cbxRptPalvelut.Enabled = false;
                 cbxRptPalvelut.Text = "Kaikki";
             }
+
+
+        }
+
+        private void BtnRptHae_Click(object sender, EventArgs e)
+        {
+            if (this.Controls.OfType<CheckBox>().Any(t => !checked(t.Checked)))
+            {
+
+                s.Connect();
+                dgwRaportit.DataSource = s.ShowInGridView("SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
+            "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
+            "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id");
+                int varausmaara = s.Haelukumaara("SELECT COUNT(varaus_id) FROM Varaus");
+                int asiakasmaara = s.Haelukumaara("SELECT COUNT(DISTINCT asiakas_id) FROM Varaus");
+                
+
+                chrRptChart1.Series["Varaukset"].Points.AddXY(dtpRptAlku.Value.ToString(), varausmaara);
+                chrRptChart1.Series["Asiakkaat"].Points.AddXY(dtpRptAlku.Value.ToString(), asiakasmaara);
+                
+                s.Close();
+            }
+        }
+
+        private void ChrRptChart1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
+
+        
