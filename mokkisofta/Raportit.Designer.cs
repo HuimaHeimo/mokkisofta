@@ -42,6 +42,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.btnRptTyhjenna = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cbxRptAsiakkaat = new System.Windows.Forms.ComboBox();
+            this.btnRptLataa = new System.Windows.Forms.Button();
+            this.btnRptTallenna = new System.Windows.Forms.Button();
+            this.btnRptTulosta = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).BeginInit();
             this.SuspendLayout();
@@ -74,12 +79,12 @@
             this.dgwRaportit.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgwRaportit.Location = new System.Drawing.Point(12, 27);
             this.dgwRaportit.Name = "dgwRaportit";
-            this.dgwRaportit.Size = new System.Drawing.Size(860, 466);
+            this.dgwRaportit.Size = new System.Drawing.Size(860, 376);
             this.dgwRaportit.TabIndex = 2;
             // 
             // btnRptHae
             // 
-            this.btnRptHae.Location = new System.Drawing.Point(669, 499);
+            this.btnRptHae.Location = new System.Drawing.Point(668, 409);
             this.btnRptHae.Name = "btnRptHae";
             this.btnRptHae.Size = new System.Drawing.Size(99, 41);
             this.btnRptHae.TabIndex = 11;
@@ -89,15 +94,16 @@
             // cbxRptToimipiste
             // 
             this.cbxRptToimipiste.FormattingEnabled = true;
-            this.cbxRptToimipiste.Location = new System.Drawing.Point(158, 505);
+            this.cbxRptToimipiste.Location = new System.Drawing.Point(155, 420);
             this.cbxRptToimipiste.Name = "cbxRptToimipiste";
             this.cbxRptToimipiste.Size = new System.Drawing.Size(121, 21);
             this.cbxRptToimipiste.TabIndex = 12;
+            this.cbxRptToimipiste.Text = "Kaikki";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 508);
+            this.label1.Location = new System.Drawing.Point(12, 423);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 13);
             this.label1.TabIndex = 13;
@@ -106,23 +112,24 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 535);
+            this.label2.Location = new System.Drawing.Point(12, 450);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 13);
+            this.label2.Size = new System.Drawing.Size(119, 13);
             this.label2.TabIndex = 15;
-            this.label2.Text = "Hae raportit palveluista :";
+            this.label2.Text = "Hae raportit palvelusta :";
             // 
             // cbxRptPalvelut
             // 
             this.cbxRptPalvelut.FormattingEnabled = true;
-            this.cbxRptPalvelut.Location = new System.Drawing.Point(158, 532);
+            this.cbxRptPalvelut.Location = new System.Drawing.Point(155, 447);
             this.cbxRptPalvelut.Name = "cbxRptPalvelut";
             this.cbxRptPalvelut.Size = new System.Drawing.Size(121, 21);
             this.cbxRptPalvelut.TabIndex = 14;
+            this.cbxRptPalvelut.Text = "Kaikki";
             // 
             // dtpRptAlku
             // 
-            this.dtpRptAlku.Location = new System.Drawing.Point(410, 507);
+            this.dtpRptAlku.Location = new System.Drawing.Point(407, 422);
             this.dtpRptAlku.Name = "dtpRptAlku";
             this.dtpRptAlku.Size = new System.Drawing.Size(200, 20);
             this.dtpRptAlku.TabIndex = 16;
@@ -130,7 +137,7 @@
             // 
             // dtpRptLoppu
             // 
-            this.dtpRptLoppu.Location = new System.Drawing.Point(410, 533);
+            this.dtpRptLoppu.Location = new System.Drawing.Point(407, 448);
             this.dtpRptLoppu.Name = "dtpRptLoppu";
             this.dtpRptLoppu.Size = new System.Drawing.Size(200, 20);
             this.dtpRptLoppu.TabIndex = 17;
@@ -138,7 +145,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(301, 513);
+            this.label3.Location = new System.Drawing.Point(298, 428);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(97, 13);
             this.label3.TabIndex = 18;
@@ -147,7 +154,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(301, 539);
+            this.label4.Location = new System.Drawing.Point(298, 454);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(103, 13);
             this.label4.TabIndex = 19;
@@ -155,18 +162,68 @@
             // 
             // btnRptTyhjenna
             // 
-            this.btnRptTyhjenna.Location = new System.Drawing.Point(774, 499);
+            this.btnRptTyhjenna.Location = new System.Drawing.Point(773, 409);
             this.btnRptTyhjenna.Name = "btnRptTyhjenna";
             this.btnRptTyhjenna.Size = new System.Drawing.Size(99, 41);
             this.btnRptTyhjenna.TabIndex = 20;
             this.btnRptTyhjenna.Text = "Tyhjennä";
             this.btnRptTyhjenna.UseVisualStyleBackColor = true;
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(12, 477);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(128, 13);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Hae raportit asiakkaasta :";
+            // 
+            // cbxRptAsiakkaat
+            // 
+            this.cbxRptAsiakkaat.FormattingEnabled = true;
+            this.cbxRptAsiakkaat.Location = new System.Drawing.Point(155, 474);
+            this.cbxRptAsiakkaat.Name = "cbxRptAsiakkaat";
+            this.cbxRptAsiakkaat.Size = new System.Drawing.Size(121, 21);
+            this.cbxRptAsiakkaat.TabIndex = 21;
+            this.cbxRptAsiakkaat.Text = "Kaikki";
+            // 
+            // btnRptLataa
+            // 
+            this.btnRptLataa.Location = new System.Drawing.Point(773, 456);
+            this.btnRptLataa.Name = "btnRptLataa";
+            this.btnRptLataa.Size = new System.Drawing.Size(99, 41);
+            this.btnRptLataa.TabIndex = 24;
+            this.btnRptLataa.Text = "Lataa";
+            this.btnRptLataa.UseVisualStyleBackColor = true;
+            // 
+            // btnRptTallenna
+            // 
+            this.btnRptTallenna.Location = new System.Drawing.Point(668, 456);
+            this.btnRptTallenna.Name = "btnRptTallenna";
+            this.btnRptTallenna.Size = new System.Drawing.Size(99, 41);
+            this.btnRptTallenna.TabIndex = 23;
+            this.btnRptTallenna.Text = "Tallenna";
+            this.btnRptTallenna.UseVisualStyleBackColor = true;
+            // 
+            // btnRptTulosta
+            // 
+            this.btnRptTulosta.Location = new System.Drawing.Point(773, 503);
+            this.btnRptTulosta.Name = "btnRptTulosta";
+            this.btnRptTulosta.Size = new System.Drawing.Size(99, 41);
+            this.btnRptTulosta.TabIndex = 25;
+            this.btnRptTulosta.Text = "Tulosta";
+            this.btnRptTulosta.UseVisualStyleBackColor = true;
+            // 
             // Raportit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
+            this.Controls.Add(this.btnRptTulosta);
+            this.Controls.Add(this.btnRptLataa);
+            this.Controls.Add(this.btnRptTallenna);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.cbxRptAsiakkaat);
             this.Controls.Add(this.btnRptTyhjenna);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -205,5 +262,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnRptTyhjenna;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox cbxRptAsiakkaat;
+        private System.Windows.Forms.Button btnRptLataa;
+        private System.Windows.Forms.Button btnRptTallenna;
+        private System.Windows.Forms.Button btnRptTulosta;
     }
 }
