@@ -75,5 +75,45 @@ namespace mokkisofta
             //Otetaan datagridin käyttö pois muokkauksen ajaksi
             dgwLaskut.Enabled = false;
         }
+
+        private void btnLasLisää_Click(object sender, EventArgs e)
+        {
+            lisaysTila();
+        }
+        private void lisaysTila()
+        {
+            // Siirrytään painamalla lisää nappia. Tekstikenttiin pystyy syöttämään tietoa. Vain Tallenna ja Peruuta painikkeet ovat käytössä.
+            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
+            btnLisaaPainettu = true;
+            dgwLaskut.Enabled = false;
+        }
+        private void laskut_Click(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+
+            // Jos painetaan Lisää-painiketta, kentissä olevat tiedot viedään tietokantaan.
+            if (btn == btnLasLisää)
+            {
+                sql.Connect();
+
+                double pNumero = double.Parse(txbLasNumero.Text);
+                string pVaraus = cboxLasVaraus.Text;
+                string pAsiakas = cboxLasAsiakas.Text;
+                string pNimi = txbLasNimi.Text;
+                string pLahiosoite = txbLasOsoite.Text;
+                string pPostitoimipaikka = txbLasPostitoimipaikka.Text;
+                string pPostinumero = txbLasPostinro.Text;
+                string pSumma = txbLasSumma.Text;
+                double pAlv = double.Parse(txbLasAlv.Text);
+
+
+                string pLisays = $"INSERT INTO Lasku (numero, varaus, asiakas, nimi, lahiosoite, postitoimipaikka, postinro, summa, alv) VALUES ('{pNumero}','{pVaraus}', '{pAsiakas}', '{pNimi}', '{pLahiosoite}', '{pPostitoimipaikka}', '{pPostinumero}', '{pSumma}', '{pAlv}')";
+                sql.Query(pLisays);
+                dgwLaskut.DataSource = sql.ShowInGridView("SELECT lasku_id AS Lasku, varaus_id AS Varaus, asiakas_id AS Asiakas, nimi AS Nimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Postitoimipaikka, postinro AS Postinumero, summa AS Summa, alv AS Alv FROM Lasku");
+
+
+                sql.Close();
+            }
+        }
     }
 }
