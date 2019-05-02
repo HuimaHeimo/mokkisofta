@@ -19,7 +19,7 @@ namespace mokkisofta
         {
             InitializeComponent();
             sql.Connect();
-            dgwLaskut.DataSource = sql.ShowInGridView("SELECT lasku_id AS Lasku, varaus_id AS Varaus, asikas_id AS Asiakas, nimi AS Nimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Postitoimipaikka, postinro AS Postinumero, summa AS Summa, alv AS Alv FROM Lasku");
+            dgwLaskut.DataSource = sql.ShowInGridView("SELECT lasku_id AS Lasku, varaus_id AS Varaus, asiakas_id AS Asiakas, nimi AS Nimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Postitoimipaikka, postinro AS Postinumero, summa AS Summa, alv AS Alv FROM Lasku");
             sql.Close();
         }
 
@@ -38,7 +38,7 @@ namespace mokkisofta
                     string asPoisto = $"DELETE FROM Laskut WHERE lasku_id='{valittuId}'";
 
                     sql.Query(asPoisto);
-                    dgwLaskut.DataSource = sql.ShowInGridView("SELECT lasku_id AS Lasku, varaus_id AS Varaus, asikas_id AS Asiakas, nimi AS Nimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Postitoimipaikka, postinro AS Postinumero, summa AS Summa, alv AS Alv FROM Lasku");
+                    dgwLaskut.DataSource = sql.ShowInGridView("SELECT lasku_id AS Lasku, varaus_id AS Varaus, asiakas_id AS Asiakas, nimi AS Nimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Postitoimipaikka, postinro AS Postinumero, summa AS Summa, alv AS Alv FROM Lasku");
                     sql.Close();
                 }
             }
