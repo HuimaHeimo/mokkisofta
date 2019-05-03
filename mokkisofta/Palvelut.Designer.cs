@@ -36,21 +36,19 @@
             this.btnPlvPoista = new System.Windows.Forms.Button();
             this.btnPlvMuokkaa = new System.Windows.Forms.Button();
             this.lblPlvAlv = new System.Windows.Forms.Label();
-            this.lblPlvTyyppi = new System.Windows.Forms.Label();
             this.lblPlvHinta = new System.Windows.Forms.Label();
             this.lblPlvKuvaus = new System.Windows.Forms.Label();
             this.lblPlvToimipiste = new System.Windows.Forms.Label();
             this.lblPlvNumero = new System.Windows.Forms.Label();
             this.txbPlvAlv = new System.Windows.Forms.TextBox();
-            this.txbPlvTyyppi = new System.Windows.Forms.TextBox();
             this.txbPlvHinta = new System.Windows.Forms.TextBox();
             this.txbPlvKuvaus = new System.Windows.Forms.TextBox();
-            this.txbPaNumero = new System.Windows.Forms.TextBox();
             this.dgwPalvelut = new System.Windows.Forms.DataGridView();
             this.cboxPlvToimipiste = new System.Windows.Forms.ComboBox();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.lblPaID = new System.Windows.Forms.Label();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwPalvelut)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -69,7 +67,7 @@
             // 
             this.txbPlvNimi.Location = new System.Drawing.Point(104, 445);
             this.txbPlvNimi.Name = "txbPlvNimi";
-            this.txbPlvNimi.Size = new System.Drawing.Size(130, 20);
+            this.txbPlvNimi.Size = new System.Drawing.Size(153, 20);
             this.txbPlvNimi.TabIndex = 4;
             // 
             // statusStrip1
@@ -118,25 +116,16 @@
             // lblPlvAlv
             // 
             this.lblPlvAlv.AutoSize = true;
-            this.lblPlvAlv.Location = new System.Drawing.Point(281, 471);
+            this.lblPlvAlv.Location = new System.Drawing.Point(304, 421);
             this.lblPlvAlv.Name = "lblPlvAlv";
             this.lblPlvAlv.Size = new System.Drawing.Size(22, 13);
             this.lblPlvAlv.TabIndex = 55;
             this.lblPlvAlv.Text = "Alv";
             // 
-            // lblPlvTyyppi
-            // 
-            this.lblPlvTyyppi.AutoSize = true;
-            this.lblPlvTyyppi.Location = new System.Drawing.Point(281, 400);
-            this.lblPlvTyyppi.Name = "lblPlvTyyppi";
-            this.lblPlvTyyppi.Size = new System.Drawing.Size(38, 13);
-            this.lblPlvTyyppi.TabIndex = 54;
-            this.lblPlvTyyppi.Text = "Tyyppi";
-            // 
             // lblPlvHinta
             // 
             this.lblPlvHinta.AutoSize = true;
-            this.lblPlvHinta.Location = new System.Drawing.Point(281, 436);
+            this.lblPlvHinta.Location = new System.Drawing.Point(304, 386);
             this.lblPlvHinta.Name = "lblPlvHinta";
             this.lblPlvHinta.Size = new System.Drawing.Size(32, 13);
             this.lblPlvHinta.TabIndex = 53;
@@ -171,21 +160,14 @@
             // 
             // txbPlvAlv
             // 
-            this.txbPlvAlv.Location = new System.Drawing.Point(370, 471);
+            this.txbPlvAlv.Location = new System.Drawing.Point(342, 421);
             this.txbPlvAlv.Name = "txbPlvAlv";
             this.txbPlvAlv.Size = new System.Drawing.Size(130, 20);
             this.txbPlvAlv.TabIndex = 8;
             // 
-            // txbPlvTyyppi
-            // 
-            this.txbPlvTyyppi.Location = new System.Drawing.Point(370, 400);
-            this.txbPlvTyyppi.Name = "txbPlvTyyppi";
-            this.txbPlvTyyppi.Size = new System.Drawing.Size(77, 20);
-            this.txbPlvTyyppi.TabIndex = 6;
-            // 
             // txbPlvHinta
             // 
-            this.txbPlvHinta.Location = new System.Drawing.Point(370, 436);
+            this.txbPlvHinta.Location = new System.Drawing.Point(342, 386);
             this.txbPlvHinta.Name = "txbPlvHinta";
             this.txbPlvHinta.Size = new System.Drawing.Size(130, 20);
             this.txbPlvHinta.TabIndex = 7;
@@ -194,15 +176,8 @@
             // 
             this.txbPlvKuvaus.Location = new System.Drawing.Point(104, 471);
             this.txbPlvKuvaus.Name = "txbPlvKuvaus";
-            this.txbPlvKuvaus.Size = new System.Drawing.Size(130, 20);
+            this.txbPlvKuvaus.Size = new System.Drawing.Size(392, 20);
             this.txbPlvKuvaus.TabIndex = 5;
-            // 
-            // txbPaNumero
-            // 
-            this.txbPaNumero.Location = new System.Drawing.Point(104, 393);
-            this.txbPaNumero.Name = "txbPaNumero";
-            this.txbPaNumero.Size = new System.Drawing.Size(58, 20);
-            this.txbPaNumero.TabIndex = 2;
             // 
             // dgwPalvelut
             // 
@@ -217,7 +192,7 @@
             this.cboxPlvToimipiste.FormattingEnabled = true;
             this.cboxPlvToimipiste.Location = new System.Drawing.Point(104, 419);
             this.cboxPlvToimipiste.Name = "cboxPlvToimipiste";
-            this.cboxPlvToimipiste.Size = new System.Drawing.Size(130, 21);
+            this.cboxPlvToimipiste.Size = new System.Drawing.Size(153, 21);
             this.cboxPlvToimipiste.TabIndex = 3;
             // 
             // tiedostoToolStripMenuItem
@@ -243,11 +218,21 @@
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // lblPaID
+            // 
+            this.lblPaID.AutoSize = true;
+            this.lblPaID.Location = new System.Drawing.Point(101, 393);
+            this.lblPaID.Name = "lblPaID";
+            this.lblPaID.Size = new System.Drawing.Size(10, 13);
+            this.lblPaID.TabIndex = 64;
+            this.lblPaID.Text = "-";
+            // 
             // Palvelut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 522);
+            this.Controls.Add(this.lblPaID);
             this.Controls.Add(this.cboxPlvToimipiste);
             this.Controls.Add(this.lblPlvNimi);
             this.Controls.Add(this.txbPlvNimi);
@@ -256,16 +241,13 @@
             this.Controls.Add(this.btnPlvPoista);
             this.Controls.Add(this.btnPlvMuokkaa);
             this.Controls.Add(this.lblPlvAlv);
-            this.Controls.Add(this.lblPlvTyyppi);
             this.Controls.Add(this.lblPlvHinta);
             this.Controls.Add(this.lblPlvKuvaus);
             this.Controls.Add(this.lblPlvToimipiste);
             this.Controls.Add(this.lblPlvNumero);
             this.Controls.Add(this.txbPlvAlv);
-            this.Controls.Add(this.txbPlvTyyppi);
             this.Controls.Add(this.txbPlvHinta);
             this.Controls.Add(this.txbPlvKuvaus);
-            this.Controls.Add(this.txbPaNumero);
             this.Controls.Add(this.dgwPalvelut);
             this.Controls.Add(this.menuStrip1);
             this.Name = "Palvelut";
@@ -290,20 +272,18 @@
         private System.Windows.Forms.Button btnPlvPoista;
         private System.Windows.Forms.Button btnPlvMuokkaa;
         private System.Windows.Forms.Label lblPlvAlv;
-        private System.Windows.Forms.Label lblPlvTyyppi;
         private System.Windows.Forms.Label lblPlvHinta;
         private System.Windows.Forms.Label lblPlvKuvaus;
         private System.Windows.Forms.Label lblPlvToimipiste;
         private System.Windows.Forms.Label lblPlvNumero;
         private System.Windows.Forms.TextBox txbPlvAlv;
-        private System.Windows.Forms.TextBox txbPlvTyyppi;
         private System.Windows.Forms.TextBox txbPlvHinta;
         private System.Windows.Forms.TextBox txbPlvKuvaus;
-        private System.Windows.Forms.TextBox txbPaNumero;
         private System.Windows.Forms.DataGridView dgwPalvelut;
         private System.Windows.Forms.ComboBox cboxPlvToimipiste;
         private System.Windows.Forms.ToolStripMenuItem tiedostoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.Label lblPaID;
     }
 }

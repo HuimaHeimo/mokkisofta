@@ -21,25 +21,24 @@ namespace mokkisofta
         {
             InitializeComponent();
 
+            // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
+            dgwPalvelut.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            // Tehdään Comboboxista alasvetovalikko, johon ei voi kirjoittaa.
             cboxPlvToimipiste.DropDownStyle = ComboBoxStyle.DropDownList;
 
             // Haetaan toimipisteet alasvetovalikkoon.
             S.Connect();
-
             DataTable dt = new DataTable();
-            cboxPlvToimipiste = S.haeTaulustaLaatikkoon(S, cboxPlvToimipiste, dt, "Toimipiste", "nimi", "postitoimipaikka", ""); 
-
+            cboxPlvToimipiste = S.haeTaulustaLaatikkoon(S, cboxPlvToimipiste, dt, "Toimipiste", "toimipiste_id", "toimipiste_id,", "nimi"); 
             S.Close();
 
             // Haetaan tietokannasta palvelut DataGridViewiin.
             S.Connect();
-            dgwPalvelut.DataSource = S.ShowInGridView("SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, tyyppi AS Tyyppi, kuvaus AS Kuvaus, hinta AS Hinta, alv AS Arvonlisävero FROM Palvelu");
+            dgwPalvelut.DataSource = S.ShowInGridView("SELECT palvelu_id AS Id, nimi as Nimi, toimipiste_id AS Toimipiste, kuvaus AS Kuvaus, hinta AS Hinta, alv AS Arvonlisävero FROM Palvelu");
             S.Close();
 
-            // Estetään ID-kentän muokkaaminen, koska tietokanta hoitaa numeroinnin.
-            txbPaNumero.Enabled = false;
-
+        
 
         }
 
@@ -57,22 +56,24 @@ namespace mokkisofta
             {
                 S.Connect();
 
-                string pToimipiste = cboxPlvToimipiste.Text;
-                string pKuvaus = txbPlvKuvaus.Text;
-                string pTyyppi = txbPlvTyyppi.Text;
-                double pHinta = double.Parse(txbPlvHinta.Text);
-                double pAlv = double.Parse(txbPlvAlv.Text);
-
-                /*if (this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
+                if (this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
                 {
-                        MessageBox.Show("Syötä tiedot kaikkiin tekstikenttiin!");
-                */
-                //else
-                //{
-                    string pLisays = $"INSERT INTO Palvelu (nimi, tyyppi, kuvaus, hinta, alv) VALUES ('{pToimipiste}','{pTyyppi}', '{pKuvaus}', '{pHinta}', '{pAlv}')";
+                    MessageBox.Show("Syötä tiedot kaikkiin tekstikenttiin!");
+                }
+                else
+                {
+                    // Viedään tekstikenttien tiedot muuttujiin.
+                    string pNimi = txbPlvNimi.Text;
+                    string pToimipiste = cboxPlvToimipiste.Text;
+                    string pKuvaus = txbPlvKuvaus.Text;
+                    double pHinta = double.Parse(txbPlvHinta.Text);
+                    double pAlv = double.Parse(txbPlvAlv.Text);
+
+                    // Muodostetaan yllä olevien muuttujien avulla SQL-lause ja lisätään tiedot tauluun.
+                    string pLisays = $"INSERT INTO Palvelu (nimi, toimipiste, kuvaus, hinta, alv) VALUES ('{pNimi}', '{pToimipiste}', '{pKuvaus}', '{pHinta}', '{pAlv}')";
                     S.Query(pLisays);
-                    dgwPalvelut.DataSource = S.ShowInGridView("SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, nimi AS Palvelu, tyyppi AS Palvelutyyppi, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu");
-                //}
+                    dgwPalvelut.DataSource = S.ShowInGridView("SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, nimi AS Palvelu, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu");
+                }
                 
                 S.Close();
             }
@@ -86,11 +87,10 @@ namespace mokkisofta
                 // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
                     string pToimipiste = cboxPlvToimipiste.Text;
                     string pKuvaus = txbPlvKuvaus.Text;
-                    string pTyyppi = txbPlvTyyppi.Text;
                     double pHinta = double.Parse(txbPlvHinta.Text);
                     double pAlv = double.Parse(txbPlvAlv.Text);
-                    string valittuId = txbPaNumero.Text;
-                    string asMuokkaus = $"UPDATE Palvelu SET toimipiste = '{pToimipiste}', kuvaus = '{pKuvaus}', tyyppi = '{pTyyppi}', hinta = '{pHinta}', alv = '{pAlv}'";
+                    string valittuId = lblPaID.Text;
+                    string asMuokkaus = $"UPDATE Palvelu SET toimipiste = '{pToimipiste}', kuvaus = '{pKuvaus}', hinta = '{pHinta}', alv = '{pAlv}'";
 
                     S.Query(asMuokkaus);
                     dgwPalvelut.DataSource = S.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
@@ -136,11 +136,10 @@ namespace mokkisofta
             */
             //Lisätään valitun rivin tiedot tekstikenntiin
             int rowIndex = dgwPalvelut.CurrentCell.RowIndex;
-            txbPaNumero.Text = dgwPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
+            lblPaID.Text = dgwPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
             cboxPlvToimipiste.Text = dgwPalvelut.Rows[rowIndex].Cells["Toimipiste"].Value.ToString();
             txbPlvNimi.Text = dgwPalvelut.Rows[rowIndex].Cells["Nimi"].Value.ToString();
             txbPlvKuvaus.Text = dgwPalvelut.Rows[rowIndex].Cells["Kuvaus"].Value.ToString();
-            txbPlvTyyppi.Text = dgwPalvelut.Rows[rowIndex].Cells["Tyyppi"].Value.ToString();
             txbPlvHinta.Text = dgwPalvelut.Rows[rowIndex].Cells["Hinta"].Value.ToString();
             txbPlvAlv.Text = dgwPalvelut.Rows[rowIndex].Cells["Arvonlisävero"].Value.ToString();
             //Otetaan datagridin käyttö pois muokkauksen ajaksi
@@ -161,7 +160,7 @@ namespace mokkisofta
             btnTpTallenna.Enabled = false; ;
             btnTpPeruuta.Enabled = false; ;
             */
-            txbPaNumero.Text = "-";
+            lblPaID.Text = "-";
             dgwPalvelut.Enabled = true;
         }
 
