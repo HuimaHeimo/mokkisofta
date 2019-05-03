@@ -54,6 +54,14 @@ namespace mokkisofta
             SqlDataReader dr = cmd.ExecuteReader();
             return dr;
         }
+        //Palauttaa lukuarvon määriä hakiessa esim (SELECT COUNT)
+        public int Haelukumaara(string QuerySql)
+        {
+            SqlCommand cmd = new SqlCommand(QuerySql, con);
+            Int32 luku = (Int32)cmd.ExecuteScalar();
+            return luku;
+        }
+
 
         public ComboBox haeTaulustaLaatikkoon(Sql S, ComboBox c, DataTable dt, string taulu, string kentta1, string kentta2, string kentta3 = "")
         {

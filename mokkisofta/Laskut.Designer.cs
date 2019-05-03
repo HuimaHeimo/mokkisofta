@@ -106,6 +106,7 @@
             this.btnLasLisää.TabIndex = 81;
             this.btnLasLisää.Text = "Lisää";
             this.btnLasLisää.UseVisualStyleBackColor = true;
+            this.btnLasLisää.Click += new System.EventHandler(this.btnLasLisää_Click);
             // 
             // btnLasPoista
             // 
