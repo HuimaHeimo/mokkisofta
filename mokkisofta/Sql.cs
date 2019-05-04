@@ -91,7 +91,37 @@ namespace mokkisofta
                 return c;
             }
 
-        } 
+        }
+
+        public ComboBox haeTaulustaLaatikkoon1(Sql S, ComboBox c, DataTable dt, string taulu, string kentta1, string kentta2, string kentta3 = "")
+        {
+            /* Palauttaa datatablen joka ottaa sql objektin ja datatablen lisäksi parametriksi: taulun nimen, sekä kaksi taulun kenttäarvoa. Esim. kentta1 = toimipaikka_id, kentta2 = toimipaikan nimi.
+             * kentta3 on vaihtoehtoinen parametri jota tarvitsee Asiakkaiden nimen tulostamisessa (etunimi + sukunimi samaan comboboxiin)
+             */
+            SqlDataReader sqlReader;
+            if (string.IsNullOrEmpty(kentta3))
+            {
+                string komento = $"SELECT {kentta1}, {kentta2} FROM {taulu}";
+                sqlReader = S.DataReader(komento);
+                dt.Load(sqlReader);
+                c.DataSource = dt;
+                c.ValueMember = kentta1;
+                c.DisplayMember = kentta2;
+                return c;
+            }
+            else
+            {
+                // Käyttäjän syöttäessä useamman kenttaparametrin; kentta2 ja kentta3 muodostavat Aliaksen KENTTA joka luetaan comboboxin nimeen.
+                string komento = $"SELECT {kentta1}, {kentta2} + ' ' + {kentta3} as KENTTA FROM {taulu}";
+                sqlReader = S.DataReader(komento);
+                dt.Load(sqlReader);
+                c.DataSource = dt;
+                c.ValueMember = kentta1;
+                c.DisplayMember = "KENTTA";
+                return c;
+            }
+
+        }
 
         /// <summary>
         /// Hakee kannasta tietoa datagridviewiin.

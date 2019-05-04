@@ -30,12 +30,13 @@ namespace mokkisofta
             // Haetaan toimipisteet alasvetovalikkoon.
             S.Connect();
             DataTable dt = new DataTable();
-            cboxPlvToimipiste = S.haeTaulustaLaatikkoon(S, cboxPlvToimipiste, dt, "Toimipiste", "toimipiste_id", "toimipiste_id,", "nimi"); 
+            cboxPlvToimipiste = S.haeTaulustaLaatikkoon1(S, cboxPlvToimipiste, dt, "Toimipiste", "toimipiste_id", "nimi"); 
             S.Close();
 
             // Haetaan tietokannasta palvelut DataGridViewiin.
             S.Connect();
             dgwPalvelut.DataSource = S.ShowInGridView("SELECT palvelu_id AS Id, nimi as Nimi, toimipiste_id AS Toimipiste, kuvaus AS Kuvaus, hinta AS Hinta, alv AS Arvonlisävero FROM Palvelu");
+           
             S.Close();
 
         
@@ -64,13 +65,14 @@ namespace mokkisofta
                 {
                     // Viedään tekstikenttien tiedot muuttujiin.
                     string pNimi = txbPlvNimi.Text;
-                    string pToimipiste = cboxPlvToimipiste.Text;
+                    string pToimipiste = cboxPlvToimipiste.SelectedValue.ToString();
+                    int pToimipisteId = int.Parse(pToimipiste);
                     string pKuvaus = txbPlvKuvaus.Text;
                     double pHinta = double.Parse(txbPlvHinta.Text);
                     double pAlv = double.Parse(txbPlvAlv.Text);
 
                     // Muodostetaan yllä olevien muuttujien avulla SQL-lause ja lisätään tiedot tauluun.
-                    string pLisays = $"INSERT INTO Palvelu (nimi, toimipiste, kuvaus, hinta, alv) VALUES ('{pNimi}', '{pToimipiste}', '{pKuvaus}', '{pHinta}', '{pAlv}')";
+                    string pLisays = $"INSERT INTO Palvelu (nimi, toimipiste_id, kuvaus, hinta, alv) VALUES ('{pNimi}', '{pToimipiste}', '{pKuvaus}', '{pHinta}', '{pAlv}')";
                     S.Query(pLisays);
                     dgwPalvelut.DataSource = S.ShowInGridView("SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, nimi AS Palvelu, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu");
                 }
