@@ -92,6 +92,9 @@ namespace mokkisofta
                     string pLisays = $"INSERT INTO Palvelu (nimi, toimipiste_id, kuvaus, hinta, alv) VALUES ('{pNimi}', '{pToimipiste}', '{pKuvaus}', '{pHinta}', '{pAlv}')";
                     S.Query(pLisays);
                     dgwPalvelut.DataSource = S.ShowInGridView(sqlSelection);
+
+                    // Lisäyksen jälkeen tyhjennetään tekstikentät
+                    this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Text = string.Empty);
                 }
                 
                 S.Close();
