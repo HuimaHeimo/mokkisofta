@@ -19,7 +19,7 @@ namespace mokkisofta
         /* SQL hakulause tietojen hakemiseen datagridiin. Hakee Asiakas taulusta etunimen ja sukunimen ja tulostaa ne Asiakas_id sijasta.
          * Hakee Toimipiste taulusta Toimipisteen nimen ja tulostaa sen toimipiste_id sijasta. Loput kentistä on Varaus taulusta.
          */
-        private string dgSqlHakulause = "SELECT varaus_id AS 'Id', Asiakas.etunimi as 'Etunimi', Asiakas.sukunimi as 'Sukunimi', Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
+        private string dgSqlHakulause = "SELECT varaus_id AS 'Id', Asiakas.etunimi AS 'Etunimi', Asiakas.sukunimi AS 'Sukunimi', Toimipiste.nimi AS 'Toimipiste', varattu_pvm AS 'Varattu pvm', " +
             "vahvistus_pvm AS 'Vahvistus pvm', varattu_alkupvm AS 'Varauksen alkupvm', varattu_loppupvm AS 'Varauksen loppupvm' " +
             "FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id";
         public Varaukset()
