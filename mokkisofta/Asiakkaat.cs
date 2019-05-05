@@ -25,6 +25,9 @@ namespace mokkisofta
             // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
             dgwAsiakkaat.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwAsiakkaat.ReadOnly = true;
+
             this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false); // Ohjelman käynnistyessä tekstikenttiin ei voi syöttää tietoa.
             btnTpTallenna.Enabled = false;
             btnTpPeruuta.Enabled = false;

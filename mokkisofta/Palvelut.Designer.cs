@@ -49,6 +49,8 @@
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.lblPaID = new System.Windows.Forms.Label();
+            this.btnPlvPeruuta = new System.Windows.Forms.Button();
+            this.btnPlvTallenna = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwPalvelut)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -87,7 +89,7 @@
             // 
             // btnPlvLisää
             // 
-            this.btnPlvLisää.Location = new System.Drawing.Point(668, 400);
+            this.btnPlvLisää.Location = new System.Drawing.Point(668, 402);
             this.btnPlvLisää.Name = "btnPlvLisää";
             this.btnPlvLisää.Size = new System.Drawing.Size(99, 41);
             this.btnPlvLisää.TabIndex = 9;
@@ -97,16 +99,17 @@
             // 
             // btnPlvPoista
             // 
-            this.btnPlvPoista.Location = new System.Drawing.Point(668, 449);
+            this.btnPlvPoista.Location = new System.Drawing.Point(563, 402);
             this.btnPlvPoista.Name = "btnPlvPoista";
             this.btnPlvPoista.Size = new System.Drawing.Size(99, 41);
             this.btnPlvPoista.TabIndex = 11;
             this.btnPlvPoista.Text = "Poista";
             this.btnPlvPoista.UseVisualStyleBackColor = true;
+            this.btnPlvPoista.Click += new System.EventHandler(this.palvelut_Click);
             // 
             // btnPlvMuokkaa
             // 
-            this.btnPlvMuokkaa.Location = new System.Drawing.Point(563, 449);
+            this.btnPlvMuokkaa.Location = new System.Drawing.Point(563, 448);
             this.btnPlvMuokkaa.Name = "btnPlvMuokkaa";
             this.btnPlvMuokkaa.Size = new System.Drawing.Size(99, 41);
             this.btnPlvMuokkaa.TabIndex = 10;
@@ -176,7 +179,7 @@
             // 
             this.txbPlvKuvaus.Location = new System.Drawing.Point(104, 471);
             this.txbPlvKuvaus.Name = "txbPlvKuvaus";
-            this.txbPlvKuvaus.Size = new System.Drawing.Size(392, 20);
+            this.txbPlvKuvaus.Size = new System.Drawing.Size(232, 20);
             this.txbPlvKuvaus.TabIndex = 5;
             // 
             // dgwPalvelut
@@ -227,11 +230,31 @@
             this.lblPaID.TabIndex = 64;
             this.lblPaID.Text = "-";
             // 
+            // btnPlvPeruuta
+            // 
+            this.btnPlvPeruuta.Location = new System.Drawing.Point(668, 448);
+            this.btnPlvPeruuta.Name = "btnPlvPeruuta";
+            this.btnPlvPeruuta.Size = new System.Drawing.Size(99, 41);
+            this.btnPlvPeruuta.TabIndex = 65;
+            this.btnPlvPeruuta.Text = "Peruuta";
+            this.btnPlvPeruuta.UseVisualStyleBackColor = true;
+            // 
+            // btnPlvTallenna
+            // 
+            this.btnPlvTallenna.Location = new System.Drawing.Point(458, 448);
+            this.btnPlvTallenna.Name = "btnPlvTallenna";
+            this.btnPlvTallenna.Size = new System.Drawing.Size(99, 41);
+            this.btnPlvTallenna.TabIndex = 66;
+            this.btnPlvTallenna.Text = "Tallenna";
+            this.btnPlvTallenna.UseVisualStyleBackColor = true;
+            // 
             // Palvelut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(801, 522);
+            this.Controls.Add(this.btnPlvTallenna);
+            this.Controls.Add(this.btnPlvPeruuta);
             this.Controls.Add(this.lblPaID);
             this.Controls.Add(this.cboxPlvToimipiste);
             this.Controls.Add(this.lblPlvNimi);
@@ -285,5 +308,7 @@
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.Label lblPaID;
+        private System.Windows.Forms.Button btnPlvPeruuta;
+        private System.Windows.Forms.Button btnPlvTallenna;
     }
 }

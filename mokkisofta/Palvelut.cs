@@ -15,6 +15,19 @@ namespace mokkisofta
         // Luodaan boolean-muuttujat painikkeiden toiminnallisuuksia varten.
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
+        
+        // Luodaan muuttuja DataGridViewiä varten. Sen ansiosta SELECT-lausetta ei tarvitse kirjoittaa toistuvasti. 
+        private string sqlSelection = "SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, nimi AS Palvelu, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu";
+
+        // Viedään tekstikenttien tiedot muuttujiin.
+        private string pNimi;
+        private string pToimipiste;
+        private int pToimipisteId;
+        private string pKuvaus;
+        private double pHinta;
+        private double pAlv;
+
+        
 
         Sql S = new Sql();
         public Palvelut()
@@ -35,11 +48,15 @@ namespace mokkisofta
 
             // Haetaan tietokannasta palvelut DataGridViewiin.
             S.Connect();
-            dgwPalvelut.DataSource = S.ShowInGridView("SELECT palvelu_id AS Id, nimi as Nimi, toimipiste_id AS Toimipiste, kuvaus AS Kuvaus, hinta AS Hinta, alv AS Arvonlisävero FROM Palvelu");
+            dgwPalvelut.DataSource = S.ShowInGridView(sqlSelection);
            
             S.Close();
 
-        
+            btnPlvTallenna.Enabled = false;
+
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwPalvelut.ReadOnly = true;
+
 
         }
 
@@ -64,17 +81,17 @@ namespace mokkisofta
                 else
                 {
                     // Viedään tekstikenttien tiedot muuttujiin.
-                    string pNimi = txbPlvNimi.Text;
-                    string pToimipiste = cboxPlvToimipiste.SelectedValue.ToString();
-                    int pToimipisteId = int.Parse(pToimipiste);
-                    string pKuvaus = txbPlvKuvaus.Text;
-                    double pHinta = double.Parse(txbPlvHinta.Text);
-                    double pAlv = double.Parse(txbPlvAlv.Text);
+                    pNimi = txbPlvNimi.Text;
+                    pToimipiste = cboxPlvToimipiste.SelectedValue.ToString();
+                    pToimipisteId = int.Parse(pToimipiste);
+                    pKuvaus = txbPlvKuvaus.Text;
+                    pHinta = double.Parse(txbPlvHinta.Text);
+                    pAlv = double.Parse(txbPlvAlv.Text);
 
                     // Muodostetaan yllä olevien muuttujien avulla SQL-lause ja lisätään tiedot tauluun.
                     string pLisays = $"INSERT INTO Palvelu (nimi, toimipiste_id, kuvaus, hinta, alv) VALUES ('{pNimi}', '{pToimipiste}', '{pKuvaus}', '{pHinta}', '{pAlv}')";
                     S.Query(pLisays);
-                    dgwPalvelut.DataSource = S.ShowInGridView("SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, nimi AS Palvelu, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu");
+                    dgwPalvelut.DataSource = S.ShowInGridView(sqlSelection);
                 }
                 
                 S.Close();
@@ -82,20 +99,20 @@ namespace mokkisofta
             // Jos painetaan Muokkaa-painiketta, muokataan DataFridViewistä valittu kohta.
             else if (btn == btnPlvMuokkaa)
             {
-                   // Haetaan muokkausTila-funktiolla nykyiset arvot tekstikenttiin ja muutetaan painikkeiden toiminnallisuudet muokkauksen vaatimiksi.
-                   muokkausTila();
-
+                // Haetaan muokkausTila-funktiolla nykyiset arvot tekstikenttiin ja muutetaan painikkeiden toiminnallisuudet muokkauksen vaatimiksi.
+                muokkausTila();
 
                 // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
-                    string pToimipiste = cboxPlvToimipiste.Text;
-                    string pKuvaus = txbPlvKuvaus.Text;
-                    double pHinta = double.Parse(txbPlvHinta.Text);
-                    double pAlv = double.Parse(txbPlvAlv.Text);
-                    string valittuId = lblPaID.Text;
-                    string asMuokkaus = $"UPDATE Palvelu SET toimipiste = '{pToimipiste}', kuvaus = '{pKuvaus}', hinta = '{pHinta}', alv = '{pAlv}'";
+                pNimi = txbPlvNimi.Text;
+                pToimipiste = cboxPlvToimipiste.SelectedValue.ToString();
+                pToimipisteId = int.Parse(pToimipiste);
+                pKuvaus = txbPlvKuvaus.Text;
+                pHinta = double.Parse(txbPlvHinta.Text);
+                pAlv = double.Parse(txbPlvAlv.Text);
+                string asMuokkaus = $"UPDATE Palvelu SET toimipiste = '{pToimipiste}', kuvaus = '{pKuvaus}', hinta = '{pHinta}', alv = '{pAlv}'";
 
-                    S.Query(asMuokkaus);
-                    dgwPalvelut.DataSource = S.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
+                S.Query(asMuokkaus);
+                dgwPalvelut.DataSource = S.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
 
             }
             else if (btn == btnPlvPoista)
@@ -108,10 +125,10 @@ namespace mokkisofta
                         S.Connect();
                         int rowIndex = dgwPalvelut.CurrentCell.RowIndex;
                         string valittuId = dgwPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
-                        string asPoisto = $"DELETE FROM Asiakas WHERE asiakas_id='{valittuId}'";
+                        string asPoisto = $"DELETE FROM Palvelu WHERE palvelu_id='{valittuId}'";
 
                         S.Query(asPoisto);
-                        dgwPalvelut.DataSource = S.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
+                        dgwPalvelut.DataSource = S.ShowInGridView(sqlSelection);
                         S.Close();
                     }
                 }
