@@ -11,13 +11,9 @@ using System.Windows.Forms;
 namespace mokkisofta
 {
     public partial class Palvelut : Form
-    {
-        // Luodaan boolean-muuttujat painikkeiden toiminnallisuuksia varten.
-        private bool btnLisaaPainettu = false;
-        private bool btnMuokkaaPainettu = false;
-        
+    {     
         // Luodaan muuttuja DataGridViewiä varten. Sen ansiosta SELECT-lausetta ei tarvitse kirjoittaa toistuvasti. 
-        private string sqlSelection = "SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, nimi AS Palvelu, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu";
+        private string sqlSelection = "SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, nimi AS Nimi, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu";
 
         // Viedään tekstikenttien tiedot muuttujiin.
         private string pNimi;
@@ -27,7 +23,11 @@ namespace mokkisofta
         private double pHinta;
         private double pAlv;
 
-        
+        // Luodaan apumuuttuja taulun päivitystä varten.
+        private int rowIndex;
+
+
+
 
         Sql S = new Sql();
         public Palvelut()
@@ -37,8 +37,17 @@ namespace mokkisofta
             // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
             dgwPalvelut.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
+            dgwPalvelut.AllowUserToAddRows = false;
+
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwPalvelut.ReadOnly = true;
+
             // Tehdään Comboboxista alasvetovalikko, johon ei voi kirjoittaa.
             cboxPlvToimipiste.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwPalvelut.ReadOnly = true;
 
             // Haetaan toimipisteet alasvetovalikkoon.
             S.Connect();
@@ -53,9 +62,8 @@ namespace mokkisofta
             S.Close();
 
             btnPlvTallenna.Enabled = false;
+            btnPlvPeruuta.Enabled = false;
 
-            // Estetään DataGridViewin sisältöjen muokkaus.
-            dgwPalvelut.ReadOnly = true;
 
 
         }
@@ -105,17 +113,6 @@ namespace mokkisofta
                 // Haetaan muokkausTila-funktiolla nykyiset arvot tekstikenttiin ja muutetaan painikkeiden toiminnallisuudet muokkauksen vaatimiksi.
                 muokkausTila();
 
-                // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
-                pNimi = txbPlvNimi.Text;
-                pToimipiste = cboxPlvToimipiste.SelectedValue.ToString();
-                pToimipisteId = int.Parse(pToimipiste);
-                pKuvaus = txbPlvKuvaus.Text;
-                pHinta = double.Parse(txbPlvHinta.Text);
-                pAlv = double.Parse(txbPlvAlv.Text);
-                string asMuokkaus = $"UPDATE Palvelu SET toimipiste = '{pToimipiste}', kuvaus = '{pKuvaus}', hinta = '{pHinta}', alv = '{pAlv}'";
-
-                S.Query(asMuokkaus);
-                dgwPalvelut.DataSource = S.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
 
             }
             else if (btn == btnPlvPoista)
@@ -140,32 +137,69 @@ namespace mokkisofta
 
                 }
             }
+            else if (btn == btnPlvPeruuta)
+            {
+
+            }
+            else if (btn == btnPlvTallenna)
+            {
+                
+                // Viedään tekstikenttien muokatut tiedot apumuuttujiin ja apumuuttujien avulla tauluun. Valitaan oikea palvelu rowIndex-muuttujaan viedyllä palvelu-id:llä.
+                S.Connect();
+                
+                pNimi = txbPlvNimi.Text;
+                pToimipiste = cboxPlvToimipiste.SelectedValue.ToString();
+                pToimipisteId = int.Parse(pToimipiste);
+                pKuvaus = txbPlvKuvaus.Text;
+                pHinta = double.Parse(txbPlvHinta.Text);
+                pAlv = double.Parse(txbPlvAlv.Text);
+
+                
+                string asMuokkaus = $"UPDATE Palvelu SET toimipiste_id = '{pToimipiste}', kuvaus = '{pKuvaus}', hinta = '{pHinta}', alv = '{pAlv}' WHERE palvelu_id='{rowIndex}'";
+
+                S.Query(asMuokkaus);
+                dgwPalvelut.DataSource = S.ShowInGridView(sqlSelection);
+
+                dgwPalvelut.Enabled = true;
+
+                // Poistetaan Peruuta- ja Tallenna-painikkeet käytöstä.
+                btnPlvPeruuta.Enabled = false;
+                btnPlvTallenna.Enabled = false;
+
+                // Otetaan Lisää-, Poista ja Muokkaa-painikkeet käyttöön.
+                btnPlvLisää.Enabled = true;
+                btnPlvPoista.Enabled = true;
+                btnPlvMuokkaa.Enabled = true;
+
+                S.Close();
+                
+            }
         }
 
         private void muokkausTila()
         {
-            // Sama kuin lisaysTila() , erona btnMuokkaaPainettu <-> btnLisaaPainettu totuusarvot.
-            
-            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
-            btnLisaaPainettu = false;
-            btnMuokkaaPainettu = true;
-            /*
-            btnAsLisaa.Enabled = false;
-            btnAsMuokkaa.Enabled = false;
-            btnAsPoista.Enabled = false;
-            btnTpTallenna.Enabled = true;
-            btnTpPeruuta.Enabled = true;
-            */
-            //Lisätään valitun rivin tiedot tekstikenntiin
-            int rowIndex = dgwPalvelut.CurrentCell.RowIndex;
+            // Lisätään valitun rivin tiedot tekstikenttiin ja otetaan valitun palvelun id-numero talteen rowIndex-muuttujaan.
+            rowIndex = dgwPalvelut.CurrentCell.RowIndex;
             lblPaID.Text = dgwPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
             cboxPlvToimipiste.Text = dgwPalvelut.Rows[rowIndex].Cells["Toimipiste"].Value.ToString();
             txbPlvNimi.Text = dgwPalvelut.Rows[rowIndex].Cells["Nimi"].Value.ToString();
             txbPlvKuvaus.Text = dgwPalvelut.Rows[rowIndex].Cells["Kuvaus"].Value.ToString();
             txbPlvHinta.Text = dgwPalvelut.Rows[rowIndex].Cells["Hinta"].Value.ToString();
             txbPlvAlv.Text = dgwPalvelut.Rows[rowIndex].Cells["Arvonlisävero"].Value.ToString();
+            rowIndex = int.Parse(lblPaID.Text);
+
             //Otetaan datagridin käyttö pois muokkauksen ajaksi
             dgwPalvelut.Enabled = false;
+
+            // Poistetaan lisää-, poista- ja muokkaa-painikkeet käytöstä. Niitä ei tarvita muokkaustilassa.
+            btnPlvPoista.Enabled = false;
+            btnPlvLisää.Enabled = false;
+            btnPlvMuokkaa.Enabled = false;
+
+            // Otetaan peruuta- ja tallenna-painikkeet käyttöön.
+            btnPlvPeruuta.Enabled = true;
+            btnPlvTallenna.Enabled = true;
+            
         }
 
         private void perusTila()
@@ -173,8 +207,7 @@ namespace mokkisofta
             // Tämän ajettaessa kaikki tekstikentät nollataan. Lisää, Muokkaa, ja Poista painikkeet käytössä.
             this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Text = string.Empty);
             this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false);
-            btnLisaaPainettu = false;
-            btnMuokkaaPainettu = false;
+
             /*
             btnAsLisaa.Enabled = true;
             btnAsMuokkaa.Enabled = true;
@@ -186,20 +219,6 @@ namespace mokkisofta
             dgwPalvelut.Enabled = true;
         }
 
-        private void lisaysTila()
-        {
-            // Siirrytään painamalla lisää nappia. Tekstikenttiin pystyy syöttämään tietoa. Vain Tallenna ja Peruuta painikkeet ovat käytössä.
-            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
-            btnLisaaPainettu = true;
-            /*
-            btnAsLisaa.Enabled = false;
-            btnAsMuokkaa.Enabled = false;
-            btnAsPoista.Enabled = false;
-            btnTpTallenna.Enabled = true;
-            btnTpPeruuta.Enabled = true;
-            lblId.Text = "-";
-            */
-            dgwPalvelut.Enabled = false;
-        }
+
     }
 }

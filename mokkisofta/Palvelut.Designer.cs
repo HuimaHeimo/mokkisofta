@@ -115,6 +115,7 @@
             this.btnPlvMuokkaa.TabIndex = 10;
             this.btnPlvMuokkaa.Text = "Muokkaa";
             this.btnPlvMuokkaa.UseVisualStyleBackColor = true;
+            this.btnPlvMuokkaa.Click += new System.EventHandler(this.palvelut_Click);
             // 
             // lblPlvAlv
             // 
@@ -238,6 +239,7 @@
             this.btnPlvPeruuta.TabIndex = 65;
             this.btnPlvPeruuta.Text = "Peruuta";
             this.btnPlvPeruuta.UseVisualStyleBackColor = true;
+            this.btnPlvPeruuta.Click += new System.EventHandler(this.palvelut_Click);
             // 
             // btnPlvTallenna
             // 
@@ -247,6 +249,7 @@
             this.btnPlvTallenna.TabIndex = 66;
             this.btnPlvTallenna.Text = "Tallenna";
             this.btnPlvTallenna.UseVisualStyleBackColor = true;
+            this.btnPlvTallenna.Click += new System.EventHandler(this.palvelut_Click);
             // 
             // Palvelut
             // 

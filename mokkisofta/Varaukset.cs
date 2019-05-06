@@ -26,6 +26,9 @@ namespace mokkisofta
         {
             InitializeComponent();
             DgwVaraukset.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
+            DgwVaraukset.AllowUserToAddRows = false;
             S.Connect();
             DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable asiakkaat = new DataTable();
