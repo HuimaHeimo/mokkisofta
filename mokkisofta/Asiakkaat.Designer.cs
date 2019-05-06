@@ -103,7 +103,7 @@
             this.btnAsLisaa.Location = new System.Drawing.Point(673, 411);
             this.btnAsLisaa.Name = "btnAsLisaa";
             this.btnAsLisaa.Size = new System.Drawing.Size(99, 41);
-            this.btnAsLisaa.TabIndex = 38;
+            this.btnAsLisaa.TabIndex = 9;
             this.btnAsLisaa.Text = "Lisää";
             this.btnAsLisaa.UseVisualStyleBackColor = true;
             this.btnAsLisaa.Click += new System.EventHandler(this.BtnAsLisaa_Click);
@@ -123,7 +123,7 @@
             this.txbAsPuhnro.MaxLength = 15;
             this.txbAsPuhnro.Name = "txbAsPuhnro";
             this.txbAsPuhnro.Size = new System.Drawing.Size(130, 20);
-            this.txbAsPuhnro.TabIndex = 36;
+            this.txbAsPuhnro.TabIndex = 8;
             this.txbAsPuhnro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbAsPuhnro_KeyPress);
             // 
             // btnAsPoista
@@ -131,7 +131,7 @@
             this.btnAsPoista.Location = new System.Drawing.Point(673, 458);
             this.btnAsPoista.Name = "btnAsPoista";
             this.btnAsPoista.Size = new System.Drawing.Size(99, 41);
-            this.btnAsPoista.TabIndex = 35;
+            this.btnAsPoista.TabIndex = 11;
             this.btnAsPoista.Text = "Poista";
             this.btnAsPoista.UseVisualStyleBackColor = true;
             this.btnAsPoista.Click += new System.EventHandler(this.BtnAsPoista_Click);
@@ -141,7 +141,7 @@
             this.btnAsMuokkaa.Location = new System.Drawing.Point(568, 458);
             this.btnAsMuokkaa.Name = "btnAsMuokkaa";
             this.btnAsMuokkaa.Size = new System.Drawing.Size(99, 41);
-            this.btnAsMuokkaa.TabIndex = 34;
+            this.btnAsMuokkaa.TabIndex = 10;
             this.btnAsMuokkaa.Text = "Muokkaa";
             this.btnAsMuokkaa.UseVisualStyleBackColor = true;
             this.btnAsMuokkaa.Click += new System.EventHandler(this.BtnAsMuokkaa_Click);
@@ -206,7 +206,7 @@
             this.txbAsSposti.MaxLength = 50;
             this.txbAsSposti.Name = "txbAsSposti";
             this.txbAsSposti.Size = new System.Drawing.Size(130, 20);
-            this.txbAsSposti.TabIndex = 27;
+            this.txbAsSposti.TabIndex = 4;
             // 
             // txbAsPostinumero
             // 
@@ -214,7 +214,7 @@
             this.txbAsPostinumero.MaxLength = 5;
             this.txbAsPostinumero.Name = "txbAsPostinumero";
             this.txbAsPostinumero.Size = new System.Drawing.Size(77, 20);
-            this.txbAsPostinumero.TabIndex = 26;
+            this.txbAsPostinumero.TabIndex = 7;
             this.txbAsPostinumero.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxbAsPostinumero_KeyPress);
             // 
             // txbAsPtoimipaikka
@@ -223,7 +223,7 @@
             this.txbAsPtoimipaikka.MaxLength = 30;
             this.txbAsPtoimipaikka.Name = "txbAsPtoimipaikka";
             this.txbAsPtoimipaikka.Size = new System.Drawing.Size(130, 20);
-            this.txbAsPtoimipaikka.TabIndex = 25;
+            this.txbAsPtoimipaikka.TabIndex = 6;
             // 
             // txbAsOsoite
             // 
@@ -231,7 +231,7 @@
             this.txbAsOsoite.MaxLength = 40;
             this.txbAsOsoite.Name = "txbAsOsoite";
             this.txbAsOsoite.Size = new System.Drawing.Size(130, 20);
-            this.txbAsOsoite.TabIndex = 24;
+            this.txbAsOsoite.TabIndex = 5;
             // 
             // txbAsEtunimi
             // 
@@ -239,7 +239,7 @@
             this.txbAsEtunimi.MaxLength = 20;
             this.txbAsEtunimi.Name = "txbAsEtunimi";
             this.txbAsEtunimi.Size = new System.Drawing.Size(130, 20);
-            this.txbAsEtunimi.TabIndex = 23;
+            this.txbAsEtunimi.TabIndex = 2;
             // 
             // dgwAsiakkaat
             // 
@@ -249,7 +249,7 @@
             this.dgwAsiakkaat.Location = new System.Drawing.Point(12, 43);
             this.dgwAsiakkaat.Name = "dgwAsiakkaat";
             this.dgwAsiakkaat.Size = new System.Drawing.Size(787, 330);
-            this.dgwAsiakkaat.TabIndex = 21;
+            this.dgwAsiakkaat.TabIndex = 15;
             this.dgwAsiakkaat.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView1_CellContentClick);
             this.dgwAsiakkaat.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgwAsiakkaat_CellValueChanged);
             // 
@@ -268,7 +268,7 @@
             this.txbAsSukunimi.MaxLength = 40;
             this.txbAsSukunimi.Name = "txbAsSukunimi";
             this.txbAsSukunimi.Size = new System.Drawing.Size(130, 20);
-            this.txbAsSukunimi.TabIndex = 40;
+            this.txbAsSukunimi.TabIndex = 3;
             // 
             // lblId
             // 
@@ -284,7 +284,7 @@
             this.btnTpPeruuta.Location = new System.Drawing.Point(568, 505);
             this.btnTpPeruuta.Name = "btnTpPeruuta";
             this.btnTpPeruuta.Size = new System.Drawing.Size(99, 41);
-            this.btnTpPeruuta.TabIndex = 44;
+            this.btnTpPeruuta.TabIndex = 12;
             this.btnTpPeruuta.Text = "Peruuta";
             this.btnTpPeruuta.UseVisualStyleBackColor = true;
             this.btnTpPeruuta.Click += new System.EventHandler(this.BtnTpPeruuta_Click);
@@ -294,7 +294,7 @@
             this.btnTpTallenna.Location = new System.Drawing.Point(673, 505);
             this.btnTpTallenna.Name = "btnTpTallenna";
             this.btnTpTallenna.Size = new System.Drawing.Size(99, 41);
-            this.btnTpTallenna.TabIndex = 43;
+            this.btnTpTallenna.TabIndex = 13;
             this.btnTpTallenna.Text = "Tallenna";
             this.btnTpTallenna.UseVisualStyleBackColor = true;
             this.btnTpTallenna.Click += new System.EventHandler(this.BtnTpTallenna_Click);
