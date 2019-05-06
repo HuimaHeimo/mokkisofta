@@ -37,6 +37,9 @@ namespace mokkisofta
             // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
             dgwPalvelut.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
 
+            // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
+            dgwPalvelut.AllowUserToAddRows = false;
+
             // Estetään DataGridViewin sisältöjen muokkaus.
             dgwPalvelut.ReadOnly = true;
 
@@ -216,19 +219,6 @@ namespace mokkisofta
             dgwPalvelut.Enabled = true;
         }
 
-        private void lisaysTila()
-        {
-            // Siirrytään painamalla lisää nappia. Tekstikenttiin pystyy syöttämään tietoa. Vain Tallenna ja Peruuta painikkeet ovat käytössä.
-            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = true);
-            /*
-            btnAsLisaa.Enabled = false;
-            btnAsMuokkaa.Enabled = false;
-            btnAsPoista.Enabled = false;
-            btnTpTallenna.Enabled = true;
-            btnTpPeruuta.Enabled = true;
-            lblId.Text = "-";
-            */
-            dgwPalvelut.Enabled = false;
-        }
+
     }
 }
