@@ -169,6 +169,8 @@ namespace mokkisofta
             dtpRptAlku.Value = DateTime.Now;
             dtpRptLoppu.Value = DateTime.Now;
         }
+
+
     }
 
 

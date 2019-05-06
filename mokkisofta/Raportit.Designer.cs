@@ -46,8 +46,6 @@
             this.btnRptTyhjenna = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.cbxRptAsiakkaat = new System.Windows.Forms.ComboBox();
-            this.btnRptLataa = new System.Windows.Forms.Button();
-            this.btnRptTallenna = new System.Windows.Forms.Button();
             this.btnRptTulosta = new System.Windows.Forms.Button();
             this.chrRptChart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.rdbRptRajaatoimipisteeseen = new System.Windows.Forms.RadioButton();
@@ -91,7 +89,7 @@
             // 
             // btnRptHae
             // 
-            this.btnRptHae.Location = new System.Drawing.Point(484, 409);
+            this.btnRptHae.Location = new System.Drawing.Point(484, 425);
             this.btnRptHae.Name = "btnRptHae";
             this.btnRptHae.Size = new System.Drawing.Size(99, 41);
             this.btnRptHae.TabIndex = 11;
@@ -172,7 +170,7 @@
             // 
             // btnRptTyhjenna
             // 
-            this.btnRptTyhjenna.Location = new System.Drawing.Point(589, 409);
+            this.btnRptTyhjenna.Location = new System.Drawing.Point(589, 425);
             this.btnRptTyhjenna.Name = "btnRptTyhjenna";
             this.btnRptTyhjenna.Size = new System.Drawing.Size(99, 41);
             this.btnRptTyhjenna.TabIndex = 20;
@@ -199,27 +197,9 @@
             this.cbxRptAsiakkaat.TabIndex = 21;
             this.cbxRptAsiakkaat.Text = "Kaikki";
             // 
-            // btnRptLataa
-            // 
-            this.btnRptLataa.Location = new System.Drawing.Point(589, 456);
-            this.btnRptLataa.Name = "btnRptLataa";
-            this.btnRptLataa.Size = new System.Drawing.Size(99, 41);
-            this.btnRptLataa.TabIndex = 24;
-            this.btnRptLataa.Text = "Lataa";
-            this.btnRptLataa.UseVisualStyleBackColor = true;
-            // 
-            // btnRptTallenna
-            // 
-            this.btnRptTallenna.Location = new System.Drawing.Point(484, 456);
-            this.btnRptTallenna.Name = "btnRptTallenna";
-            this.btnRptTallenna.Size = new System.Drawing.Size(99, 41);
-            this.btnRptTallenna.TabIndex = 23;
-            this.btnRptTallenna.Text = "Tallenna";
-            this.btnRptTallenna.UseVisualStyleBackColor = true;
-            // 
             // btnRptTulosta
             // 
-            this.btnRptTulosta.Location = new System.Drawing.Point(589, 503);
+            this.btnRptTulosta.Location = new System.Drawing.Point(537, 472);
             this.btnRptTulosta.Name = "btnRptTulosta";
             this.btnRptTulosta.Size = new System.Drawing.Size(99, 41);
             this.btnRptTulosta.TabIndex = 25;
@@ -284,8 +264,6 @@
             this.Controls.Add(this.rdbRptRajaatoimipisteeseen);
             this.Controls.Add(this.chrRptChart1);
             this.Controls.Add(this.btnRptTulosta);
-            this.Controls.Add(this.btnRptLataa);
-            this.Controls.Add(this.btnRptTallenna);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.cbxRptAsiakkaat);
             this.Controls.Add(this.btnRptTyhjenna);
@@ -329,8 +307,6 @@
         private System.Windows.Forms.Button btnRptTyhjenna;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox cbxRptAsiakkaat;
-        private System.Windows.Forms.Button btnRptLataa;
-        private System.Windows.Forms.Button btnRptTallenna;
         private System.Windows.Forms.Button btnRptTulosta;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrRptChart1;
         private System.Windows.Forms.RadioButton rdbRptRajaatoimipisteeseen;
