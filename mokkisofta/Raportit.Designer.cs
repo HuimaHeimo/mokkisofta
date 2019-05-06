@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -50,9 +50,9 @@
             this.btnRptTallenna = new System.Windows.Forms.Button();
             this.btnRptTulosta = new System.Windows.Forms.Button();
             this.chrRptChart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chbRptSisallytaToimip = new System.Windows.Forms.CheckBox();
-            this.chbRptSisallytaPalvelu = new System.Windows.Forms.CheckBox();
-            this.chbRptSisallytaAsiakas = new System.Windows.Forms.CheckBox();
+            this.rdbRptRajaatoimipisteeseen = new System.Windows.Forms.RadioButton();
+            this.rdbRajaaPalvelu = new System.Windows.Forms.RadioButton();
+            this.rdbRajaaAsiakas = new System.Windows.Forms.RadioButton();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrRptChart1)).BeginInit();
@@ -178,6 +178,7 @@
             this.btnRptTyhjenna.TabIndex = 20;
             this.btnRptTyhjenna.Text = "Tyhjennä";
             this.btnRptTyhjenna.UseVisualStyleBackColor = true;
+            this.btnRptTyhjenna.Click += new System.EventHandler(this.BtnRptTyhjenna_Click);
             // 
             // label5
             // 
@@ -227,57 +228,60 @@
             // 
             // chrRptChart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chrRptChart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chrRptChart1.Legends.Add(legend1);
+            chartArea2.Name = "ChartArea1";
+            this.chrRptChart1.ChartAreas.Add(chartArea2);
+            legend2.Name = "Legend1";
+            this.chrRptChart1.Legends.Add(legend2);
             this.chrRptChart1.Location = new System.Drawing.Point(462, 27);
             this.chrRptChart1.Name = "chrRptChart1";
             this.chrRptChart1.Size = new System.Drawing.Size(410, 376);
             this.chrRptChart1.TabIndex = 26;
             this.chrRptChart1.Text = "chart1";
             // 
-            // chbRptSisallytaToimip
+            // rdbRptRajaatoimipisteeseen
             // 
-            this.chbRptSisallytaToimip.AutoSize = true;
-            this.chbRptSisallytaToimip.Location = new System.Drawing.Point(323, 411);
-            this.chbRptSisallytaToimip.Name = "chbRptSisallytaToimip";
-            this.chbRptSisallytaToimip.Size = new System.Drawing.Size(100, 17);
-            this.chbRptSisallytaToimip.TabIndex = 27;
-            this.chbRptSisallytaToimip.Text = "Rajaa toimipiste";
-            this.chbRptSisallytaToimip.UseVisualStyleBackColor = true;
-            this.chbRptSisallytaToimip.CheckedChanged += new System.EventHandler(this.ChbRptSisallytaToimip_CheckedChanged);
+            this.rdbRptRajaatoimipisteeseen.AutoSize = true;
+            this.rdbRptRajaatoimipisteeseen.Location = new System.Drawing.Point(323, 410);
+            this.rdbRptRajaatoimipisteeseen.Name = "rdbRptRajaatoimipisteeseen";
+            this.rdbRptRajaatoimipisteeseen.Size = new System.Drawing.Size(99, 17);
+            this.rdbRptRajaatoimipisteeseen.TabIndex = 30;
+            this.rdbRptRajaatoimipisteeseen.TabStop = true;
+            this.rdbRptRajaatoimipisteeseen.Text = "Rajaa toimipiste";
+            this.rdbRptRajaatoimipisteeseen.UseVisualStyleBackColor = true;
+            this.rdbRptRajaatoimipisteeseen.CheckedChanged += new System.EventHandler(this.RdbRptRajaatoimipisteeseen_CheckedChanged);
             // 
-            // chbRptSisallytaPalvelu
+            // rdbRajaaPalvelu
             // 
-            this.chbRptSisallytaPalvelu.AutoSize = true;
-            this.chbRptSisallytaPalvelu.Location = new System.Drawing.Point(323, 438);
-            this.chbRptSisallytaPalvelu.Name = "chbRptSisallytaPalvelu";
-            this.chbRptSisallytaPalvelu.Size = new System.Drawing.Size(91, 17);
-            this.chbRptSisallytaPalvelu.TabIndex = 28;
-            this.chbRptSisallytaPalvelu.Text = "Rajaa palvelu";
-            this.chbRptSisallytaPalvelu.UseVisualStyleBackColor = true;
-            this.chbRptSisallytaPalvelu.CheckedChanged += new System.EventHandler(this.ChbRptSisallytaPalvelu_CheckedChanged);
+            this.rdbRajaaPalvelu.AutoSize = true;
+            this.rdbRajaaPalvelu.Location = new System.Drawing.Point(323, 437);
+            this.rdbRajaaPalvelu.Name = "rdbRajaaPalvelu";
+            this.rdbRajaaPalvelu.Size = new System.Drawing.Size(90, 17);
+            this.rdbRajaaPalvelu.TabIndex = 31;
+            this.rdbRajaaPalvelu.TabStop = true;
+            this.rdbRajaaPalvelu.Text = "Rajaa palvelu";
+            this.rdbRajaaPalvelu.UseVisualStyleBackColor = true;
+            this.rdbRajaaPalvelu.CheckedChanged += new System.EventHandler(this.RdbRajaaPalvelu_CheckedChanged);
             // 
-            // chbRptSisallytaAsiakas
+            // rdbRajaaAsiakas
             // 
-            this.chbRptSisallytaAsiakas.AutoSize = true;
-            this.chbRptSisallytaAsiakas.Location = new System.Drawing.Point(323, 465);
-            this.chbRptSisallytaAsiakas.Name = "chbRptSisallytaAsiakas";
-            this.chbRptSisallytaAsiakas.Size = new System.Drawing.Size(93, 17);
-            this.chbRptSisallytaAsiakas.TabIndex = 29;
-            this.chbRptSisallytaAsiakas.Text = "Rajaa asiakas";
-            this.chbRptSisallytaAsiakas.UseVisualStyleBackColor = true;
-            this.chbRptSisallytaAsiakas.CheckedChanged += new System.EventHandler(this.ChbRptsisallytaAsiakas_CheckedChanged);
+            this.rdbRajaaAsiakas.AutoSize = true;
+            this.rdbRajaaAsiakas.Location = new System.Drawing.Point(323, 464);
+            this.rdbRajaaAsiakas.Name = "rdbRajaaAsiakas";
+            this.rdbRajaaAsiakas.Size = new System.Drawing.Size(92, 17);
+            this.rdbRajaaAsiakas.TabIndex = 32;
+            this.rdbRajaaAsiakas.TabStop = true;
+            this.rdbRajaaAsiakas.Text = "Rajaa asiakas";
+            this.rdbRajaaAsiakas.UseVisualStyleBackColor = true;
+            this.rdbRajaaAsiakas.CheckedChanged += new System.EventHandler(this.RdbRajaaAsiakas_CheckedChanged);
             // 
             // Raportit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(884, 561);
-            this.Controls.Add(this.chbRptSisallytaAsiakas);
-            this.Controls.Add(this.chbRptSisallytaPalvelu);
-            this.Controls.Add(this.chbRptSisallytaToimip);
+            this.Controls.Add(this.rdbRajaaAsiakas);
+            this.Controls.Add(this.rdbRajaaPalvelu);
+            this.Controls.Add(this.rdbRptRajaatoimipisteeseen);
             this.Controls.Add(this.chrRptChart1);
             this.Controls.Add(this.btnRptTulosta);
             this.Controls.Add(this.btnRptLataa);
@@ -329,8 +333,8 @@
         private System.Windows.Forms.Button btnRptTallenna;
         private System.Windows.Forms.Button btnRptTulosta;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrRptChart1;
-        private System.Windows.Forms.CheckBox chbRptSisallytaToimip;
-        private System.Windows.Forms.CheckBox chbRptSisallytaPalvelu;
-        private System.Windows.Forms.CheckBox chbRptSisallytaAsiakas;
+        private System.Windows.Forms.RadioButton rdbRptRajaatoimipisteeseen;
+        private System.Windows.Forms.RadioButton rdbRajaaPalvelu;
+        private System.Windows.Forms.RadioButton rdbRajaaAsiakas;
     }
 }
