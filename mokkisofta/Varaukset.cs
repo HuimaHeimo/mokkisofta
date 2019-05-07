@@ -33,6 +33,7 @@ namespace mokkisofta
             DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable asiakkaat = new DataTable();
             DataTable toimipisteet = new DataTable();
+            DataTable palvelut = new DataTable();
             cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, asiakkaat, "Asiakas", "asiakas_id", "etunimi", "sukunimi"); 
             cboxVarToimipiste = S.haeTaulustaLaatikkoon(S, cboxVarToimipiste, toimipisteet, "Toimipiste", "toimipiste_id", "nimi");
             S.Close();
@@ -76,7 +77,6 @@ namespace mokkisofta
                     string varLoppupvm = dtVarLoppupvm.Value.ToString("yyyyMMdd");
                     string varLisays = $"INSERT INTO Varaus (asiakas_id, toimipiste_id, varattu_pvm, vahvistus_pvm, varattu_alkupvm, varattu_loppupvm) " +
                         $"VALUES ('{varNimi}', '{varToimipiste}', '{varVarattupvm}', '{varVahvistuspvm}', '{varAlkupvm}', '{varLoppupvm}')";
-
                     S.Query(varLisays);
                     DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
                     perusTila();
@@ -175,6 +175,10 @@ namespace mokkisofta
             DgwVaraukset.Enabled = false;
         }
 
-
+        private void Button1_Click(object sender, EventArgs e)
+        {
+            VarauksenPalvelut vp = new VarauksenPalvelut();
+            vp.ShowDialog();
+        }
     }
 }
