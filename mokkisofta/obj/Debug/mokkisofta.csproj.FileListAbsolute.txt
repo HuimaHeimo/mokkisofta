@@ -92,3 +92,4 @@ E:\Mökkisofta\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.GenerateResourc
 E:\Mökkisofta\mokkisofta\mokkisofta\obj\Debug\mokkisofta.csproj.CoreCompileInputs.cache
 E:\Mökkisofta\mokkisofta\mokkisofta\obj\Debug\mokkisofta.exe
 E:\Mökkisofta\mokkisofta\mokkisofta\obj\Debug\mokkisofta.pdb
+C:\Users\Jani\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.VarauksenPalvelut.resources

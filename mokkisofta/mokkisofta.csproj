@@ -84,6 +84,12 @@
     <Compile Include="Laskut.Designer.cs">
       <DependentUpon>Laskut.cs</DependentUpon>
     </Compile>
+    <Compile Include="VarauksenPalvelut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VarauksenPalvelut.Designer.cs">
+      <DependentUpon>VarauksenPalvelut.cs</DependentUpon>
+    </Compile>
     <Compile Include="Varaukset.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -118,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Laskut.resx">
       <DependentUpon>Laskut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VarauksenPalvelut.resx">
+      <DependentUpon>VarauksenPalvelut.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Varaukset.resx">
       <DependentUpon>Varaukset.cs</DependentUpon>
