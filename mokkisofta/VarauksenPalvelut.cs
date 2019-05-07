@@ -15,19 +15,28 @@ namespace mokkisofta
         Sql S = new Sql();
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
-        private string valittuRivi = "";
-
-        private string dgSqlHakulause = "SELECT Varaus.varaus_id AS 'Varaus', Palvelu.nimi AS 'Palvelu', lkm AS 'Lukumäärä' " +
-            "FROM Varauksen_palvelut INNER JOIN Varaus ON Varauksen_palvelut.varaus_id = Varaus.varaus_id INNER JOIN Palvelu ON Varauksen_palvelut.palvelu_id = Palvelu.palvelu_id";
+        // valittuRivi muuttujaa käytetään kun muokataan tai poistetaan rivin tietoja, muuttuja sisältää id arvon
+        // jolla tunnistetaan rivit toisistaan. Tässä luokassa se on palvelu_id, sillä kaikilla tässä luokassa listatuilla tiedoilla varaus_id on sama.
+        private string valittuId = ""; 
+        /* käytin tässä luokassa myös julkista varaus_id muuttujaa Varaukset luokasta (Varaukset.varaus_id) . Tällä muuttujalla varmistetaan että
+         * VarauksenPalvelut datagridin listauksessa näkyvät vain Varaukset luokasta valitun varauksen tiedot.
+         */
+        private string dgSqlHakulause = $"SELECT varauksen_palvelut_id as 'Id', Palvelu.nimi AS 'Palvelu', lkm AS 'Lukumäärä' FROM Varauksen_palvelut " +
+                                        $"INNER JOIN Palvelu ON Varauksen_palvelut.palvelu_id = Palvelu.palvelu_id WHERE Varauksen_palvelut.varaus_id = {Varaukset.varaus_id}";
 
         public VarauksenPalvelut()
         {
             InitializeComponent();
+            // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
+            dgwVarauksenPalvelut.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
+            dgwVarauksenPalvelut.AllowUserToAddRows = false;
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwVarauksenPalvelut.ReadOnly = true;
+
             S.Connect();
             dgwVarauksenPalvelut.DataSource = S.ShowInGridView(dgSqlHakulause);
-            DataTable varaukset = new DataTable();
             DataTable palvelut = new DataTable();
-            cboxVarPalVaraus = S.haeTaulustaLaatikkoon(S, cboxVarPalVaraus, varaukset, "Varaus", "varaus_id", "varaus_id");
             cboxVarPalPalvelu = S.haeTaulustaLaatikkoon(S, cboxVarPalPalvelu, palvelut, "Palvelu", "palvelu_id", "nimi");   
             S.Close();
             perusTila();
@@ -61,11 +70,9 @@ namespace mokkisofta
                 }
                 else
                 {
-                    string varPalVaraus = cboxVarPalVaraus.SelectedValue.ToString();
                     string varPalPalvelu = cboxVarPalPalvelu.SelectedValue.ToString();
                     int varPalLukumaara = int.Parse(txbVarPalLukumaara.Text);
-
-                    string varPalLisays = $"INSERT INTO Varauksen_palvelut (varaus_id, palvelu_id, lkm) VALUES ('{varPalVaraus}', '{varPalPalvelu}', '{varPalLukumaara}')";
+                    string varPalLisays = $"INSERT INTO Varauksen_palvelut (varaus_id, palvelu_id, lkm) VALUES ('{Varaukset.varaus_id}', '{varPalPalvelu}', '{varPalLukumaara}')";
                     S.Query(varPalLisays);
                     dgwVarauksenPalvelut.DataSource = S.ShowInGridView(dgSqlHakulause);
                     perusTila();
@@ -74,11 +81,9 @@ namespace mokkisofta
             else if (btnMuokkaaPainettu == true)
             {
                 // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
-                string varPalVaraus = cboxVarPalVaraus.SelectedValue.ToString();
                 string varPalPalvelu = cboxVarPalPalvelu.SelectedValue.ToString();
                 int varPalLukumaara = int.Parse(txbVarPalLukumaara.Text);
-                string varPalMuokkaus = $"UPDATE Varauksen_palvelut SET varaus_id = '{varPalVaraus}',palvelu_id = '{varPalPalvelu}', lkm = '{varPalLukumaara}' WHERE varaus_id = {valittuRivi}";
-
+                string varPalMuokkaus = $"UPDATE Varauksen_palvelut SET palvelu_id = '{varPalPalvelu}', lkm = '{varPalLukumaara}' WHERE varauksen_palvelut_id = {valittuId}";
                 S.Query(varPalMuokkaus);
                 dgwVarauksenPalvelut.DataSource = S.ShowInGridView(dgSqlHakulause);
                 perusTila();
@@ -97,8 +102,8 @@ namespace mokkisofta
                 {
                     S.Connect();
                     int rowIndex = dgwVarauksenPalvelut.CurrentCell.RowIndex;
-                    valittuRivi = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Varaus"].Value.ToString();
-                    string varPalPoisto = $"DELETE FROM Varauksen_palvelut WHERE varaus_id='{valittuRivi}'";
+                    valittuId = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    string varPalPoisto = $"DELETE FROM Varauksen_palvelut WHERE varauksen_palvelut_id = '{valittuId}'";
                     S.Query(varPalPoisto);
                     dgwVarauksenPalvelut.DataSource = S.ShowInGridView(dgSqlHakulause);
                     S.Close();
@@ -140,8 +145,7 @@ namespace mokkisofta
             btnVarPalPeruuta.Enabled = true;
             //Lisätään valitun rivin tiedot tekstikenntiin
             int rowIndex = dgwVarauksenPalvelut.CurrentCell.RowIndex;
-            valittuRivi = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Varaus"].Value.ToString();
-            cboxVarPalVaraus.Text = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Varaus"].Value.ToString();
+            valittuId = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
             cboxVarPalPalvelu.Text = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Palvelu"].Value.ToString();
             txbVarPalLukumaara.Text = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Lukumäärä"].Value.ToString();
             //Otetaan datagridin käyttö pois muokkauksen ajaksi
@@ -163,6 +167,12 @@ namespace mokkisofta
             dgwVarauksenPalvelut.Enabled = false;
         }
 
-
+        private void TxbVarPalLukumaara_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

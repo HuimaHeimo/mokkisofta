@@ -15,7 +15,7 @@ namespace mokkisofta
         Sql S = new Sql();
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
-        private string valittuRivi = "";
+        private string valittuId = "";
         /* SQL hakulause tietojen hakemiseen datagridiin. Hakee Asiakas taulusta etunimen ja sukunimen ja tulostaa ne Asiakas_id sijasta.
         * 
         */
@@ -79,7 +79,7 @@ namespace mokkisofta
                 double lasSumma = double.Parse(txbLasSumma.Text);
                 double lasAlv = double.Parse(txbLasAlv.Text);
                 string lasMuokkaus = $"UPDATE Lasku SET varaus_id = '{lasVaraus}', asiakas_id = '{lasAsiakas}', nimi = '{lasNimi}', lahiosoite = '{lasOsoite}', " +
-                    $"postitoimipaikka = '{lasPostitoimipaikka}', postinro = '{lasPostinro}', summa = '{lasSumma}', alv = '{lasAlv}' WHERE lasku_id = {valittuRivi}";
+                    $"postitoimipaikka = '{lasPostitoimipaikka}', postinro = '{lasPostinro}', summa = '{lasSumma}', alv = '{lasAlv}' WHERE lasku_id = {valittuId}";
 
                 S.Query(lasMuokkaus);
                 dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
@@ -98,7 +98,7 @@ namespace mokkisofta
                     S.Connect();
                     int rowIndex = dgwLaskut.CurrentCell.RowIndex;
                     string valittuId = dgwLaskut.Rows[rowIndex].Cells["Id"].Value.ToString();
-                    string lasPoisto = $"DELETE FROM Laskut WHERE lasku_id='{valittuId}'";
+                    string lasPoisto = $"DELETE FROM Lasku WHERE lasku_id='{valittuId}'";
 
                     S.Query(lasPoisto);
                     dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
@@ -153,7 +153,7 @@ namespace mokkisofta
             btnLasPeruuta.Enabled = true;
             //Lisätään valitun rivin tiedot tekstikenntiin
             int rowIndex = dgwLaskut.CurrentCell.RowIndex;
-            valittuRivi = dgwLaskut.Rows[rowIndex].Cells["Id"].Value.ToString();
+            valittuId = dgwLaskut.Rows[rowIndex].Cells["Id"].Value.ToString();
             cboxLasVaraus.Text = dgwLaskut.Rows[rowIndex].Cells["Varaus"].Value.ToString();
             cboxLasAsiakas.Text = dgwLaskut.Rows[rowIndex].Cells["Asiakas"].Value.ToString();
             txbLasNimi.Text = dgwLaskut.Rows[rowIndex].Cells["Laskun maksaja"].Value.ToString();
@@ -183,7 +183,7 @@ namespace mokkisofta
 
         private void TxbLasPostinro_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }

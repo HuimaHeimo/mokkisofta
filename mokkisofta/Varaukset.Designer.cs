@@ -259,7 +259,7 @@
             this.btnVarauksenPalvelut.TabIndex = 47;
             this.btnVarauksenPalvelut.Text = "Varauksen Palvelut";
             this.btnVarauksenPalvelut.UseVisualStyleBackColor = true;
-            this.btnVarauksenPalvelut.Click += new System.EventHandler(this.Button1_Click);
+            this.btnVarauksenPalvelut.Click += new System.EventHandler(this.btnVarauksenPalvelut_Click);
             // 
             // Varaukset
             // 
