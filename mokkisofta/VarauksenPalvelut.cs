@@ -16,7 +16,7 @@ namespace mokkisofta
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
         // valittuRivi muuttujaa käytetään kun muokataan tai poistetaan rivin tietoja, muuttuja sisältää id arvon
-        // jolla tunnistetaan rivit toisistaan. Tässä luokassa se on palvelu_id, sillä kaikilla tässä luokassa listatuilla tiedoilla varaus_id on sama.
+        // jolla tunnistetaan rivit toisistaan. 
         private string valittuId = ""; 
         /* käytin tässä luokassa myös julkista varaus_id muuttujaa Varaukset luokasta (Varaukset.varaus_id) . Tällä muuttujalla varmistetaan että
          * VarauksenPalvelut datagridin listauksessa näkyvät vain Varaukset luokasta valitun varauksen tiedot.
