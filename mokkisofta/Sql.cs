@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace mokkisofta
@@ -90,6 +86,22 @@ namespace mokkisofta
                 return c;
             }
         }
+        public ComboBox haeVarauksenAsiakas(Sql S, ComboBox a, ComboBox c, DataTable dt, string taulu, string kentta1)
+        {
+            /* Palauttaa datatablen joka sisältää varauksen tekevän asiakkaan id arvon ja nimen. 
+             * Asiakkaan koko nimi tulostetaan comboboxiin ja valuememberinä on asiakkaan id arvo.
+             */
+            SqlDataReader sqlReader;
+            string komento = $"SELECT {kentta1} as id, Asiakas.etunimi + ' ' + Asiakas.sukunimi AS KENTTA FROM {taulu} INNER JOIN Varaus ON Varaus.asiakas_id = Asiakas.asiakas_id  WHERE {a.SelectedValue} = Varaus.varaus_id";
+            sqlReader = S.DataReader(komento);
+            dt.Load(sqlReader);
+            c.DataSource = dt;
+            c.ValueMember = "id";
+            c.DisplayMember = "KENTTA";
+            return c;
+            
+        }
+
 
         /// <summary>
         /// Hakee kannasta tietoa datagridviewiin.

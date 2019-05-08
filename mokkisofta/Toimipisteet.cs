@@ -15,19 +15,22 @@ namespace mokkisofta
         Sql S = new Sql();
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
-        private string valittuRivi = "";
+        private string valittuId = "";
         private string dgSqlHakulause = "SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste";
         public Toimipisteet()
         {
             InitializeComponent();
-
+            // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
+            DgwToimipisteet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
+            DgwToimipisteet.AllowUserToAddRows = false;
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            DgwToimipisteet.ReadOnly = true;
             DgwToimipisteet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             S.Connect();
             DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
             S.Close();
-            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false); // Ohjelman käynnistyessä tekstikenttiin ei voi syöttää tietoa.
-            btnTpTallenna.Enabled = false;
-            btnTpPeruuta.Enabled = false;
+            perusTila();
         }
 
         private void BtnTpLisaa_Click(object sender, EventArgs e)
@@ -50,8 +53,8 @@ namespace mokkisofta
                 {
                     S.Connect();
                     int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
-                    valittuRivi = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
-                    string tpPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuRivi}'";
+                    valittuId = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    string tpPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuId}'";
 
                     S.Query(tpPoisto);
                     DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
@@ -66,7 +69,7 @@ namespace mokkisofta
 
         private void TxbTpPuhnro_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -75,7 +78,7 @@ namespace mokkisofta
 
         private void TxbTpPostinumero_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
             }
@@ -117,7 +120,7 @@ namespace mokkisofta
                 string tpPostinro = txbTpPostinumero.Text;
                 string tpSposti = txbTpSposti.Text;
                 string tpPuhnro = txbTpPuhnro.Text;
-                string tpMuokkaus = $"UPDATE Toimipiste SET nimi = '{tpNimi}', lahiosoite = '{tpOsoite}', postitoimipaikka = '{tpPtoimipaikka}', postinro = '{tpPostinro}', email = '{tpSposti}', puhelinnro = '{tpPuhnro}' WHERE toimipiste_id = {valittuRivi}";
+                string tpMuokkaus = $"UPDATE Toimipiste SET nimi = '{tpNimi}', lahiosoite = '{tpOsoite}', postitoimipaikka = '{tpPtoimipaikka}', postinro = '{tpPostinro}', email = '{tpSposti}', puhelinnro = '{tpPuhnro}' WHERE toimipiste_id = {valittuId}";
                 S.Query(tpMuokkaus);
                 DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
                 perusTila();
@@ -170,7 +173,7 @@ namespace mokkisofta
             btnTpPeruuta.Enabled = true;
             //Lisätään valitun rivin tiedot tekstikenntiin
             int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
-            valittuRivi = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
+            valittuId = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
             txbTpNimi.Text = DgwToimipisteet.Rows[rowIndex].Cells["Nimi"].Value.ToString();
             txbTpOsoite.Text = DgwToimipisteet.Rows[rowIndex].Cells["Osoite"].Value.ToString();
             txbTpPtoimipaikka.Text = DgwToimipisteet.Rows[rowIndex].Cells["paikkakunta"].Value.ToString();

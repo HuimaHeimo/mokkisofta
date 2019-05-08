@@ -19,6 +19,7 @@ namespace mokkisofta
         /* SQL hakulause tietojen hakemiseen datagridiin. Hakee Asiakas taulusta etunimen ja sukunimen ja tulostaa ne Asiakas_id sijasta.
         * 
         */
+        private DataTable asiakkaat = new DataTable();
         private string dgSqlHakulause = "SELECT lasku_id AS 'Id', varaus_id AS 'Varaus', Asiakas.etunimi + ' ' + Asiakas.sukunimi AS 'Asiakas', nimi as 'Laskun maksaja', Lasku.lahiosoite AS 'Lähiosoite', Lasku.postitoimipaikka AS 'Postitoimipaikka', " +
             "Lasku.postinro AS 'Postinumero', summa AS 'Summa', alv AS 'Alv' " +
             "FROM Lasku INNER JOIN Asiakas ON Lasku.asiakas_id = Asiakas.asiakas_id";
@@ -28,9 +29,8 @@ namespace mokkisofta
             S.Connect();
             dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable varaukset = new DataTable();
-            DataTable asiakkaat = new DataTable();
             cboxLasVaraus = S.haeTaulustaLaatikkoon(S, cboxLasVaraus, varaukset, "Varaus", "varaus_id", "varaus_id");
-            cboxLasAsiakas = S.haeTaulustaLaatikkoon(S, cboxLasAsiakas, asiakkaat, "Asiakas", "asiakas_id", "etunimi", "sukunimi");
+            cboxLasAsiakas = S.haeVarauksenAsiakas(S, cboxLasVaraus, cboxLasAsiakas, asiakkaat, "Asiakas", "Varaus.asiakas_id");
             S.Close();
             perusTila();
         }
@@ -61,7 +61,7 @@ namespace mokkisofta
                     double lasAlv = double.Parse(txbLasAlv.Text);
                     string lasLisays = $"INSERT INTO Lasku (varaus_id, asiakas_id, nimi, lahiosoite, postitoimipaikka, postinro, summa, alv) " +
                         $"VALUES ('{lasVaraus}', '{lasAsiakas}', '{lasNimi}', '{lasOsoite}', '{lasPostitoimipaikka}', '{lasPostinro}', '{lasSumma}', '{lasAlv}')";
-
+                    
                     S.Query(lasLisays);
                     dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
                     perusTila();
@@ -203,6 +203,17 @@ namespace mokkisofta
             {
                 e.Handled = true;
             }
+        }
+
+        private void CboxLasVaraus_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            // Kun käyttäjä valitsee varauksen comboboxista, asiakas comboboxin sisältö muuttuu ja näyttää vain asiakkaan joka on tehnyt varauksen.
+            S.Connect();
+            cboxLasAsiakas.DataSource = null;
+            asiakkaat.Clear();
+            cboxLasAsiakas.Items.Clear();
+            cboxLasAsiakas = S.haeVarauksenAsiakas(S, cboxLasVaraus, cboxLasAsiakas, asiakkaat, "Asiakas", "Varaus.asiakas_id");
+            S.Close();
         }
     }
 }

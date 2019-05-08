@@ -97,6 +97,7 @@
             this.cboxLasVaraus.Name = "cboxLasVaraus";
             this.cboxLasVaraus.Size = new System.Drawing.Size(121, 21);
             this.cboxLasVaraus.TabIndex = 1;
+            this.cboxLasVaraus.SelectionChangeCommitted += new System.EventHandler(this.CboxLasVaraus_SelectionChangeCommitted);
             // 
             // btnLasLisaa
             // 
