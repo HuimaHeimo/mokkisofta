@@ -139,7 +139,7 @@ namespace mokkisofta
             }
             else if (btn == btnPlvPeruuta)
             {
-
+                perusTila();
             }
             else if (btn == btnPlvTallenna)
             {
@@ -206,19 +206,46 @@ namespace mokkisofta
         {
             // Tämän ajettaessa kaikki tekstikentät nollataan. Lisää, Muokkaa, ja Poista painikkeet käytössä.
             this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Text = string.Empty);
-            this.Controls.OfType<TextBox>().ToList().ForEach(t => t.Enabled = false);
 
-            /*
-            btnAsLisaa.Enabled = true;
-            btnAsMuokkaa.Enabled = true;
-            btnAsPoista.Enabled = true;
-            btnTpTallenna.Enabled = false; ;
-            btnTpPeruuta.Enabled = false; ;
-            */
-            lblPaID.Text = "-";
+            // Poistetaan Peruuta- ja Tallenna-painikkeet käytöstä.
+            btnPlvPeruuta.Enabled = false;
+            btnPlvTallenna.Enabled = false;
+
+            // Otetaan Lisää-, Poista ja Muokkaa-painikkeet käyttöön.
+            btnPlvLisää.Enabled = true;
+            btnPlvPoista.Enabled = true;
+            btnPlvMuokkaa.Enabled = true;
+
+
+            //Otetaan datagridin takaisin käyttöön.
             dgwPalvelut.Enabled = true;
         }
 
+        /// <summary>
+        /// Sallitaan hinta-kenttään ainoastaan numerot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txbPlvHinta_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
 
+
+        /// <summary>
+        /// Sallitaan alv-kenttään ainoastaan numerot
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void txbPlvAlv_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

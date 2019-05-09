@@ -120,7 +120,7 @@
             // lblPlvAlv
             // 
             this.lblPlvAlv.AutoSize = true;
-            this.lblPlvAlv.Location = new System.Drawing.Point(304, 421);
+            this.lblPlvAlv.Location = new System.Drawing.Point(284, 448);
             this.lblPlvAlv.Name = "lblPlvAlv";
             this.lblPlvAlv.Size = new System.Drawing.Size(22, 13);
             this.lblPlvAlv.TabIndex = 55;
@@ -129,7 +129,7 @@
             // lblPlvHinta
             // 
             this.lblPlvHinta.AutoSize = true;
-            this.lblPlvHinta.Location = new System.Drawing.Point(304, 386);
+            this.lblPlvHinta.Location = new System.Drawing.Point(284, 420);
             this.lblPlvHinta.Name = "lblPlvHinta";
             this.lblPlvHinta.Size = new System.Drawing.Size(32, 13);
             this.lblPlvHinta.TabIndex = 53;
@@ -164,23 +164,25 @@
             // 
             // txbPlvAlv
             // 
-            this.txbPlvAlv.Location = new System.Drawing.Point(342, 421);
+            this.txbPlvAlv.Location = new System.Drawing.Point(322, 445);
             this.txbPlvAlv.Name = "txbPlvAlv";
             this.txbPlvAlv.Size = new System.Drawing.Size(130, 20);
             this.txbPlvAlv.TabIndex = 8;
+            this.txbPlvAlv.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPlvAlv_KeyPress);
             // 
             // txbPlvHinta
             // 
-            this.txbPlvHinta.Location = new System.Drawing.Point(342, 386);
+            this.txbPlvHinta.Location = new System.Drawing.Point(322, 420);
             this.txbPlvHinta.Name = "txbPlvHinta";
             this.txbPlvHinta.Size = new System.Drawing.Size(130, 20);
             this.txbPlvHinta.TabIndex = 7;
+            this.txbPlvHinta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbPlvHinta_KeyPress);
             // 
             // txbPlvKuvaus
             // 
             this.txbPlvKuvaus.Location = new System.Drawing.Point(104, 471);
             this.txbPlvKuvaus.Name = "txbPlvKuvaus";
-            this.txbPlvKuvaus.Size = new System.Drawing.Size(232, 20);
+            this.txbPlvKuvaus.Size = new System.Drawing.Size(348, 20);
             this.txbPlvKuvaus.TabIndex = 5;
             // 
             // dgwPalvelut
