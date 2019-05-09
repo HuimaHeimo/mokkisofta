@@ -11,9 +11,11 @@ using System.Windows.Forms;
 namespace mokkisofta
 {
     public partial class Palvelut : Form
-    {     
+    {
         // Luodaan muuttuja DataGridViewiä varten. Sen ansiosta SELECT-lausetta ei tarvitse kirjoittaa toistuvasti. 
-        private string sqlSelection = "SELECT palvelu_id AS Id, toimipiste_id AS Toimipiste, nimi AS Nimi, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu";
+        private string sqlSelection = "SELECT palvelu_id AS Id, Palvelu.nimi AS Nimi, Toimipiste.nimi as Toimipiste, kuvaus AS Kuvaus, hinta AS hinta, alv AS Arvonlisävero FROM Palvelu " +
+            "INNER JOIN Toimipiste ON Palvelu.toimipiste_id = Toimipiste.toimipiste_id";
+
 
         // Viedään tekstikenttien tiedot muuttujiin.
         private string pNimi;
