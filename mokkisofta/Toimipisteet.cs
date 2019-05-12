@@ -26,7 +26,7 @@ namespace mokkisofta
             DgwToimipisteet.AllowUserToAddRows = false;
             // Estetään DataGridViewin sisältöjen muokkaus.
             DgwToimipisteet.ReadOnly = true;
-            DgwToimipisteet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            
             S.Connect();
             DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
             S.Close();

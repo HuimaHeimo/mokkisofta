@@ -33,7 +33,9 @@ namespace mokkisofta
             dgwVarauksenPalvelut.AllowUserToAddRows = false;
             // Estetään DataGridViewin sisältöjen muokkaus.
             dgwVarauksenPalvelut.ReadOnly = true;
-
+            // Tehdään Comboboxista alasvetovalikko, johon ei voi kirjoittaa.
+            cboxVarPalPalvelu.DropDownStyle = ComboBoxStyle.DropDownList;
+            
             S.Connect();
             dgwVarauksenPalvelut.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable palvelut = new DataTable();

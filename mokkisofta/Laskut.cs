@@ -16,6 +16,7 @@ namespace mokkisofta
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
         private string valittuId = "";
+        string nykyinenVaraus = "";
         /* SQL hakulause tietojen hakemiseen datagridiin. Hakee Asiakas taulusta etunimen ja sukunimen ja tulostaa ne Asiakas_id sijasta.
         * 
         */
@@ -23,6 +24,7 @@ namespace mokkisofta
         private string dgSqlHakulause = "SELECT lasku_id AS 'Id', varaus_id AS 'Varaus', Asiakas.etunimi + ' ' + Asiakas.sukunimi AS 'Asiakas', nimi as 'Laskun maksaja', Lasku.lahiosoite AS 'Lähiosoite', Lasku.postitoimipaikka AS 'Postitoimipaikka', " +
             "Lasku.postinro AS 'Postinumero', summa AS 'Summa', alv AS 'Alv' " +
             "FROM Lasku INNER JOIN Asiakas ON Lasku.asiakas_id = Asiakas.asiakas_id";
+        
         public Laskut()
         {
             InitializeComponent();
@@ -33,6 +35,21 @@ namespace mokkisofta
             cboxLasAsiakas = S.haeVarauksenAsiakas(S, cboxLasVaraus, cboxLasAsiakas, asiakkaat, "Asiakas", "Varaus.asiakas_id");
             S.Close();
             perusTila();
+            // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
+            dgwLaskut.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
+            dgwLaskut.AllowUserToAddRows = false;
+
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwLaskut.ReadOnly = true;
+
+            // Tehdään Comboboxista alasvetovalikko, johon ei voi kirjoittaa.
+            cboxLasAsiakas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboxLasVaraus.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwLaskut.ReadOnly = true;
+
         }
 
         private void BtnLasTallenna_Click(object sender, EventArgs e)
@@ -42,15 +59,42 @@ namespace mokkisofta
              * Toiminnon suoritettua kaikki tekstikentät nollataan ja painonapit ovat jälleen käytettävissä.
              */
             S.Connect();
-            if (btnLisaaPainettu == true)
+            DataTable dt = (System.Data.DataTable)dgwLaskut.DataSource;
+            int lasVaraus1 = int.Parse(cboxLasVaraus.Text);
+            if (dt.AsEnumerable().Any(row => lasVaraus1 == row.Field<int>("Varaus")) && !(nykyinenVaraus.Equals(lasVaraus1.ToString())))
             {
+                MessageBox.Show("Valitulla varauksella on jo lasku!");
+            }
+            else
+            {
+                if (btnLisaaPainettu == true)
+                {
 
-                if (this.Controls.OfType<ComboBox>().Any(t => string.IsNullOrEmpty(t.Text)) || this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
-                {
-                    MessageBox.Show("Syötä tiedot kaikkiin kenttiin!");
+                    if (this.Controls.OfType<ComboBox>().Any(t => string.IsNullOrEmpty(t.Text)) || this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
+                    {
+                        MessageBox.Show("Syötä tiedot kaikkiin kenttiin!");
+                    }
+                    else
+                    {
+                        string lasVaraus = cboxLasVaraus.SelectedValue.ToString();
+                        string lasAsiakas = cboxLasAsiakas.SelectedValue.ToString();
+                        string lasNimi = txbLasNimi.Text;
+                        string lasOsoite = txbLasOsoite.Text;
+                        string lasPostitoimipaikka = txbLasPostitoimipaikka.Text;
+                        string lasPostinro = txbLasPostinro.Text;
+                        double lasSumma = double.Parse(txbLasSumma.Text);
+                        double lasAlv = double.Parse(txbLasAlv.Text);
+                        string lasLisays = $"INSERT INTO Lasku (varaus_id, asiakas_id, nimi, lahiosoite, postitoimipaikka, postinro, summa, alv) " +
+                            $"VALUES ('{lasVaraus}', '{lasAsiakas}', '{lasNimi}', '{lasOsoite}', '{lasPostitoimipaikka}', '{lasPostinro}', '{lasSumma}', '{lasAlv}')";
+
+                        S.Query(lasLisays);
+                        dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
+                        perusTila();
+                    }
                 }
-                else
+                else if (btnMuokkaaPainettu == true)
                 {
+                    // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
                     string lasVaraus = cboxLasVaraus.SelectedValue.ToString();
                     string lasAsiakas = cboxLasAsiakas.SelectedValue.ToString();
                     string lasNimi = txbLasNimi.Text;
@@ -59,33 +103,14 @@ namespace mokkisofta
                     string lasPostinro = txbLasPostinro.Text;
                     double lasSumma = double.Parse(txbLasSumma.Text);
                     double lasAlv = double.Parse(txbLasAlv.Text);
-                    string lasLisays = $"INSERT INTO Lasku (varaus_id, asiakas_id, nimi, lahiosoite, postitoimipaikka, postinro, summa, alv) " +
-                        $"VALUES ('{lasVaraus}', '{lasAsiakas}', '{lasNimi}', '{lasOsoite}', '{lasPostitoimipaikka}', '{lasPostinro}', '{lasSumma}', '{lasAlv}')";
-                    
-                    S.Query(lasLisays);
+                    string lasMuokkaus = $"UPDATE Lasku SET varaus_id = '{lasVaraus}', asiakas_id = '{lasAsiakas}', nimi = '{lasNimi}', lahiosoite = '{lasOsoite}', " +
+                        $"postitoimipaikka = '{lasPostitoimipaikka}', postinro = '{lasPostinro}', summa = '{lasSumma}', alv = '{lasAlv}' WHERE lasku_id = {valittuId}";
+
+                    S.Query(lasMuokkaus);
                     dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
                     perusTila();
                 }
             }
-            else if (btnMuokkaaPainettu == true)
-            {
-                // muokkaustoiminnallisuus (Valitun datagrid rivin tietojen siirtäminen tekstikenttiin, ja niiden muokkaustoiminnallisuus.)
-                string lasVaraus = cboxLasVaraus.SelectedValue.ToString();
-                string lasAsiakas = cboxLasAsiakas.SelectedValue.ToString();
-                string lasNimi = txbLasNimi.Text;
-                string lasOsoite = txbLasOsoite.Text;
-                string lasPostitoimipaikka = txbLasPostitoimipaikka.Text;
-                string lasPostinro = txbLasPostinro.Text;
-                double lasSumma = double.Parse(txbLasSumma.Text);
-                double lasAlv = double.Parse(txbLasAlv.Text);
-                string lasMuokkaus = $"UPDATE Lasku SET varaus_id = '{lasVaraus}', asiakas_id = '{lasAsiakas}', nimi = '{lasNimi}', lahiosoite = '{lasOsoite}', " +
-                    $"postitoimipaikka = '{lasPostitoimipaikka}', postinro = '{lasPostinro}', summa = '{lasSumma}', alv = '{lasAlv}' WHERE lasku_id = {valittuId}";
-
-                S.Query(lasMuokkaus);
-                dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
-                perusTila();
-            }
-
             S.Close();
         }
         private void btnLasPoista_Click(object sender, EventArgs e)
@@ -162,6 +187,7 @@ namespace mokkisofta
             txbLasPostinro.Text = dgwLaskut.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
             txbLasSumma.Text = dgwLaskut.Rows[rowIndex].Cells["Summa"].Value.ToString();
             txbLasAlv.Text = dgwLaskut.Rows[rowIndex].Cells["Alv"].Value.ToString();
+            nykyinenVaraus = cboxLasVaraus.Text; // otetaan nykyinen varaus talteen. tarvitaan tarkistettaessa onko varausta jo olemassa taulussa.
             //Otetaan datagridin käyttö pois muokkauksen ajaksi
             dgwLaskut.Enabled = false;
         }

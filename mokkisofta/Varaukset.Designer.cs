@@ -200,6 +200,7 @@
             this.dtVarPvm.Name = "dtVarPvm";
             this.dtVarPvm.Size = new System.Drawing.Size(200, 20);
             this.dtVarPvm.TabIndex = 6;
+            this.dtVarPvm.ValueChanged += new System.EventHandler(this.DtVarPvm_ValueChanged);
             // 
             // dtVarVahvistuspvm
             // 
@@ -207,6 +208,7 @@
             this.dtVarVahvistuspvm.Name = "dtVarVahvistuspvm";
             this.dtVarVahvistuspvm.Size = new System.Drawing.Size(200, 20);
             this.dtVarVahvistuspvm.TabIndex = 7;
+            this.dtVarVahvistuspvm.ValueChanged += new System.EventHandler(this.DtVarVahvistuspvm_ValueChanged);
             // 
             // dtVarAlkupvm
             // 
@@ -214,6 +216,7 @@
             this.dtVarAlkupvm.Name = "dtVarAlkupvm";
             this.dtVarAlkupvm.Size = new System.Drawing.Size(200, 20);
             this.dtVarAlkupvm.TabIndex = 8;
+            this.dtVarAlkupvm.ValueChanged += new System.EventHandler(this.DtVarAlkupvm_ValueChanged);
             // 
             // lblVarLoppupvm
             // 

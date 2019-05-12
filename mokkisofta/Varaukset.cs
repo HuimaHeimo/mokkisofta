@@ -31,7 +31,9 @@ namespace mokkisofta
             DgwVaraukset.AllowUserToAddRows = false;
             // Estetään DataGridViewin sisältöjen muokkaus.
             DgwVaraukset.ReadOnly = true;
-
+            // Tehdään Comboboxista alasvetovalikko, johon ei voi kirjoittaa.
+            cboxVarAsiakas.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboxVarToimipiste.DropDownStyle = ComboBoxStyle.DropDownList;
             S.Connect();
             DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable asiakkaat = new DataTable();
@@ -187,6 +189,25 @@ namespace mokkisofta
             vp.Text = "Varauksen " + varaus_id + " palvelut";
             vp.ShowDialog(); 
             perusTila();
+        }
+
+        private void DtVarPvm_ValueChanged(object sender, EventArgs e)
+        {
+            dtVarAlkupvm.MinDate = dtVarPvm.Value;
+            dtVarVahvistuspvm.MinDate = dtVarPvm.Value;
+            dtVarAlkupvm.MinDate = dtVarPvm.Value;
+            dtVarLoppupvm.MinDate = dtVarPvm.Value;
+        }
+
+        private void DtVarAlkupvm_ValueChanged(object sender, EventArgs e)
+        {
+            dtVarLoppupvm.MinDate = dtVarAlkupvm.Value;
+        }
+
+        private void DtVarVahvistuspvm_ValueChanged(object sender, EventArgs e)
+        {
+            dtVarAlkupvm.MinDate = dtVarVahvistuspvm.Value;
+            dtVarLoppupvm.MinDate = dtVarAlkupvm.Value;
         }
     }
 }
