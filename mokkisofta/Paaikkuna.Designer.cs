@@ -50,6 +50,7 @@
             this.lblSalasana = new System.Windows.Forms.Label();
             this.txbPvSalasana = new System.Windows.Forms.TextBox();
             this.txbPvTunnus = new System.Windows.Forms.TextBox();
+            this.cbPvAutentikointi = new System.Windows.Forms.CheckBox();
             this.MmStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -246,12 +247,24 @@
             this.txbPvTunnus.Size = new System.Drawing.Size(139, 20);
             this.txbPvTunnus.TabIndex = 13;
             // 
+            // cbPvAutentikointi
+            // 
+            this.cbPvAutentikointi.AutoSize = true;
+            this.cbPvAutentikointi.Location = new System.Drawing.Point(380, 79);
+            this.cbPvAutentikointi.Name = "cbPvAutentikointi";
+            this.cbPvAutentikointi.Size = new System.Drawing.Size(130, 17);
+            this.cbPvAutentikointi.TabIndex = 17;
+            this.cbPvAutentikointi.Text = "Windows-autentikointi";
+            this.cbPvAutentikointi.UseVisualStyleBackColor = true;
+            this.cbPvAutentikointi.CheckedChanged += new System.EventHandler(this.cbPvAutentikointi_CheckedChanged);
+            // 
             // Paaikkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(681, 509);
+            this.Controls.Add(this.cbPvAutentikointi);
             this.Controls.Add(this.lblTunnus);
             this.Controls.Add(this.lblSalasana);
             this.Controls.Add(this.txbPvSalasana);
@@ -303,6 +316,7 @@
         private System.Windows.Forms.Label lblSalasana;
         private System.Windows.Forms.TextBox txbPvSalasana;
         private System.Windows.Forms.TextBox txbPvTunnus;
+        private System.Windows.Forms.CheckBox cbPvAutentikointi;
     }
 }
 

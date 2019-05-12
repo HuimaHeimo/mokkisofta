@@ -8,7 +8,7 @@ namespace mokkisofta
     public class Sql
     {
 
-        public string ConnectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=vp;User ID=sa;Password=Kissa123!";
+        public string ConnectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=vp;Integrated Security=SSPI";
         SqlConnection con;
 
         /// <summary>

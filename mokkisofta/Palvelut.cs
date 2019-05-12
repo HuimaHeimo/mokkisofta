@@ -28,9 +28,6 @@ namespace mokkisofta
         // Luodaan apumuuttuja taulun päivitystä varten.
         private int rowIndex;
 
-
-
-
         Sql S = new Sql();
         public Palvelut()
         {

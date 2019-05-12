@@ -14,7 +14,13 @@ namespace mokkisofta
 {
     public partial class Paaikkuna : Form
     {
-        
+        // Luodaan muuttujat tietokantayhteyttä varten.
+        string userID;
+        string password;
+        string connection;
+        string server;
+        string dataBaseName;
+
         public Paaikkuna()
         {
             InitializeComponent();
@@ -28,11 +34,12 @@ namespace mokkisofta
             btnTpisteet.Enabled = false;
             btnVaraukset.Enabled = false;
             */
-            
+            cbPvAutentikointi.Checked = true;
+            txbPvTunnus.Enabled = false;
+            txbPvSalasana.Enabled = false;
+
+
         }
-
-
-        string connection = @"Data Source=localhost\\SQLEXPRESS"";Initial Catalog=vp;User ID=sa;Password=Kissa123!";
 
         /// <summary>
         /// Tämä click event hoitaa päävalikon painikkeiden toiminnan.
@@ -78,21 +85,42 @@ namespace mokkisofta
             else if (btn == btnPvYhdista)
             {
 
-                // Luodaan muuttujat tietokantayhteyttä varten.
-                string server = null;
-                string dataBaseName;
-                string user;
+
+                server = txbPvPalvelin.Text;
+                dataBaseName = txbPvTietokanta.Text;
+                
 
                 // Lisätään muuttujiin tietokantayhteyttä varten tarvittavat tiedot.
                 server = txbPvPalvelin.Text;
                 dataBaseName = txbPvTietokanta.Text;
-                user = System.Security.Principal.WindowsIdentity.GetCurrent().Name;
 
-                string connection = @"Data Source=" + server + ";Initial Catalog=" + dataBaseName + ";User ID=sa;Password=Kissa123!";
-
+                if (cbPvAutentikointi.Checked == true)
+                {
+                    connection = @"Data Source=" + server + ";Initial Catalog= " + dataBaseName + ";Integrated Security=SSPI";
+                }
+                else if (cbPvAutentikointi.Checked == false)
+                {
+                    userID = txbPvTunnus.Text;
+                    password = txbPvSalasana.Text;
+                    connection = @"Data Source=" + server + ";Initial Catalog=" + dataBaseName + ";" + "User ID=" + userID + ";" + "Password=" + password;
+                }
+                
                 Sql S = new Sql();
 
                 S.SetConnectionString(connection);
+
+                try
+                {
+                    S.Connect();
+                }
+                catch (Exception)
+                {
+
+                }
+                
+
+
+
 
                 btnAsiakkaat.Enabled = true;
                 btnLaskut.Enabled = true;
@@ -112,6 +140,19 @@ namespace mokkisofta
             Application.Exit();
         }
 
-
+        // Enabloidaan tai disabloidaan tietokannan autentikointitekstikentät valinnan mukaan.
+        private void cbPvAutentikointi_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbPvAutentikointi.Checked == true)
+            {
+                txbPvTunnus.Enabled = false;
+                txbPvSalasana.Enabled = false;
+            }
+            else if (cbPvAutentikointi.Checked == false)
+            {
+                txbPvTunnus.Enabled = true;
+                txbPvSalasana.Enabled = true;
+            }
+        }
     }
 }
