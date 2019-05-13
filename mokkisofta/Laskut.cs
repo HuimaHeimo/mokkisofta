@@ -17,6 +17,10 @@ namespace mokkisofta
         private bool btnMuokkaaPainettu = false;
         private string valittuId = "";
         string nykyinenVaraus = "";
+
+        // Luodaan muuttuja päävalikosta tuotua yhdistämislausetta varten.
+        string connectionString;
+
         /* SQL hakulause tietojen hakemiseen datagridiin. Hakee Asiakas taulusta etunimen ja sukunimen ja tulostaa ne Asiakas_id sijasta.
         * 
         */
@@ -25,10 +29,14 @@ namespace mokkisofta
             "Lasku.postinro AS 'Postinumero', summa AS 'Summa', alv AS 'Alv' " +
             "FROM Lasku INNER JOIN Asiakas ON Lasku.asiakas_id = Asiakas.asiakas_id";
         
-        public Laskut()
+        public Laskut(string connection)
         {
             InitializeComponent();
-            S.Connect();
+
+            // Tuodaan pääikkunassa muodostettu tietokantalause formille käytettäväksi.
+            connectionString = connection;
+
+            S.Connect(connectionString);
             dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable varaukset = new DataTable();
             try
@@ -65,7 +73,7 @@ namespace mokkisofta
              * Muuttujina ovat btnLisaaPainettu ja btnMuokkaaPainettu. Toiminnon jälkeen kyseiset muuttujat saavat arvon false.
              * Toiminnon suoritettua kaikki tekstikentät nollataan ja painonapit ovat jälleen käytettävissä.
              */
-            S.Connect();
+            S.Connect(connectionString);
             DataTable dt = (System.Data.DataTable)dgwLaskut.DataSource;
             int lasVaraus1 = int.Parse(cboxLasVaraus.Text);
             if (dt.AsEnumerable().Any(row => lasVaraus1 == row.Field<int>("Varaus")) && !(nykyinenVaraus.Equals(lasVaraus1.ToString())))
@@ -127,7 +135,7 @@ namespace mokkisofta
             {
                 if (dgwLaskut.CurrentCell != null)
                 {
-                    S.Connect();
+                    S.Connect(connectionString);
                     int rowIndex = dgwLaskut.CurrentCell.RowIndex;
                     string valittuId = dgwLaskut.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string lasPoisto = $"DELETE FROM Lasku WHERE lasku_id='{valittuId}'";
@@ -254,7 +262,7 @@ namespace mokkisofta
         private void CboxLasVaraus_SelectionChangeCommitted(object sender, EventArgs e)
         {
             // Kun käyttäjä valitsee varauksen comboboxista, asiakas comboboxin sisältö muuttuu ja näyttää vain asiakkaan joka on tehnyt varauksen.
-            S.Connect();
+            S.Connect(connectionString);
             cboxLasAsiakas.DataSource = null;
             asiakkaat.Clear();
             cboxLasAsiakas.Items.Clear();

@@ -17,9 +17,17 @@ namespace mokkisofta
         private bool btnMuokkaaPainettu = false;
         private string valittuId = "";
         private string dgSqlHakulause = "SELECT toimipiste_id AS Id, nimi AS Nimi, lahiosoite AS Osoite, postitoimipaikka AS paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Toimipiste";
-        public Toimipisteet()
+
+        // Luodaan muuttuja päävalikosta tuotua yhdistämislausetta varten.
+        string connectionString;
+
+        public Toimipisteet(string connection)
         {
             InitializeComponent();
+
+            // Tuodaan pääikkunassa muodostettu tietokantalause formille käytettäväksi.
+            connectionString = connection;
+
             // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
             DgwToimipisteet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
@@ -27,7 +35,7 @@ namespace mokkisofta
             // Estetään DataGridViewin sisältöjen muokkaus.
             DgwToimipisteet.ReadOnly = true;
             
-            S.Connect();
+            S.Connect(connectionString);
             DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
             S.Close();
             perusTila();
@@ -51,7 +59,7 @@ namespace mokkisofta
             {
                 if (DgwToimipisteet.CurrentCell != null)
                 {
-                    S.Connect();
+                    S.Connect(connectionString);
                     int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
                     valittuId = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string tpPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuId}'";
@@ -90,7 +98,7 @@ namespace mokkisofta
              * Muuttujina ovat btnLisaaPainettu ja btnMuokkaaPainettu. Toiminnon jälkeen kyseiset muuttujat saavat arvon false.
              * Toiminnon suoritettua kaikki tekstikentät nollataan ja painonapit ovat jälleen käytettävissä.
              */
-            S.Connect();
+            S.Connect(connectionString);
             if (btnLisaaPainettu == true)
             {
                 string tpNimi = txbTpNimi.Text;

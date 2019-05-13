@@ -26,17 +26,21 @@ namespace mokkisofta
             InitializeComponent();
             txbPvPalvelin.Text = "localhost\\SQLEXPRESS";
             txbPvTietokanta.Text = "vp";
-            /*
+
+            // Poistetaan päävalikon painikkeet käytöstä, kunnes tietokantayhteys on määritetty onnistuneesti.
             btnAsiakkaat.Enabled = false;
             btnLaskut.Enabled = false;
             btnPalvelut.Enabled = false;
             btnRaportit.Enabled = false;
             btnTpisteet.Enabled = false;
             btnVaraukset.Enabled = false;
-            */
+            
+            // Määritetään tietokanta-asetusten kentät alkutilaan.
             cbPvAutentikointi.Checked = true;
             txbPvTunnus.Enabled = false;
             txbPvSalasana.Enabled = false;
+
+            txbPvSalasana.PasswordChar = '*';
 
 
         }
@@ -54,32 +58,32 @@ namespace mokkisofta
             // Ehtolauseet hoitavat oikean valikkopainikkeen tunnistamisen
             if (btn == btnTpisteet)
             {
-                Toimipisteet tp = new Toimipisteet();
+                Toimipisteet tp = new Toimipisteet(connection);
                 tp.ShowDialog();
             }
             else if (btn == btnPalvelut)
             {
-                Palvelut p = new Palvelut();
+                Palvelut p = new Palvelut(connection);
                 p.ShowDialog();
             }
             else if (btn == btnVaraukset)
             {
-                Varaukset va = new Varaukset();
+                Varaukset va = new Varaukset(connection);
                 va.ShowDialog();
             }
             else if (btn == btnAsiakkaat)
             {
-                Asiakkaat a = new Asiakkaat();
+                Asiakkaat a = new Asiakkaat(connection);
                 a.ShowDialog();
             }
             else if (btn == btnLaskut)
             {
-                Laskut la = new Laskut();
+                Laskut la = new Laskut(connection);
                 la.ShowDialog();
             }
             else if (btn == btnRaportit)
             {
-                Raportit ra = new Raportit();
+                Raportit ra = new Raportit(connection);
                 ra.ShowDialog();
             }
             else if (btn == btnPvYhdista)
@@ -108,19 +112,6 @@ namespace mokkisofta
                 Sql S = new Sql();
 
                 S.SetConnectionString(connection);
-
-                try
-                {
-                    S.Connect();
-                }
-                catch (Exception)
-                {
-
-                }
-                
-
-
-
 
                 btnAsiakkaat.Enabled = true;
                 btnLaskut.Enabled = true;

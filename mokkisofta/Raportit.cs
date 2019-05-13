@@ -13,10 +13,17 @@ namespace mokkisofta
 {
     public partial class Raportit : Form
     {
+        // Luodaan muuttuja päävalikosta tuotua yhdistämislausetta varten.
+        string connectionString;
+
         Sql s = new Sql();
-        public Raportit()
+        public Raportit(string connection)
         {
             InitializeComponent();
+
+            // Tuodaan pääikkunassa muodostettu tietokantalause formille käytettäväksi.
+            connectionString = connection;
+
             dtpRptAlku.Value = DateTime.Now;
             dtpRptLoppu.Value = DateTime.Now;
 
@@ -27,7 +34,7 @@ namespace mokkisofta
             if (rdbRptRajaatoimipisteeseen.Checked)
             {
                 cbxRptToimipiste.Enabled = true;
-                s.Connect();
+                s.Connect(connectionString);
                 DataTable toimipisteet = new DataTable();
                 cbxRptToimipiste = s.haeTaulustaLaatikkoon(s, cbxRptToimipiste, toimipisteet, "Toimipiste", "toimipiste_id", "nimi");
                 s.Close();
@@ -45,7 +52,7 @@ namespace mokkisofta
             {
 
                 cbxRptPalvelut.Enabled = true;          //Rajataan palvelu nimen mukaan valittavaksi ja
-                s.Connect();                            //poistetaan saman nimiset palvelut listasta
+                s.Connect(connectionString);            //poistetaan saman nimiset palvelut listasta
                 DataTable palvelut = new DataTable();
                 string komento = "SELECT DISTINCT nimi FROM Palvelu";
                 palvelut.Load(s.DataReader(komento));
@@ -69,7 +76,7 @@ namespace mokkisofta
             if (rdbRajaaAsiakas.Checked)
             {
                 cbxRptAsiakkaat.Enabled = true;
-                s.Connect();
+                s.Connect(connectionString);
                 DataTable asiakkaat = new DataTable();
                 cbxRptAsiakkaat = s.haeTaulustaLaatikkoon(s, cbxRptAsiakkaat, asiakkaat, "Asiakas", "asiakas_id", "etunimi", "sukunimi");
                 s.Close();
@@ -96,7 +103,7 @@ namespace mokkisofta
             int palvelumaara = 0;
 
 
-            s.Connect();
+            s.Connect(connectionString);
             dtpRptAlku.CustomFormat = "yyyyMMdd";
             dtpRptLoppu.CustomFormat = "yyyyMMdd";
             int i = 0;

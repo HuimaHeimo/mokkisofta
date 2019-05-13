@@ -8,8 +8,10 @@ namespace mokkisofta
     public class Sql
     {
 
-        public string ConnectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=vp;Integrated Security=SSPI";
+        // public string ConnectionString = @"Data Source=localhost\SQLEXPRESS;Initial Catalog=vp;Integrated Security=SSPI";
         SqlConnection con;
+
+        string connection;
 
         /// <summary>
         /// Muodostaa yhteyden tietokantaan.
@@ -17,8 +19,11 @@ namespace mokkisofta
         /// <param name="server"></param>
         /// <param name="dataBaseName"></param>
         /// <param name="user"></param>
-        public void Connect()
+
+
+        public void Connect(string ConnectionString)
         {
+            connection = ConnectionString;
             con = new SqlConnection(ConnectionString);
             con.Open();
 
@@ -121,7 +126,7 @@ namespace mokkisofta
         /// <returns></returns>
         public object ShowInGridView(string QuerySql)
         {
-            SqlDataAdapter dr = new SqlDataAdapter(QuerySql, ConnectionString);
+            SqlDataAdapter dr = new SqlDataAdapter(QuerySql, connection);
             DataSet ds = new DataSet();
             dr.Fill(ds);
             object dataum = ds.Tables[0];

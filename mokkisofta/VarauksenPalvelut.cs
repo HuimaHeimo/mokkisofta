@@ -12,6 +12,9 @@ namespace mokkisofta
 {
     public partial class VarauksenPalvelut : Form
     {
+        // Luodaan muuttuja päävalikosta tuotua yhdistämislausetta varten.
+        string connectionString;
+
         Sql S = new Sql();
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
@@ -25,9 +28,13 @@ namespace mokkisofta
         private string dgSqlHakulause = $"SELECT varauksen_palvelut_id as 'Id', Palvelu.nimi AS 'Palvelu', lkm AS 'Lukumäärä' FROM Varauksen_palvelut " +
                                         $"INNER JOIN Palvelu ON Varauksen_palvelut.palvelu_id = Palvelu.palvelu_id WHERE Varauksen_palvelut.varaus_id = {Varaukset.varaus_id}";
 
-        public VarauksenPalvelut()
+        public VarauksenPalvelut(string connection)
         {
             InitializeComponent();
+
+            // Tuodaan pääikkunassa muodostettu tietokantalause formille käytettäväksi.
+            connectionString = connection;
+
             // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
             dgwVarauksenPalvelut.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
@@ -37,7 +44,7 @@ namespace mokkisofta
             // Tehdään Comboboxista alasvetovalikko, johon ei voi kirjoittaa.
             cboxVarPalPalvelu.DropDownStyle = ComboBoxStyle.DropDownList;
             
-            S.Connect();
+            S.Connect(connectionString);
             dgwVarauksenPalvelut.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable palvelut = new DataTable();
             //cboxVarPalPalvelu = S.haeTaulustaLaatikkoon(S, cboxVarPalPalvelu, palvelut, "Palvelu", "palvelu_id", "nimi");    // toimipiste_id
@@ -66,7 +73,7 @@ namespace mokkisofta
             * Muuttujina ovat btnLisaaPainettu ja btnMuokkaaPainettu. Toiminnon jälkeen kyseiset muuttujat saavat arvon false.
             * Toiminnon suoritettua kaikki tekstikentät nollataan ja painonapit ovat jälleen käytettävissä.
             */
-            S.Connect();
+            S.Connect(connectionString);
             if (btnLisaaPainettu == true)
             {
 
@@ -106,7 +113,7 @@ namespace mokkisofta
             {
                 if (dgwVarauksenPalvelut.CurrentCell != null)
                 {
-                    S.Connect();
+                    S.Connect(connectionString);
                     int rowIndex = dgwVarauksenPalvelut.CurrentCell.RowIndex;
                     valittuId = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string varPalPoisto = $"DELETE FROM Varauksen_palvelut WHERE varauksen_palvelut_id = '{valittuId}'";

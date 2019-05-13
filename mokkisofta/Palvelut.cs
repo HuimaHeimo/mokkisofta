@@ -25,13 +25,22 @@ namespace mokkisofta
         private double pHinta;
         private double pAlv;
 
+        // Luodaan muuttuja päävalikosta tuotua yhdistämislausetta varten.
+        string connectionString;
+
         // Luodaan apumuuttuja taulun päivitystä varten.
         private int rowIndex;
 
         Sql S = new Sql();
-        public Palvelut()
+
+        public Palvelut(string connection)
         {
             InitializeComponent();
+
+            // Tuodaan pääikkunassa muodostettu tietokantalause formille käytettäväksi.
+            connectionString = connection;
+
+            
 
             // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
             dgwPalvelut.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -49,13 +58,14 @@ namespace mokkisofta
             dgwPalvelut.ReadOnly = true;
 
             // Haetaan toimipisteet alasvetovalikkoon.
-            S.Connect();
+            S.Connect(connectionString);
             DataTable dt = new DataTable();
             cboxPlvToimipiste = S.haeTaulustaLaatikkoon(S, cboxPlvToimipiste, dt, "Toimipiste", "toimipiste_id", "nimi"); 
             S.Close();
 
             // Haetaan tietokannasta palvelut DataGridViewiin.
-            S.Connect();
+            S.Connect(connectionString);
+            
             dgwPalvelut.DataSource = S.ShowInGridView(sqlSelection);
            
             S.Close();
@@ -67,6 +77,7 @@ namespace mokkisofta
 
         }
 
+        
         /// <summary>
         /// Funktio hoitaa valikkopainikkeiden toiminnan.
         /// </summary>
@@ -79,7 +90,7 @@ namespace mokkisofta
             // Jos painetaan Lisää-painiketta, kentissä olevat tiedot viedään tietokantaan.
             if (btn == btnPlvLisää)
             {
-                S.Connect();
+                S.Connect(connectionString);
 
                 if (this.Controls.OfType<TextBox>().Any(t => string.IsNullOrEmpty(t.Text)))
                 {
@@ -121,7 +132,7 @@ namespace mokkisofta
                 {
                     if (dgwPalvelut.CurrentCell != null)
                     {
-                        S.Connect();
+                        S.Connect(connectionString);
                         int rowIndex = dgwPalvelut.CurrentCell.RowIndex;
                         string valittuId = dgwPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
                         string asPoisto = $"DELETE FROM Palvelu WHERE palvelu_id='{valittuId}'";
@@ -144,7 +155,7 @@ namespace mokkisofta
             {
                 
                 // Viedään tekstikenttien muokatut tiedot apumuuttujiin ja apumuuttujien avulla tauluun. Valitaan oikea palvelu rowIndex-muuttujaan viedyllä palvelu-id:llä.
-                S.Connect();
+                S.Connect(connectionString);
                 
                 pNimi = txbPlvNimi.Text;
                 pToimipiste = cboxPlvToimipiste.SelectedValue.ToString();

@@ -15,10 +15,18 @@ namespace mokkisofta
         Sql sql = new Sql();
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
-        public Asiakkaat()
+
+        // Luodaan muuttuja päävalikosta tuotua yhdistämislausetta varten.
+        string connectionString;
+
+        public Asiakkaat(string connection)
         {
             InitializeComponent();
-            sql.Connect();
+
+            // Tuodaan pääikkunassa muodostettu tietokantalause formille käytettäväksi.
+            connectionString = connection;
+
+            sql.Connect(connectionString);
             dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
             sql.Close();
 
@@ -59,7 +67,7 @@ namespace mokkisofta
             {
                 if (dgwAsiakkaat.CurrentCell != null)
                 {
-                    sql.Connect();
+                    sql.Connect(connectionString);
                     int rowIndex = dgwAsiakkaat.CurrentCell.RowIndex;
                     string valittuId = dgwAsiakkaat.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string asPoisto = $"DELETE FROM Asiakas WHERE asiakas_id='{valittuId}'";
@@ -159,7 +167,7 @@ namespace mokkisofta
 
         private void BtnTpTallenna_Click(object sender, EventArgs e)
         {
-            sql.Connect();
+            sql.Connect(connectionString);
             if (btnLisaaPainettu == true)
             {
                 string asEtunimi = txbAsEtunimi.Text;
