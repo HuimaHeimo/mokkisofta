@@ -172,15 +172,27 @@ namespace mokkisofta
             btnTpTallenna.Enabled = true;
             btnTpPeruuta.Enabled = true;
             //Lisätään valitun rivin tiedot tekstikenntiin
-            int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
-            valittuId = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
-            txbTpNimi.Text = DgwToimipisteet.Rows[rowIndex].Cells["Nimi"].Value.ToString();
-            txbTpOsoite.Text = DgwToimipisteet.Rows[rowIndex].Cells["Osoite"].Value.ToString();
-            txbTpPtoimipaikka.Text = DgwToimipisteet.Rows[rowIndex].Cells["paikkakunta"].Value.ToString();
-            txbTpPostinumero.Text = DgwToimipisteet.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
-            txbTpSposti.Text = DgwToimipisteet.Rows[rowIndex].Cells["Sähköposti"].Value.ToString();
-            txbTpPuhnro.Text = DgwToimipisteet.Rows[rowIndex].Cells["Puhelin"].Value.ToString();
-            DgwToimipisteet.Enabled = false;
+            try
+            {
+                if (DgwToimipisteet.CurrentCell.RowIndex != null)
+                {
+                    int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
+                    valittuId = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    txbTpNimi.Text = DgwToimipisteet.Rows[rowIndex].Cells["Nimi"].Value.ToString();
+                    txbTpOsoite.Text = DgwToimipisteet.Rows[rowIndex].Cells["Osoite"].Value.ToString();
+                    txbTpPtoimipaikka.Text = DgwToimipisteet.Rows[rowIndex].Cells["paikkakunta"].Value.ToString();
+                    txbTpPostinumero.Text = DgwToimipisteet.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
+                    txbTpSposti.Text = DgwToimipisteet.Rows[rowIndex].Cells["Sähköposti"].Value.ToString();
+                    txbTpPuhnro.Text = DgwToimipisteet.Rows[rowIndex].Cells["Puhelin"].Value.ToString();
+                    DgwToimipisteet.Enabled = false;
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Error, ei muokattavaa riviä! \n" + ex.Message);
+                perusTila();
+            }
+
         }
 
         private void DgwToimipisteet_CellContentClick(object sender, DataGridViewCellEventArgs e)

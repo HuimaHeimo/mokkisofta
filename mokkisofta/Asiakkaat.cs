@@ -126,17 +126,30 @@ namespace mokkisofta
             btnTpTallenna.Enabled = true;
             btnTpPeruuta.Enabled = true;
             //Lisätään valitun rivin tiedot tekstikenntiin
-            int rowIndex = dgwAsiakkaat.CurrentCell.RowIndex;
-            lblId.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Id"].Value.ToString();
-            txbAsEtunimi.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Etunimi"].Value.ToString();
-            txbAsSukunimi.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Sukunimi"].Value.ToString();
-            txbAsOsoite.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Lähiosoite"].Value.ToString();
-            txbAsPtoimipaikka.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Paikkakunta"].Value.ToString();
-            txbAsPostinumero.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
-            txbAsSposti.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Sähköposti"].Value.ToString();
-            txbAsPuhnro.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Puhelin"].Value.ToString();
-            //Otetaan datagridin käyttö pois muokkauksen ajaksi
-            dgwAsiakkaat.Enabled = false;
+
+            try
+            {
+                if (dgwAsiakkaat.CurrentCell.RowIndex != null)
+                {
+                    int rowIndex = dgwAsiakkaat.CurrentCell.RowIndex;
+                    lblId.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    txbAsEtunimi.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Etunimi"].Value.ToString();
+                    txbAsSukunimi.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Sukunimi"].Value.ToString();
+                    txbAsOsoite.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Lähiosoite"].Value.ToString();
+                    txbAsPtoimipaikka.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Paikkakunta"].Value.ToString();
+                    txbAsPostinumero.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
+                    txbAsSposti.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Sähköposti"].Value.ToString();
+                    txbAsPuhnro.Text = dgwAsiakkaat.Rows[rowIndex].Cells["Puhelin"].Value.ToString();
+                    //Otetaan datagridin käyttö pois muokkauksen ajaksi
+                    dgwAsiakkaat.Enabled = false;
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Error, ei muokattavaa riviä! \n" + ex.Message);
+                perusTila();
+            }
+
         }
 
         private void BtnTpPeruuta_Click(object sender, EventArgs e)

@@ -16,8 +16,10 @@ namespace mokkisofta
         private bool btnLisaaPainettu = false;
         private bool btnMuokkaaPainettu = false;
         // varaus_id muuttujaa käytetään myös VarauksenPalvelut luokassa. Tähän muuttujaan talletetaan valitun rivin id arvo muokkaamista/poistamista varten.
-        public static string varaus_id = "";
+        public static string varaus_id = ""; // tarvitaan VarauksenPalvelut luokassa
+        public static string toimipiste_id = ""; // tarvitaan VarauksenPalvelut luokassa
         private string valittuId = "";
+        private int rowIndex;
         /* SQL hakulause tietojen hakemiseen datagridiin. Hakee Asiakas taulusta etunimen ja sukunimen ja tulostaa ne Asiakas_id sijasta.
          * Hakee Toimipiste taulusta Toimipisteen nimen ja tulostaa sen toimipiste_id sijasta. Loput kentistä on Varaus taulusta.
          */
@@ -39,7 +41,6 @@ namespace mokkisofta
             DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable asiakkaat = new DataTable();
             DataTable toimipisteet = new DataTable();
-            DataTable palvelut = new DataTable();
             cboxVarAsiakas = S.haeTaulustaLaatikkoon(S, cboxVarAsiakas, asiakkaat, "Asiakas", "asiakas_id", "etunimi", "sukunimi"); 
             cboxVarToimipiste = S.haeTaulustaLaatikkoon(S, cboxVarToimipiste, toimipisteet, "Toimipiste", "toimipiste_id", "nimi");
             S.Close();
@@ -148,6 +149,14 @@ namespace mokkisofta
             btnVarPeruuta.Enabled = false;
             btnVarauksenPalvelut.Enabled = false;
             DgwVaraukset.Enabled = true;
+            dtVarPvm.MinDate = DateTime.Today;
+            dtVarAlkupvm.MinDate = DateTime.Today;
+            dtVarLoppupvm.MinDate = DateTime.Today;
+            dtVarVahvistuspvm.MinDate = DateTime.Today;
+            dtVarAlkupvm.Value = DateTime.Today;
+            dtVarPvm.Value = DateTime.Today;
+            dtVarVahvistuspvm.Value = DateTime.Today;
+            dtVarLoppupvm.Value = DateTime.Today;
         }
         private void lisaysTila()
         {
@@ -177,21 +186,35 @@ namespace mokkisofta
             btnVarPeruuta.Enabled = true;
             btnVarauksenPalvelut.Enabled = true;
             //Lisätään valitun rivin tiedot tekstikenntiin
-            int rowIndex = DgwVaraukset.CurrentCell.RowIndex;
-            varaus_id = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
-            valittuId = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
-            cboxVarAsiakas.Text = DgwVaraukset.Rows[rowIndex].Cells["Etunimi"].Value.ToString() + " " + DgwVaraukset.Rows[rowIndex].Cells["Sukunimi"].Value.ToString();
-            cboxVarToimipiste.Text = DgwVaraukset.Rows[rowIndex].Cells["Toimipiste"].Value.ToString();
-            dtVarPvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Varattu pvm"].Value.ToString();
-            dtVarVahvistuspvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Vahvistus pvm"].Value.ToString();
-            dtVarAlkupvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Varauksen alkupvm"].Value.ToString();
-            dtVarLoppupvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Varauksen loppupvm"].Value.ToString();
-            DgwVaraukset.Enabled = false;
+
+            try
+            {
+                if (DgwVaraukset.CurrentCell.RowIndex != null)
+                {
+                    rowIndex = DgwVaraukset.CurrentCell.RowIndex;
+                    varaus_id = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    valittuId = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    cboxVarAsiakas.Text = DgwVaraukset.Rows[rowIndex].Cells["Etunimi"].Value.ToString() + " " + DgwVaraukset.Rows[rowIndex].Cells["Sukunimi"].Value.ToString();
+                    cboxVarToimipiste.Text = DgwVaraukset.Rows[rowIndex].Cells["Toimipiste"].Value.ToString();
+                    dtVarPvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Varattu pvm"].Value.ToString();
+                    dtVarVahvistuspvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Vahvistus pvm"].Value.ToString();
+                    dtVarAlkupvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Varauksen alkupvm"].Value.ToString();
+                    dtVarLoppupvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Varauksen loppupvm"].Value.ToString();
+                    DgwVaraukset.Enabled = false;
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Error, ei muokattavaa riviä! \n" + ex.Message);
+                perusTila();
+            }
+
         }
 
         private void btnVarauksenPalvelut_Click(object sender, EventArgs e)
         {
             VarauksenPalvelut vp = new VarauksenPalvelut();
+            toimipiste_id = cboxVarToimipiste.SelectedValue.ToString();
             vp.Text = "Varauksen " + varaus_id + " palvelut";
             vp.ShowDialog(); 
             perusTila();

@@ -177,28 +177,39 @@ namespace mokkisofta
 
         private void muokkausTila()
         {
-            // Lisätään valitun rivin tiedot tekstikenttiin ja otetaan valitun palvelun id-numero talteen rowIndex-muuttujaan.
-            rowIndex = dgwPalvelut.CurrentCell.RowIndex;
-            lblPaID.Text = dgwPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
-            cboxPlvToimipiste.Text = dgwPalvelut.Rows[rowIndex].Cells["Toimipiste"].Value.ToString();
-            txbPlvNimi.Text = dgwPalvelut.Rows[rowIndex].Cells["Nimi"].Value.ToString();
-            txbPlvKuvaus.Text = dgwPalvelut.Rows[rowIndex].Cells["Kuvaus"].Value.ToString();
-            txbPlvHinta.Text = dgwPalvelut.Rows[rowIndex].Cells["Hinta"].Value.ToString();
-            txbPlvAlv.Text = dgwPalvelut.Rows[rowIndex].Cells["Arvonlisävero"].Value.ToString();
-            rowIndex = int.Parse(lblPaID.Text);
 
-            //Otetaan datagridin käyttö pois muokkauksen ajaksi
-            dgwPalvelut.Enabled = false;
+            try
+            {
+                if (dgwPalvelut.CurrentCell.RowIndex != null)
+                {
+                    // Lisätään valitun rivin tiedot tekstikenttiin ja otetaan valitun palvelun id-numero talteen rowIndex-muuttujaan.
+                    rowIndex = dgwPalvelut.CurrentCell.RowIndex;
+                    lblPaID.Text = dgwPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    cboxPlvToimipiste.Text = dgwPalvelut.Rows[rowIndex].Cells["Toimipiste"].Value.ToString();
+                    txbPlvNimi.Text = dgwPalvelut.Rows[rowIndex].Cells["Nimi"].Value.ToString();
+                    txbPlvKuvaus.Text = dgwPalvelut.Rows[rowIndex].Cells["Kuvaus"].Value.ToString();
+                    txbPlvHinta.Text = dgwPalvelut.Rows[rowIndex].Cells["Hinta"].Value.ToString();
+                    txbPlvAlv.Text = dgwPalvelut.Rows[rowIndex].Cells["Arvonlisävero"].Value.ToString();
+                    rowIndex = int.Parse(lblPaID.Text);
 
-            // Poistetaan lisää-, poista- ja muokkaa-painikkeet käytöstä. Niitä ei tarvita muokkaustilassa.
-            btnPlvPoista.Enabled = false;
-            btnPlvLisää.Enabled = false;
-            btnPlvMuokkaa.Enabled = false;
+                    //Otetaan datagridin käyttö pois muokkauksen ajaksi
+                    dgwPalvelut.Enabled = false;
 
-            // Otetaan peruuta- ja tallenna-painikkeet käyttöön.
-            btnPlvPeruuta.Enabled = true;
-            btnPlvTallenna.Enabled = true;
-            
+                    // Poistetaan lisää-, poista- ja muokkaa-painikkeet käytöstä. Niitä ei tarvita muokkaustilassa.
+                    btnPlvPoista.Enabled = false;
+                    btnPlvLisää.Enabled = false;
+                    btnPlvMuokkaa.Enabled = false;
+
+                    // Otetaan peruuta- ja tallenna-painikkeet käyttöön.
+                    btnPlvPeruuta.Enabled = true;
+                    btnPlvTallenna.Enabled = true;
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Error, ei muokattavaa riviä! \n" + ex.Message);
+                perusTila();
+            }    
         }
 
         private void perusTila()

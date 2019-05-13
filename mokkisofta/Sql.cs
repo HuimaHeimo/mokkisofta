@@ -101,6 +101,17 @@ namespace mokkisofta
             return c;
             
         }
+        public ComboBox haeVarauksenPalvelut(Sql S, ComboBox c, DataTable dt, string taulu, string kentta1, string kentta2, string kentta3)
+        {
+            SqlDataReader sqlReader;
+            string komento = $"SELECT {kentta1}, {kentta2} FROM {taulu} WHERE toimipiste_id = '{kentta3}'";
+            sqlReader = S.DataReader(komento);
+            dt.Load(sqlReader);
+            c.DataSource = dt;
+            c.ValueMember = kentta1;
+            c.DisplayMember = kentta2;
+            return c;
+        }
 
 
         /// <summary>

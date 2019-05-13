@@ -17,7 +17,8 @@ namespace mokkisofta
         private bool btnMuokkaaPainettu = false;
         // valittuRivi muuttujaa käytetään kun muokataan tai poistetaan rivin tietoja, muuttuja sisältää id arvon
         // jolla tunnistetaan rivit toisistaan. 
-        private string valittuId = ""; 
+        private string valittuId = "";
+        private int rowIndex;
         /* käytin tässä luokassa myös julkista varaus_id muuttujaa Varaukset luokasta (Varaukset.varaus_id) . Tällä muuttujalla varmistetaan että
          * VarauksenPalvelut datagridin listauksessa näkyvät vain Varaukset luokasta valitun varauksen tiedot.
          */
@@ -39,7 +40,8 @@ namespace mokkisofta
             S.Connect();
             dgwVarauksenPalvelut.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable palvelut = new DataTable();
-            cboxVarPalPalvelu = S.haeTaulustaLaatikkoon(S, cboxVarPalPalvelu, palvelut, "Palvelu", "palvelu_id", "nimi");   
+            //cboxVarPalPalvelu = S.haeTaulustaLaatikkoon(S, cboxVarPalPalvelu, palvelut, "Palvelu", "palvelu_id", "nimi");    // toimipiste_id
+            cboxVarPalPalvelu = S.haeVarauksenPalvelut(S, cboxVarPalPalvelu, palvelut, "Palvelu", "palvelu_id", "nimi", Varaukset.toimipiste_id);
             S.Close();
             perusTila();
         }
@@ -50,6 +52,8 @@ namespace mokkisofta
 
         private void BtnVarPalMuokkaa_Click(object sender, EventArgs e)
         {
+            
+           
             muokkausTila();
         }
         private void BtnVarPalPeruuta_Click(object sender, EventArgs e)
@@ -145,13 +149,26 @@ namespace mokkisofta
             btnVarPalPoista.Enabled = false;
             btnVarPalTallenna.Enabled = true;
             btnVarPalPeruuta.Enabled = true;
-            //Lisätään valitun rivin tiedot tekstikenntiin
-            int rowIndex = dgwVarauksenPalvelut.CurrentCell.RowIndex;
-            valittuId = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
-            cboxVarPalPalvelu.Text = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Palvelu"].Value.ToString();
-            txbVarPalLukumaara.Text = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Lukumäärä"].Value.ToString();
-            //Otetaan datagridin käyttö pois muokkauksen ajaksi
-            dgwVarauksenPalvelut.Enabled = false;
+            //Lisätään valitun rivin tiedot tekstikenttiin
+            
+            try
+            {
+                if (dgwVarauksenPalvelut.CurrentCell.RowIndex != null)
+                {
+                    rowIndex = dgwVarauksenPalvelut.CurrentCell.RowIndex;
+                    valittuId = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    cboxVarPalPalvelu.Text = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Palvelu"].Value.ToString();
+                    txbVarPalLukumaara.Text = dgwVarauksenPalvelut.Rows[rowIndex].Cells["Lukumäärä"].Value.ToString();
+                    //Otetaan datagridin käyttö pois muokkauksen ajaksi
+                    dgwVarauksenPalvelut.Enabled = false;
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Error, ei muokattavaa riviä! \n" + ex.Message);
+                perusTila();
+            }
+
         }
 
 

@@ -31,8 +31,15 @@ namespace mokkisofta
             S.Connect();
             dgwLaskut.DataSource = S.ShowInGridView(dgSqlHakulause);
             DataTable varaukset = new DataTable();
-            cboxLasVaraus = S.haeTaulustaLaatikkoon(S, cboxLasVaraus, varaukset, "Varaus", "varaus_id", "varaus_id");
-            cboxLasAsiakas = S.haeVarauksenAsiakas(S, cboxLasVaraus, cboxLasAsiakas, asiakkaat, "Asiakas", "Varaus.asiakas_id");
+            try
+            {
+                cboxLasVaraus = S.haeTaulustaLaatikkoon(S, cboxLasVaraus, varaukset, "Varaus", "varaus_id", "varaus_id");
+                cboxLasAsiakas = S.haeVarauksenAsiakas(S, cboxLasVaraus, cboxLasAsiakas, asiakkaat, "Asiakas", "Varaus.asiakas_id");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error!, tietokannassa ei ole varauksia, jota laskuttaa.", ex.Message);
+            }
             S.Close();
             perusTila();
             // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
@@ -177,19 +184,32 @@ namespace mokkisofta
             btnLasTallenna.Enabled = true;
             btnLasPeruuta.Enabled = true;
             //Lisätään valitun rivin tiedot tekstikenntiin
-            int rowIndex = dgwLaskut.CurrentCell.RowIndex;
-            valittuId = dgwLaskut.Rows[rowIndex].Cells["Id"].Value.ToString();
-            cboxLasVaraus.Text = dgwLaskut.Rows[rowIndex].Cells["Varaus"].Value.ToString();
-            cboxLasAsiakas.Text = dgwLaskut.Rows[rowIndex].Cells["Asiakas"].Value.ToString();
-            txbLasNimi.Text = dgwLaskut.Rows[rowIndex].Cells["Laskun maksaja"].Value.ToString();
-            txbLasOsoite.Text = dgwLaskut.Rows[rowIndex].Cells["Lähiosoite"].Value.ToString();
-            txbLasPostitoimipaikka.Text = dgwLaskut.Rows[rowIndex].Cells["Postitoimipaikka"].Value.ToString();
-            txbLasPostinro.Text = dgwLaskut.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
-            txbLasSumma.Text = dgwLaskut.Rows[rowIndex].Cells["Summa"].Value.ToString();
-            txbLasAlv.Text = dgwLaskut.Rows[rowIndex].Cells["Alv"].Value.ToString();
-            nykyinenVaraus = cboxLasVaraus.Text; // otetaan nykyinen varaus talteen. tarvitaan tarkistettaessa onko varausta jo olemassa taulussa.
-            //Otetaan datagridin käyttö pois muokkauksen ajaksi
-            dgwLaskut.Enabled = false;
+
+            try
+            {
+                if (dgwLaskut.CurrentCell.RowIndex != null)
+                {
+                    int rowIndex = dgwLaskut.CurrentCell.RowIndex;
+                    valittuId = dgwLaskut.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    cboxLasVaraus.Text = dgwLaskut.Rows[rowIndex].Cells["Varaus"].Value.ToString();
+                    cboxLasAsiakas.Text = dgwLaskut.Rows[rowIndex].Cells["Asiakas"].Value.ToString();
+                    txbLasNimi.Text = dgwLaskut.Rows[rowIndex].Cells["Laskun maksaja"].Value.ToString();
+                    txbLasOsoite.Text = dgwLaskut.Rows[rowIndex].Cells["Lähiosoite"].Value.ToString();
+                    txbLasPostitoimipaikka.Text = dgwLaskut.Rows[rowIndex].Cells["Postitoimipaikka"].Value.ToString();
+                    txbLasPostinro.Text = dgwLaskut.Rows[rowIndex].Cells["Postinumero"].Value.ToString();
+                    txbLasSumma.Text = dgwLaskut.Rows[rowIndex].Cells["Summa"].Value.ToString();
+                    txbLasAlv.Text = dgwLaskut.Rows[rowIndex].Cells["Alv"].Value.ToString();
+                    nykyinenVaraus = cboxLasVaraus.Text; // otetaan nykyinen varaus talteen. tarvitaan tarkistettaessa onko varausta jo olemassa taulussa.
+                                                         //Otetaan datagridin käyttö pois muokkauksen ajaksi
+                    dgwLaskut.Enabled = false;
+                }
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("Error, ei muokattavaa riviä! \n" + ex.Message);
+                perusTila();
+            }
+
         }
 
 
