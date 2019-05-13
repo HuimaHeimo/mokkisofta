@@ -104,32 +104,38 @@ namespace mokkisofta
             //Raportin haku niin että rajauksia ei ole tehty
             if (rdbRptRajaatoimipisteeseen.Checked == false && rdbRajaaPalvelu.Checked == false && rdbRajaaAsiakas.Checked == false)
             {
+  
                 dgwRaportit.DataSource = s.ShowInGridView("SELECT varaus_id AS 'Varaus Id', Asiakas.etunimi +' '+ Asiakas.sukunimi AS 'Asiakas',Toimipiste.toimipiste_id AS 'Toimipiste ID' , Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varaus pvm'" +
                 $"FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id WHERE Varaus.varattu_pvm BETWEEN '{dtpRptAlku.Value.ToString("yyyyMMdd")}' AND '{dtpRptLoppu.Value.ToString("yyyyMMdd")}'");
                 for (; ts >= 0; ts--)
                 {
 
                     varausmaara = s.Haelukumaara($"SELECT COUNT(varaus_id) FROM Varaus WHERE varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
-                    asiakasmaara = s.Haelukumaara($"SELECT COUNT(DISTINCT asiakas_id) FROM Varaus WHERE varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
-                    palvelumaara = s.Haelukumaara($"SELECT COUNT(varauksen_palvelut_id) FROM Varauksen_palvelut INNER JOIN Varaus ON Varaus.varaus_id = Varauksen_palvelut.varauksen_palvelut_id WHERE Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
                     chrRptChart1.Series[0].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), varausmaara);
+                    asiakasmaara = s.Haelukumaara($"SELECT COUNT(DISTINCT asiakas_id) FROM Varaus WHERE varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
                     chrRptChart1.Series[1].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), asiakasmaara);
+                    palvelumaara = s.Haelukumaara($"SELECT COUNT(varauksen_palvelut_id) FROM Varauksen_palvelut INNER JOIN Varaus ON Varaus.varaus_id = Varauksen_palvelut.palvelu_id WHERE Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
+                    //chrRptChart1.Series[0].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), varausmaara);
+                    //chrRptChart1.Series[1].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), asiakasmaara);
                     chrRptChart1.Series[2].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), palvelumaara);
                     i++;
                 }
             }
-            //Raportin haku toimipiste rajattuu tiettyyn toimipisteeseen
+            //Raportin haku toimipiste rajattu tiettyyn toimipisteeseen
             if (rdbRptRajaatoimipisteeseen.Checked)
             {
+
                 dgwRaportit.DataSource = s.ShowInGridView($"SELECT varaus_id AS 'Varaus Id', Asiakas.etunimi +' '+ Asiakas.sukunimi AS 'Asiakas',Toimipiste.toimipiste_id AS 'Toimipiste ID' , Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varaus pvm'" +
                 $"FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id WHERE (Toimipiste.nimi = '{cbxRptToimipiste.Text.ToString()}') AND Varaus.varattu_pvm BETWEEN '{dtpRptAlku.Value.ToString("yyyyMMdd")}' AND '{dtpRptLoppu.Value.ToString("yyyyMMdd")}'");
                 for (; ts > 0; ts--)
                 {
                     varausmaara = s.Haelukumaara($"SELECT COUNT(varaus_id) FROM Varaus INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id WHERE (Toimipiste.nimi = '{cbxRptToimipiste.Text.ToString()}') AND Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
-                    asiakasmaara = s.Haelukumaara($"SELECT COUNT(DISTINCT asiakas_id) FROM Varaus INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id WHERE varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}' AND Toimipiste.nimi = '{cbxRptToimipiste.Text.ToString()}'");
-                    palvelumaara = s.Haelukumaara($"SELECT COUNT(varauksen_palvelut_id) FROM Varauksen_palvelut INNER JOIN Varaus ON Varaus.varaus_id = Varauksen_palvelut.varauksen_palvelut_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id WHERE (Toimipiste.nimi = '{cbxRptToimipiste.Text.ToString()}') AND Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
                     chrRptChart1.Series[0].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), varausmaara);
+                    asiakasmaara = s.Haelukumaara($"SELECT COUNT(DISTINCT asiakas_id) FROM Varaus INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id WHERE varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}' AND Toimipiste.nimi = '{cbxRptToimipiste.Text.ToString()}'");
                     chrRptChart1.Series[1].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), asiakasmaara);
+                    palvelumaara = s.Haelukumaara($"SELECT COUNT(varauksen_palvelut_id) FROM Varauksen_palvelut INNER JOIN Varaus ON Varaus.varaus_id = Varauksen_palvelut.varaus_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id WHERE (Toimipiste.nimi = '{cbxRptToimipiste.Text.ToString()}') AND Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
+                    //chrRptChart1.Series[0].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), varausmaara);
+                    //chrRptChart1.Series[1].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), asiakasmaara);
                     chrRptChart1.Series[2].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), palvelumaara);
                     i++;                   
                 }
@@ -138,10 +144,21 @@ namespace mokkisofta
             //Raportin haku palvelu rajattu tietyn nimiseen palveluun
             if (rdbRajaaPalvelu.Checked)
             {
-                dgwRaportit.DataSource = s.ShowInGridView($"SELECT varaus_id AS 'Varaus Id', Asiakas.etunimi +' '+ Asiakas.sukunimi AS 'Asiakas',Toimipiste.toimipiste_id AS 'Toimipiste ID' , Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varaus pvm'" +
-                $"FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id WHERE (Toimipiste.nimi = '{cbxRptToimipiste.Text.ToString()}') AND Varaus.varattu_pvm BETWEEN '{dtpRptAlku.Value.ToString("yyyyMMdd")}' AND '{dtpRptLoppu.Value.ToString("yyyyMMdd")}'");
 
+                dgwRaportit.DataSource = s.ShowInGridView($"SELECT Varaus.varaus_id AS 'Varaus Id', Asiakas.etunimi +' '+ Asiakas.sukunimi AS 'Asiakas',Toimipiste.toimipiste_id AS 'Toimipiste ID' , Toimipiste.nimi as 'Toimipiste', varattu_pvm AS 'Varaus pvm'" +
+                $"FROM Varaus INNER JOIN Varauksen_palvelut ON Varaus.varaus_id = Varauksen_palvelut.varaus_id INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id INNER JOIN Toimipiste ON Varaus.toimipiste_id = Toimipiste.toimipiste_id INNER JOIN Palvelu ON Varauksen_palvelut.palvelu_id = Palvelu.palvelu_id WHERE (Palvelu.nimi = '{cbxRptPalvelut.Text.ToString()}') AND Varaus.varattu_pvm BETWEEN '{dtpRptAlku.Value.ToString("yyyyMMdd")}' AND '{dtpRptLoppu.Value.ToString("yyyyMMdd")}'");
+                for (; ts >= 0; ts--)
+                {
+
+                    //varausmaara = s.Haelukumaara($"SELECT COUNT(varaus_id) FROM Varaus INNER JOIN Varauksen_palvelut ON Varaus.varaus_id = Varauksen_palvelut.varaus_id INNER JOIN Palvelu ON Varauksen_palvelut.palvelu_id = Palvelu.palvelu_id WHERE (Palvelu.nimi = '{cbxRptPalvelut.Text.ToString()}') AND varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
+                    asiakasmaara = s.Haelukumaara($"SELECT COUNT(DISTINCT asiakas_id) FROM Varaus INNER JOIN Varauksen_palvelut ON Varaus.varaus_id = Varauksen_palvelut.varaus_id INNER JOIN Palvelu ON Varauksen_palvelut.palvelu_id = Palvelu.palvelu_id WHERE (Palvelu.nimi = '{cbxRptPalvelut.Text.ToString()}') AND varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
+                    palvelumaara = s.Haelukumaara($"SELECT COUNT(varauksen_palvelut_id) FROM Varauksen_palvelut INNER JOIN Varaus ON Varaus.varaus_id = Varauksen_palvelut.palvelu_id INNER JOIN Palvelu ON Varauksen_palvelut.palvelu_id = Palvelu.palvelu_id WHERE (Palvelu.nimi = '{cbxRptPalvelut.Text.ToString()}') AND Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
+                    //chrRptChart1.Series[0].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), varausmaara);
+                    chrRptChart1.Series[1].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), asiakasmaara);
+                    chrRptChart1.Series[2].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), palvelumaara);
+                    i++;
                 }
+            }
             //Raportin haku asiakas rajattu tiettyyn asiakkaaseen
             if (rdbRajaaAsiakas.Checked)
             {
@@ -151,7 +168,7 @@ namespace mokkisofta
                 for (; ts > 0; ts--)
                 {
                     varausmaara = s.Haelukumaara($"SELECT COUNT(varaus_id) FROM Varaus INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id WHERE Asiakas.etunimi + ' ' + Asiakas.sukunimi = '{cbxRptAsiakkaat.Text.ToString()}' AND Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
-                    palvelumaara = s.Haelukumaara($"SELECT COUNT(varauksen_palvelut_id) FROM Varauksen_palvelut INNER JOIN Varaus ON Varaus.varaus_id = Varauksen_palvelut.varauksen_palvelut_id INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id WHERE Asiakas.etunimi + ' ' + Asiakas.sukunimi = '{cbxRptAsiakkaat.Text.ToString()}' AND Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
+                    palvelumaara = s.Haelukumaara($"SELECT COUNT(varauksen_palvelut_id) FROM Varauksen_palvelut INNER JOIN Varaus ON Varaus.varaus_id = Varauksen_palvelut.palvelu_id INNER JOIN Asiakas ON Varaus.asiakas_id = Asiakas.asiakas_id WHERE Asiakas.etunimi + ' ' + Asiakas.sukunimi = '{cbxRptAsiakkaat.Text.ToString()}' AND Varaus.varattu_pvm = '{dtpRptAlku.Value.AddDays(i).ToString("yyyyMMdd")}'");
 
                     chrRptChart1.Series[0].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), varausmaara);
                     chrRptChart1.Series[2].Points.AddXY(dtpRptAlku.Value.AddDays(i).ToString("dd-MM-yyyy"), palvelumaara);

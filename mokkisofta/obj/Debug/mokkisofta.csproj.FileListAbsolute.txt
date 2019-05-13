@@ -94,3 +94,4 @@ E:\Mökkisofta\mokkisofta\mokkisofta\obj\Debug\mokkisofta.exe
 E:\Mökkisofta\mokkisofta\mokkisofta\obj\Debug\mokkisofta.pdb
 C:\Users\Jani\Documents\GitHub\mokkisofta\mokkisofta\obj\Debug\mokkisofta.VarauksenPalvelut.resources
 D:\AMK\mokkisofta\mokkisofta\obj\Debug\mokkisofta.VarauksenPalvelut.resources
+E:\Mökkisofta\mokkisofta\mokkisofta\obj\Debug\mokkisofta.VarauksenPalvelut.resources
