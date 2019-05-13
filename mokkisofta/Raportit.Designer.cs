@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Raportit));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,6 +52,8 @@
             this.rdbRptRajaatoimipisteeseen = new System.Windows.Forms.RadioButton();
             this.rdbRajaaPalvelu = new System.Windows.Forms.RadioButton();
             this.rdbRajaaAsiakas = new System.Windows.Forms.RadioButton();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrRptChart1)).BeginInit();
@@ -205,13 +208,14 @@
             this.btnRptTulosta.TabIndex = 25;
             this.btnRptTulosta.Text = "Tulosta";
             this.btnRptTulosta.UseVisualStyleBackColor = true;
+            this.btnRptTulosta.Click += new System.EventHandler(this.BtnRptTulosta_Click);
             // 
             // chrRptChart1
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chrRptChart1.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chrRptChart1.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chrRptChart1.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chrRptChart1.Legends.Add(legend4);
             this.chrRptChart1.Location = new System.Drawing.Point(561, 27);
             this.chrRptChart1.Name = "chrRptChart1";
             this.chrRptChart1.Size = new System.Drawing.Size(479, 376);
@@ -253,6 +257,21 @@
             this.rdbRajaaAsiakas.Text = "Rajaa asiakas";
             this.rdbRajaaAsiakas.UseVisualStyleBackColor = true;
             this.rdbRajaaAsiakas.CheckedChanged += new System.EventHandler(this.RdbRajaaAsiakas_CheckedChanged);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1_PrintPage);
             // 
             // Raportit
             // 
@@ -315,5 +334,7 @@
         private System.Windows.Forms.RadioButton rdbRptRajaatoimipisteeseen;
         private System.Windows.Forms.RadioButton rdbRajaaPalvelu;
         private System.Windows.Forms.RadioButton rdbRajaaAsiakas;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

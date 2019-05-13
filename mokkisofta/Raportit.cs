@@ -211,7 +211,27 @@ namespace mokkisofta
             dtpRptLoppu.Value = DateTime.Now;
         }
 
+        //Kuvien muodostus tulostukseen
+        Bitmap bmpDgw;
+        Bitmap bmpChr;
+        private void BtnRptTulosta_Click(object sender, EventArgs e)
+        {
+            int korkoDgw = dgwRaportit.Height;
+            dgwRaportit.Height = dgwRaportit.RowCount * dgwRaportit.RowTemplate.Height * 2;
+            bmpDgw = new Bitmap(dgwRaportit.Width, dgwRaportit.Height);
+            bmpChr = new Bitmap(chrRptChart1.Width, chrRptChart1.Height);
+            dgwRaportit.DrawToBitmap(bmpDgw, new Rectangle(0, 0, dgwRaportit.Width, dgwRaportit.Height));
+            chrRptChart1.DrawToBitmap(bmpChr, new Rectangle(0, 0, chrRptChart1.Width, chrRptChart1.Height));
+            dgwRaportit.Height = korkoDgw;
+            printPreviewDialog1.ShowDialog();
 
+        }
+
+        private void PrintDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bmpDgw, 0, 0);
+            e.Graphics.DrawImage(bmpChr, 0, bmpDgw.Height);
+        }
     }
 
 
