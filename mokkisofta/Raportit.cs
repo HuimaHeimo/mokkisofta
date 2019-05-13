@@ -25,6 +25,22 @@ namespace mokkisofta
             connectionString = connection;
             dtpRptAlku.Value = DateTime.Now;
             dtpRptLoppu.Value = DateTime.Now;
+            // Muutetaan DataGridView sellaiseksi, ettei yksittäisiä soluja pysty valitsemaan. Aina aktivoidaan koko rivi.
+            dgwRaportit.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+
+            // Estetään käyttäjää lisäämästä suoraan DataGridViewiin rivejä.
+            dgwRaportit.AllowUserToAddRows = false;
+
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwRaportit.ReadOnly = true;
+
+            // Tehdään Comboboxeista alasvetovalikko, johon ei voi kirjoittaa.
+            cbxRptToimipiste.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxRptPalvelut.DropDownStyle = ComboBoxStyle.DropDownList;
+            cbxRptAsiakkaat.DropDownStyle = ComboBoxStyle.DropDownList;
+
+            // Estetään DataGridViewin sisältöjen muokkaus.
+            dgwRaportit.ReadOnly = true;
 
         }
         private void RdbRptRajaatoimipisteeseen_CheckedChanged(object sender, EventArgs e)
