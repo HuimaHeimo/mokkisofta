@@ -17,6 +17,7 @@ namespace mokkisofta
         private bool btnMuokkaaPainettu = false;
         // varaus_id muuttujaa käytetään myös VarauksenPalvelut luokassa. Tähän muuttujaan talletetaan valitun rivin id arvo muokkaamista/poistamista varten.
         public static string varaus_id = "";
+        private string valittuId = "";
         /* SQL hakulause tietojen hakemiseen datagridiin. Hakee Asiakas taulusta etunimen ja sukunimen ja tulostaa ne Asiakas_id sijasta.
          * Hakee Toimipiste taulusta Toimipisteen nimen ja tulostaa sen toimipiste_id sijasta. Loput kentistä on Varaus taulusta.
          */
@@ -97,7 +98,7 @@ namespace mokkisofta
                 string varAlkupvm = dtVarAlkupvm.Value.ToString("yyyyMMdd");
                 string varLoppupvm = dtVarLoppupvm.Value.ToString("yyyyMMdd");
                 string varMuokkaus = $"UPDATE Varaus SET asiakas_id = '{varNimi}', toimipiste_id = '{varToimipiste}', varattu_pvm = '{varVarattupvm}', " +
-                    $"vahvistus_pvm = '{varVahvistuspvm}', varattu_alkupvm = '{varAlkupvm}', varattu_loppupvm = '{varLoppupvm}' WHERE varaus_id = {varaus_id}";
+                    $"vahvistus_pvm = '{varVahvistuspvm}', varattu_alkupvm = '{varAlkupvm}', varattu_loppupvm = '{varLoppupvm}' WHERE varaus_id = {valittuId}";
 
                 S.Query(varMuokkaus);
                 DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
@@ -115,8 +116,12 @@ namespace mokkisofta
                 {
                     S.Connect();
                     int rowIndex = DgwVaraukset.CurrentCell.RowIndex;
-                    varaus_id = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
-                    string varPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{varaus_id}'";
+                    valittuId = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
+                    string varPalPoisto = $"DELETE FROM Varauksen_palvelut WHERE varaus_id='{valittuId}'";
+                    string lasPoisto = $"DELETE FROM Lasku WHERE varaus_id='{valittuId}'";
+                    string varPoisto = $"DELETE FROM Varaus WHERE varaus_id='{valittuId}'";
+                    S.Query(varPalPoisto);
+                    S.Query(lasPoisto);
                     S.Query(varPoisto);
                     DgwVaraukset.DataSource = S.ShowInGridView(dgSqlHakulause);
                     S.Close();
@@ -174,6 +179,7 @@ namespace mokkisofta
             //Lisätään valitun rivin tiedot tekstikenntiin
             int rowIndex = DgwVaraukset.CurrentCell.RowIndex;
             varaus_id = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
+            valittuId = DgwVaraukset.Rows[rowIndex].Cells["Id"].Value.ToString();
             cboxVarAsiakas.Text = DgwVaraukset.Rows[rowIndex].Cells["Etunimi"].Value.ToString() + " " + DgwVaraukset.Rows[rowIndex].Cells["Sukunimi"].Value.ToString();
             cboxVarToimipiste.Text = DgwVaraukset.Rows[rowIndex].Cells["Toimipiste"].Value.ToString();
             dtVarPvm.Text = DgwVaraukset.Rows[rowIndex].Cells["Varattu pvm"].Value.ToString();
