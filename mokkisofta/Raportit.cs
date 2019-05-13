@@ -229,8 +229,8 @@ namespace mokkisofta
 
         private void PrintDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawImage(bmpDgw, 0, 0);
-            e.Graphics.DrawImage(bmpChr, 0, bmpDgw.Height);
+            e.Graphics.DrawImage(bmpDgw, 120, 20);
+            e.Graphics.DrawImage(bmpChr, 120, bmpDgw.Height +30);
         }
     }
 
