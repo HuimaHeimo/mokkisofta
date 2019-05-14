@@ -30,6 +30,29 @@ namespace mokkisofta
         }
 
         /// <summary>
+        /// Funktio testaa tietokantayhteyden parametrien toimivuuden.
+        /// </summary>
+        /// <param name="ConnectionString"></param>
+        /// <returns></returns>
+        public bool TestConnection(string ConnectionString)
+        {
+            
+            connection = ConnectionString;
+            using (SqlConnection con = new SqlConnection(connection))
+            {
+                try
+                {
+                    con.Open();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    return false;
+                }
+            }
+        }
+
+        /// <summary>
         /// Katkaisee tietokantayhteyden.
         /// </summary>
         public void Close()
@@ -133,20 +156,7 @@ namespace mokkisofta
             return dataum;
         }
 
-        /// <summary>
-        /// Määrittää tietokantayhteysosoitteen.
-        /// </summary>
-        /// <param name="ConnectionString"></param>
-        public void SetConnectionString(string ConnectionString)
-        {
 
-
-        }
-
-        public void AddToDropdownMenu()
-        {
-
-        }
 
     }
 }

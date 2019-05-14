@@ -51,6 +51,7 @@
             this.txbPvSalasana = new System.Windows.Forms.TextBox();
             this.txbPvTunnus = new System.Windows.Forms.TextBox();
             this.cbPvAutentikointi = new System.Windows.Forms.CheckBox();
+            this.lblPvYhteys = new System.Windows.Forms.Label();
             this.MmStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -258,12 +259,21 @@
             this.cbPvAutentikointi.UseVisualStyleBackColor = true;
             this.cbPvAutentikointi.CheckedChanged += new System.EventHandler(this.cbPvAutentikointi_CheckedChanged);
             // 
+            // lblPvYhteys
+            // 
+            this.lblPvYhteys.AutoSize = true;
+            this.lblPvYhteys.Location = new System.Drawing.Point(575, 56);
+            this.lblPvYhteys.Name = "lblPvYhteys";
+            this.lblPvYhteys.Size = new System.Drawing.Size(0, 13);
+            this.lblPvYhteys.TabIndex = 18;
+            // 
             // Paaikkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(681, 509);
+            this.Controls.Add(this.lblPvYhteys);
             this.Controls.Add(this.cbPvAutentikointi);
             this.Controls.Add(this.lblTunnus);
             this.Controls.Add(this.lblSalasana);
@@ -317,6 +327,7 @@
         private System.Windows.Forms.TextBox txbPvSalasana;
         private System.Windows.Forms.TextBox txbPvTunnus;
         private System.Windows.Forms.CheckBox cbPvAutentikointi;
+        private System.Windows.Forms.Label lblPvYhteys;
     }
 }
 

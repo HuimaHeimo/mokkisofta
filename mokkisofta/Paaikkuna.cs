@@ -40,6 +40,7 @@ namespace mokkisofta
             txbPvTunnus.Enabled = false;
             txbPvSalasana.Enabled = false;
 
+            // Määritetään *-merkki salasanakenttään tulostuvaksi merkiksi.
             txbPvSalasana.PasswordChar = '*';
 
 
@@ -111,14 +112,32 @@ namespace mokkisofta
                 
                 Sql S = new Sql();
 
-                S.SetConnectionString(connection);
+                // Luodaan connectionStatus-muuttuja, johon luetaan TestConnection-funktion lopputulos.
+                bool connectionStatus = S.TestConnection(connection);
 
-                btnAsiakkaat.Enabled = true;
-                btnLaskut.Enabled = true;
-                btnPalvelut.Enabled = true;
-                btnRaportit.Enabled = true;
-                btnTpisteet.Enabled = true;
-                btnVaraukset.Enabled = true;
+                if (connectionStatus == true)
+                {
+                    // Kun tietokantayhteys on luotu, otetaan valikkopainikkeet käyttöön ja poistetaan yhdistämiseen liittyvät elementit käytöstä.
+                    btnAsiakkaat.Enabled = true;
+                    btnLaskut.Enabled = true;
+                    btnPalvelut.Enabled = true;
+                    btnRaportit.Enabled = true;
+                    btnTpisteet.Enabled = true;
+                    btnVaraukset.Enabled = true;
+                    btnPvYhdista.Enabled = false;
+                    cbPvAutentikointi.Enabled = false;
+                    txbPvPalvelin.Enabled = false;
+                    txbPvTietokanta.Enabled = false;
+
+                    // Tuodaan tietokanta-asetusten viereen teksti indikaattoriksi onnistuneesta yhteydestä.
+                    lblPvYhteys.Text = "Yhteys muodostettu";
+                }
+                else if (connectionStatus == false)
+                {
+                    MessageBox.Show("Tietokantayhteys epäonnistui. Anna toimivat arvot.");
+                }
+
+
 
             }
             
