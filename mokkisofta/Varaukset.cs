@@ -156,10 +156,11 @@ namespace mokkisofta
             btnVarPeruuta.Enabled = false;
             btnVarauksenPalvelut.Enabled = false;
             DgwVaraukset.Enabled = true;
-            dtVarPvm.MinDate = DateTime.Today;
-            dtVarAlkupvm.MinDate = DateTime.Today;
-            dtVarLoppupvm.MinDate = DateTime.Today;
-            dtVarVahvistuspvm.MinDate = DateTime.Today;
+            DateTime d = new DateTime(2019,1,1);
+            dtVarPvm.MinDate = d;
+            dtVarAlkupvm.MinDate = d;
+            dtVarLoppupvm.MinDate = d;
+            dtVarVahvistuspvm.MinDate = d;
             dtVarAlkupvm.Value = DateTime.Today;
             dtVarPvm.Value = DateTime.Today;
             dtVarVahvistuspvm.Value = DateTime.Today;
