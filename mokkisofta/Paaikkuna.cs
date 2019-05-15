@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
+
 namespace mokkisofta
 {
     public partial class Paaikkuna : Form
@@ -169,6 +170,18 @@ namespace mokkisofta
         {
             Tietoa ti = new Tietoa();
             ti.ShowDialog();
+        }
+
+        private void OhjeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("ohje.pdf");
+            }
+            catch
+            {
+                MessageBox.Show("Jokin meni pieleen! Ota yhteys ohjelmiston valmistajaan.", "Virhe");
+            }
         }
     }
 }

@@ -42,9 +42,10 @@
             this.dgwVarauksenPalvelut = new System.Windows.Forms.DataGridView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.poistuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tietoaOhjelmastaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.poistuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ohjeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwVarauksenPalvelut)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -177,10 +178,18 @@
             this.tiedostoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.tiedostoToolStripMenuItem.Text = "Tiedosto";
             // 
+            // poistuToolStripMenuItem
+            // 
+            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
+            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.poistuToolStripMenuItem.Text = "Poistu";
+            this.poistuToolStripMenuItem.Click += new System.EventHandler(this.poistuToolStripMenuItem_Click);
+            // 
             // ohjeToolStripMenuItem
             // 
             this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tietoaOhjelmastaToolStripMenuItem});
+            this.tietoaOhjelmastaToolStripMenuItem,
+            this.ohjeToolStripMenuItem1});
             this.ohjeToolStripMenuItem.Name = "ohjeToolStripMenuItem";
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
@@ -188,16 +197,16 @@
             // tietoaOhjelmastaToolStripMenuItem
             // 
             this.tietoaOhjelmastaToolStripMenuItem.Name = "tietoaOhjelmastaToolStripMenuItem";
-            this.tietoaOhjelmastaToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.tietoaOhjelmastaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tietoaOhjelmastaToolStripMenuItem.Text = "Tietoa ohjelmasta";
             this.tietoaOhjelmastaToolStripMenuItem.Click += new System.EventHandler(this.tietoaOhjelmastaToolStripMenuItem_Click);
             // 
-            // poistuToolStripMenuItem
+            // ohjeToolStripMenuItem1
             // 
-            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
-            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.poistuToolStripMenuItem.Text = "Poistu";
-            this.poistuToolStripMenuItem.Click += new System.EventHandler(this.poistuToolStripMenuItem_Click);
+            this.ohjeToolStripMenuItem1.Name = "ohjeToolStripMenuItem1";
+            this.ohjeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ohjeToolStripMenuItem1.Text = "Ohje";
+            this.ohjeToolStripMenuItem1.Click += new System.EventHandler(this.OhjeToolStripMenuItem1_Click);
             // 
             // VarauksenPalvelut
             // 
@@ -247,5 +256,6 @@
         private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tietoaOhjelmastaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem poistuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem1;
     }
 }

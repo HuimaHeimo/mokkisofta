@@ -33,6 +33,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Raportit));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.poistuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tietoaOhjelmastaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgwRaportit = new System.Windows.Forms.DataGridView();
@@ -55,7 +56,7 @@
             this.rdbRajaaAsiakas = new System.Windows.Forms.RadioButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.poistuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ohjeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrRptChart1)).BeginInit();
@@ -80,10 +81,18 @@
             this.tiedostoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.tiedostoToolStripMenuItem.Text = "Tiedosto";
             // 
+            // poistuToolStripMenuItem
+            // 
+            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
+            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.poistuToolStripMenuItem.Text = "Poistu";
+            this.poistuToolStripMenuItem.Click += new System.EventHandler(this.poistuToolStripMenuItem_Click);
+            // 
             // ohjeToolStripMenuItem
             // 
             this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tietoaOhjelmastaToolStripMenuItem});
+            this.tietoaOhjelmastaToolStripMenuItem,
+            this.ohjeToolStripMenuItem1});
             this.ohjeToolStripMenuItem.Name = "ohjeToolStripMenuItem";
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
@@ -91,7 +100,7 @@
             // tietoaOhjelmastaToolStripMenuItem
             // 
             this.tietoaOhjelmastaToolStripMenuItem.Name = "tietoaOhjelmastaToolStripMenuItem";
-            this.tietoaOhjelmastaToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.tietoaOhjelmastaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.tietoaOhjelmastaToolStripMenuItem.Text = "Tietoa ohjelmasta";
             this.tietoaOhjelmastaToolStripMenuItem.Click += new System.EventHandler(this.tietoaOhjelmastaToolStripMenuItem_Click);
             // 
@@ -286,12 +295,12 @@
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1_PrintPage);
             // 
-            // poistuToolStripMenuItem
+            // ohjeToolStripMenuItem1
             // 
-            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
-            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.poistuToolStripMenuItem.Text = "Poistu";
-            this.poistuToolStripMenuItem.Click += new System.EventHandler(this.poistuToolStripMenuItem_Click);
+            this.ohjeToolStripMenuItem1.Name = "ohjeToolStripMenuItem1";
+            this.ohjeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ohjeToolStripMenuItem1.Text = "Ohje";
+            this.ohjeToolStripMenuItem1.Click += new System.EventHandler(this.OhjeToolStripMenuItem1_Click);
             // 
             // Raportit
             // 
@@ -358,5 +367,6 @@
         private System.Drawing.Printing.PrintDocument printDocument1;
         private System.Windows.Forms.ToolStripMenuItem tietoaOhjelmastaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem poistuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem1;
     }
 }

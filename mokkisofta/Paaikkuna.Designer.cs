@@ -52,6 +52,7 @@
             this.txbPvTunnus = new System.Windows.Forms.TextBox();
             this.cbPvAutentikointi = new System.Windows.Forms.CheckBox();
             this.lblPvYhteys = new System.Windows.Forms.Label();
+            this.ohjeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.MmStrip.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -151,7 +152,8 @@
             // ohjeToolStripMenuItem
             // 
             this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tietojaOhjelmastaToolStripMenuItem});
+            this.tietojaOhjelmastaToolStripMenuItem,
+            this.ohjeToolStripMenuItem1});
             this.ohjeToolStripMenuItem.Name = "ohjeToolStripMenuItem";
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
@@ -268,6 +270,13 @@
             this.lblPvYhteys.Size = new System.Drawing.Size(0, 13);
             this.lblPvYhteys.TabIndex = 18;
             // 
+            // ohjeToolStripMenuItem1
+            // 
+            this.ohjeToolStripMenuItem1.Name = "ohjeToolStripMenuItem1";
+            this.ohjeToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.ohjeToolStripMenuItem1.Text = "Ohje";
+            this.ohjeToolStripMenuItem1.Click += new System.EventHandler(this.OhjeToolStripMenuItem1_Click);
+            // 
             // Paaikkuna
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -329,6 +338,7 @@
         private System.Windows.Forms.TextBox txbPvTunnus;
         private System.Windows.Forms.CheckBox cbPvAutentikointi;
         private System.Windows.Forms.Label lblPvYhteys;
+        private System.Windows.Forms.ToolStripMenuItem ohjeToolStripMenuItem1;
     }
 }
 

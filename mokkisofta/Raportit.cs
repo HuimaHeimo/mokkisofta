@@ -243,10 +243,22 @@ namespace mokkisofta
         {
             Application.Exit();
         }
+
+        private void OhjeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                System.Diagnostics.Process.Start("ohje.pdf");
+            }
+            catch
+            {
+                MessageBox.Show("Jokin meni pieleen! Ota yhteys ohjelmiston valmistajaan.", "Virhe");
+            }
+        }
     }
 
 
-        }
+}
 
 
     
