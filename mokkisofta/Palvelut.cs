@@ -181,7 +181,7 @@ namespace mokkisofta
                 pAlv = double.Parse(txbPlvAlv.Text);
 
                 
-                string asMuokkaus = $"UPDATE Palvelu SET toimipiste_id = '{pToimipiste}', kuvaus = '{pKuvaus}', hinta = '{pHinta}', alv = '{pAlv}' WHERE palvelu_id='{rowIndex}'";
+                string asMuokkaus = $"UPDATE Palvelu SET toimipiste_id = '{pToimipiste}', nimi = '{pNimi}', kuvaus = '{pKuvaus}', hinta = '{pHinta}', alv = '{pAlv}' WHERE palvelu_id='{rowIndex}'";
 
                 S.Query(asMuokkaus);
                 dgwPalvelut.DataSource = S.ShowInGridView(sqlSelection);
