@@ -252,7 +252,7 @@
             // txbLasSumma
             // 
             this.txbLasSumma.Location = new System.Drawing.Point(338, 471);
-            this.txbLasSumma.MaxLength = 8;
+            this.txbLasSumma.MaxLength = 5;
             this.txbLasSumma.Name = "txbLasSumma";
             this.txbLasSumma.Size = new System.Drawing.Size(130, 20);
             this.txbLasSumma.TabIndex = 7;
@@ -261,7 +261,7 @@
             // txbLasAlv
             // 
             this.txbLasAlv.Location = new System.Drawing.Point(533, 393);
-            this.txbLasAlv.MaxLength = 8;
+            this.txbLasAlv.MaxLength = 5;
             this.txbLasAlv.Name = "txbLasAlv";
             this.txbLasAlv.Size = new System.Drawing.Size(77, 20);
             this.txbLasAlv.TabIndex = 8;
