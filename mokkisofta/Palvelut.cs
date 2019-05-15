@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data.SqlClient;
 namespace mokkisofta
 {
     public partial class Palvelut : Form
@@ -137,7 +137,23 @@ namespace mokkisofta
                         string valittuId = dgwPalvelut.Rows[rowIndex].Cells["Id"].Value.ToString();
                         string asPoisto = $"DELETE FROM Palvelu WHERE palvelu_id='{valittuId}'";
 
-                        S.Query(asPoisto);
+                        
+                        try
+                        {
+                            S.Query(asPoisto);
+                        }
+                        catch (Exception ex)
+                        {
+                            if (ex is SqlException)
+                            {
+                                // Handle more specific SqlException exception here.  
+                                MessageBox.Show("Error, yksi tai useampi lasku/varaus/toimipiste käyttää tätä palvelua. Poista kyseiset rivit ennen palvelun poistamista.");
+                            }
+                            else
+                            {
+
+                            }
+                        }
                         dgwPalvelut.DataSource = S.ShowInGridView(sqlSelection);
                         S.Close();
                     }

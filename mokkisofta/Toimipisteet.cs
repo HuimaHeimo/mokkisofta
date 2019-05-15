@@ -63,8 +63,23 @@ namespace mokkisofta
                     int rowIndex = DgwToimipisteet.CurrentCell.RowIndex;
                     valittuId = DgwToimipisteet.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string tpPoisto = $"DELETE FROM Toimipiste WHERE toimipiste_id='{valittuId}'";
-
-                    S.Query(tpPoisto);
+                    try
+                    {
+                        S.Query(tpPoisto);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex is SqlException)
+                        {
+                            // Handle more specific SqlException exception here.  
+                            MessageBox.Show("Error, yksi tai useampi lasku/varaus/palvelu käyttää tätä toimipistettä. Poista kyseiset rivit ennen toimipisteen poistamista.");
+                        }
+                        else
+                        {
+                            
+                        }
+                    }
+                    
                     DgwToimipisteet.DataSource = S.ShowInGridView(dgSqlHakulause);
                     S.Close();
                 }

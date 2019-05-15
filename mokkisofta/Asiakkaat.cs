@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Data.SqlClient;
 namespace mokkisofta
 {
     public partial class Asiakkaat : Form
@@ -72,7 +72,22 @@ namespace mokkisofta
                     string valittuId = dgwAsiakkaat.Rows[rowIndex].Cells["Id"].Value.ToString();
                     string asPoisto = $"DELETE FROM Asiakas WHERE asiakas_id='{valittuId}'";
 
-                    sql.Query(asPoisto);
+                    try
+                    {
+                        sql.Query(asPoisto);
+                    }
+                    catch (Exception ex)
+                    {
+                        if (ex is SqlException)
+                        {
+                            // Handle more specific SqlException exception here.  
+                            MessageBox.Show("Error, yksi tai useampi lasku/varaus/palvelu sisältää tämän asiakkaan. Poista kyseiset rivit ennen asiakkaan poistamista.");
+                        }
+                        else
+                        {
+
+                        }
+                    }
                     dgwAsiakkaat.DataSource = sql.ShowInGridView("SELECT asiakas_id AS Id, etunimi AS Etunimi, sukunimi AS Sukunimi, lahiosoite AS Lähiosoite, postitoimipaikka AS Paikkakunta, postinro AS Postinumero, email AS Sähköposti, puhelinnro AS Puhelin FROM Asiakas");
                     sql.Close();
                 }
