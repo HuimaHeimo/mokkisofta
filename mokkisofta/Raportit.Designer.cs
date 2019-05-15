@@ -28,12 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Raportit));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.tiedostoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tietoaOhjelmastaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dgwRaportit = new System.Windows.Forms.DataGridView();
             this.btnRptHae = new System.Windows.Forms.Button();
             this.cbxRptToimipiste = new System.Windows.Forms.ComboBox();
@@ -54,6 +55,7 @@
             this.rdbRajaaAsiakas = new System.Windows.Forms.RadioButton();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.poistuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwRaportit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrRptChart1)).BeginInit();
@@ -72,15 +74,26 @@
             // 
             // tiedostoToolStripMenuItem
             // 
+            this.tiedostoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.poistuToolStripMenuItem});
             this.tiedostoToolStripMenuItem.Name = "tiedostoToolStripMenuItem";
             this.tiedostoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.tiedostoToolStripMenuItem.Text = "Tiedosto";
             // 
             // ohjeToolStripMenuItem
             // 
+            this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tietoaOhjelmastaToolStripMenuItem});
             this.ohjeToolStripMenuItem.Name = "ohjeToolStripMenuItem";
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
+            // 
+            // tietoaOhjelmastaToolStripMenuItem
+            // 
+            this.tietoaOhjelmastaToolStripMenuItem.Name = "tietoaOhjelmastaToolStripMenuItem";
+            this.tietoaOhjelmastaToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.tietoaOhjelmastaToolStripMenuItem.Text = "Tietoa ohjelmasta";
+            this.tietoaOhjelmastaToolStripMenuItem.Click += new System.EventHandler(this.tietoaOhjelmastaToolStripMenuItem_Click);
             // 
             // dgwRaportit
             // 
@@ -212,10 +225,10 @@
             // 
             // chrRptChart1
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chrRptChart1.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chrRptChart1.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.chrRptChart1.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrRptChart1.Legends.Add(legend1);
             this.chrRptChart1.Location = new System.Drawing.Point(561, 27);
             this.chrRptChart1.Name = "chrRptChart1";
             this.chrRptChart1.Size = new System.Drawing.Size(479, 376);
@@ -272,6 +285,13 @@
             // printDocument1
             // 
             this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument1_PrintPage);
+            // 
+            // poistuToolStripMenuItem
+            // 
+            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
+            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.poistuToolStripMenuItem.Text = "Poistu";
+            this.poistuToolStripMenuItem.Click += new System.EventHandler(this.poistuToolStripMenuItem_Click);
             // 
             // Raportit
             // 
@@ -336,5 +356,7 @@
         private System.Windows.Forms.RadioButton rdbRajaaAsiakas;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.ToolStripMenuItem tietoaOhjelmastaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem poistuToolStripMenuItem;
     }
 }

@@ -269,5 +269,16 @@ namespace mokkisofta
             cboxLasAsiakas = S.haeVarauksenAsiakas(S, cboxLasVaraus, cboxLasAsiakas, asiakkaat, "Asiakas", "Varaus.asiakas_id");
             S.Close();
         }
+
+        private void tietoaOhjelmastaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tietoa ti = new Tietoa();
+            ti.ShowDialog();
+        }
+
+        private void poistuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

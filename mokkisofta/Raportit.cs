@@ -232,6 +232,17 @@ namespace mokkisofta
             e.Graphics.DrawImage(bmpDgw, 120, 20);
             e.Graphics.DrawImage(bmpChr, 120, bmpDgw.Height +30);
         }
+
+        private void tietoaOhjelmastaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tietoa ti = new Tietoa();
+            ti.ShowDialog();
+        }
+
+        private void poistuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 
 

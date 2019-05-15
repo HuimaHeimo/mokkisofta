@@ -164,5 +164,11 @@ namespace mokkisofta
                 txbPvSalasana.Enabled = true;
             }
         }
+
+        private void tietojaOhjelmastaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tietoa ti = new Tietoa();
+            ti.ShowDialog();
+        }
     }
 }

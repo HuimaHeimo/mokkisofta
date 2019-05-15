@@ -241,5 +241,16 @@ namespace mokkisofta
                 e.Handled = true;
             }
         }
+
+        private void tietoaOhjelmastaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tietoa ti = new Tietoa();
+            ti.ShowDialog();
+        }
+
+        private void poistuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

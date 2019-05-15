@@ -246,5 +246,16 @@ namespace mokkisofta
             dtVarAlkupvm.MinDate = dtVarVahvistuspvm.Value;
             dtVarLoppupvm.MinDate = dtVarAlkupvm.Value;
         }
+
+        private void tietoaOhjelmastaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Tietoa ti = new Tietoa();
+            ti.ShowDialog();
+        }
+
+        private void poistuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

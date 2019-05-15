@@ -47,6 +47,7 @@
             this.txbLasNimi = new System.Windows.Forms.TextBox();
             this.dgwLaskut = new System.Windows.Forms.DataGridView();
             this.ohjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tietoaOhjelmastaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.cboxLasAsiakas = new System.Windows.Forms.ComboBox();
             this.lblLasSumma = new System.Windows.Forms.Label();
@@ -55,6 +56,7 @@
             this.lblLasAlv = new System.Windows.Forms.Label();
             this.btnLasPeruuta = new System.Windows.Forms.Button();
             this.btnLasTallenna = new System.Windows.Forms.Button();
+            this.poistuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgwLaskut)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -86,6 +88,8 @@
             // 
             // tiedostoToolStripMenuItem
             // 
+            this.tiedostoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.poistuToolStripMenuItem});
             this.tiedostoToolStripMenuItem.Name = "tiedostoToolStripMenuItem";
             this.tiedostoToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
             this.tiedostoToolStripMenuItem.Text = "Tiedosto";
@@ -217,9 +221,18 @@
             // 
             // ohjeToolStripMenuItem
             // 
+            this.ohjeToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tietoaOhjelmastaToolStripMenuItem});
             this.ohjeToolStripMenuItem.Name = "ohjeToolStripMenuItem";
             this.ohjeToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
             this.ohjeToolStripMenuItem.Text = "Ohje";
+            // 
+            // tietoaOhjelmastaToolStripMenuItem
+            // 
+            this.tietoaOhjelmastaToolStripMenuItem.Name = "tietoaOhjelmastaToolStripMenuItem";
+            this.tietoaOhjelmastaToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.tietoaOhjelmastaToolStripMenuItem.Text = "Tietoa ohjelmasta";
+            this.tietoaOhjelmastaToolStripMenuItem.Click += new System.EventHandler(this.tietoaOhjelmastaToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -296,6 +309,13 @@
             this.btnLasTallenna.UseVisualStyleBackColor = true;
             this.btnLasTallenna.Click += new System.EventHandler(this.BtnLasTallenna_Click);
             // 
+            // poistuToolStripMenuItem
+            // 
+            this.poistuToolStripMenuItem.Name = "poistuToolStripMenuItem";
+            this.poistuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.poistuToolStripMenuItem.Text = "Poistu";
+            this.poistuToolStripMenuItem.Click += new System.EventHandler(this.poistuToolStripMenuItem_Click);
+            // 
             // Laskut
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -366,5 +386,7 @@
         private System.Windows.Forms.Label lblLasAlv;
         private System.Windows.Forms.Button btnLasPeruuta;
         private System.Windows.Forms.Button btnLasTallenna;
+        private System.Windows.Forms.ToolStripMenuItem tietoaOhjelmastaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem poistuToolStripMenuItem;
     }
 }
