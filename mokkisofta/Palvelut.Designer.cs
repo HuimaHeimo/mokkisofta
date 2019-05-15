@@ -68,6 +68,7 @@
             // txbPlvNimi
             // 
             this.txbPlvNimi.Location = new System.Drawing.Point(104, 445);
+            this.txbPlvNimi.MaxLength = 40;
             this.txbPlvNimi.Name = "txbPlvNimi";
             this.txbPlvNimi.Size = new System.Drawing.Size(153, 20);
             this.txbPlvNimi.TabIndex = 4;
@@ -165,6 +166,7 @@
             // txbPlvAlv
             // 
             this.txbPlvAlv.Location = new System.Drawing.Point(322, 445);
+            this.txbPlvAlv.MaxLength = 5;
             this.txbPlvAlv.Name = "txbPlvAlv";
             this.txbPlvAlv.Size = new System.Drawing.Size(130, 20);
             this.txbPlvAlv.TabIndex = 8;
@@ -173,6 +175,7 @@
             // txbPlvHinta
             // 
             this.txbPlvHinta.Location = new System.Drawing.Point(322, 420);
+            this.txbPlvHinta.MaxLength = 5;
             this.txbPlvHinta.Name = "txbPlvHinta";
             this.txbPlvHinta.Size = new System.Drawing.Size(130, 20);
             this.txbPlvHinta.TabIndex = 7;
@@ -181,6 +184,7 @@
             // txbPlvKuvaus
             // 
             this.txbPlvKuvaus.Location = new System.Drawing.Point(104, 471);
+            this.txbPlvKuvaus.MaxLength = 255;
             this.txbPlvKuvaus.Name = "txbPlvKuvaus";
             this.txbPlvKuvaus.Size = new System.Drawing.Size(348, 20);
             this.txbPlvKuvaus.TabIndex = 5;
